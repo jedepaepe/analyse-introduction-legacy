@@ -1,22 +1,3 @@
-<script>
-  const repoOwner = 'jedepaepe';
-  const repoName = 'analyse-introduction-legacy';
-  const targetUl = document.querySelector('#section-table-content ul');
-
-  fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/`)
-    .then(response => response.json())
-    .then(data => {
-      data.forEach(item => {
-        // On filtre pour n'avoir que les dossiers et exclure ceux qu'on ne veut pas
-        if (item.type === 'dir' && item.name !== 'animations' && item.name !== 'css' && item.name !== 'js') {
-          const li = document.createElement('li');
-          li.innerHTML = `<a href="${item.name}/index.html">${item.name}</a>`;
-          targetUl.appendChild(li);
-        }
-      });
-    });
-</script>
-
 <!DOCTYPE html>
 <html>
 
@@ -47,6 +28,24 @@
         <footer>
             &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2019-10-24
         </footer>
+        <script>
+        const repoOwner = 'jedepaepe';
+        const repoName = 'analyse-introduction-legacy';
+        const targetUl = document.querySelector('#section-table-content ul');
+
+        fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/`)
+            .then(response => response.json())
+            .then(data => {
+            data.forEach(item => {
+                // On filtre pour n'avoir que les dossiers et exclure ceux qu'on ne veut pas
+                if (item.type === 'dir' && item.name !== 'animations' && item.name !== 'css' && item.name !== 'js') {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="${item.name}/index.html">${item.name}</a>`;
+                targetUl.appendChild(li);
+                }
+            });
+            });
+        </script>
         <script src='js/script.js'></script>
     </body>
 
