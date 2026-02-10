@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>E06-ECHECS</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+    <link rel="stylesheet" href="../../../css/codemirror.css">
+    <script src="../../../js/codemirror.js"></script>
+    <script src="../../../js/sql.js"></script>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Exemple 6 - jeux d'échecs</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td=1>
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Réaliser un dossier d'analyses pour un jeu d'échecs sur internet.
+                </p>
+                <p>
+                    Durée estimée : 4 heures.
+                </p>
+                <p>
+                    Type d'enseignement : apprentissage en autonomie.
+                </p>
+                <p>
+                    Note : les diagrammes ont été réalisés
+                    avec <a href="https://www.visual-paradigm.com/" target=_blank>visual paradigm</a>
+                    et vous pouvez cliquer <a href="assets/chess.vpp" download>ici pour télécharger le project</a>.
+                </p>
+            </section>
+
+            <section id="section-introduction" data-tc=1>
+                <h2>Introduction</h2>
+                <p>
+                    Réalisons le dossier d'analyse pour un jeu d'échecs sur intenet.
+                </p>
+                <p>
+                    Nous pouvons partir
+                    de la description suivante:
+                </p>
+                <div class="tips">
+                    <p>
+                        Le jeu doit permettre de jouer des parties d'échecs avec d'autres internautes.
+                    </p>
+                    <p>
+                        Pour pouvoir utiliser l'application, le joueur doit ouvrir un compte, il devra mentionner un nom qui sera utilisé pour l'affichage, un email qui sera utilisé pour identifié le joueur et un mot de passe que l'utilisateur doit écrire deux fois. Ensuite l'application enverra un email avec un lien pour confirmer la possession de l'email. L'utilisateur a aussi la possibilité de créer un compte sur base de son compte facebook.
+                    </p>
+                    <p>
+                        L'utilisateur doit s'authentifier à l'ouverture d'une session. S'il s'agit d'un compte facebook, l'application demande à facebook d'authentifier l'utilisateur.
+                    </p>
+                    <p>
+                        S'il a oublié son mot de passe, il peut demander une réinitialisation du mot de passe. L'application envoie alors un email avec un lien vers la page de réinitialisation qui demande à l'utilisateur d'introduire le nouveau mot de passe. L'utilisateur doit introduire deux fois le nouveau mot de passes.
+                    </p>
+                    <p>
+                        L'utilisateur aura un dashboard (tableau de bord) avec une liste des joueurs connectés qui proposent de jouer une partie d'échecs et une liste des parties déjà jouées par l'utilisateur.
+                    </p>
+                    <p>
+                        L'utilisateur peut accepter une proposition de partie, dans quel cas la partie d'échec commence.
+                    </p>
+                    <p>
+                        Il peut aussi proposer une partie, dans quel cas sa proposition est mise en attente qu'un joueur l'accepte.
+                    </p>
+                    <p>
+                        Il peut revisionner une partie déjà jouée.
+                    </p>
+                    <p>
+                        Il peut reprendre une partie déjà commencée mais non terminée. Dans quel cas, l'application notifie l'autre joueur.
+                    </p>
+                    <p>
+                        Il peut inviter un ami facebook dans quel cas l'application enverra un message facebook à son ami.
+                    </p>
+                    <p>
+                        Un administrateur peut exclure un joueur, supprimer des parties enregistrées ou non et supprimer des propositions de partie.
+                    </p>
+                    <p>
+                        Techniquement, l'application sera une application web dynamique classique écrite en PHP avec un serveur web nginx et une base de données posgresql. L'application et postgresql seront déployées sur le serveur virtuel (VMWare) loué chez Contabo. Un backup de la base de données sera réalisé toutes les heures et déposé sur un "répertoire" dans le cloud (par exemple AWS S3).
+                    </p>
+                </div>
+                <p>
+                    Pour les règles du jeu d'échecs,
+                    nous utiliserons une source sur internet.
+                    Une rapide recherche nous donne:                    
+                </p>
+                <ul>
+                    <li>
+                        <a href="https://fr.wikipedia.org/wiki/R%C3%A8gles_du_jeu_d%27%C3%A9checs" target=_blank>
+                        wikipédia - règles du jeu d'échecs</a>;
+                    </li>
+                    <li>
+                        <a href="https://ecole.apprendre-les-echecs.com/regles-echecs/" target=_blank>
+                        Ecole Apprendre-Les-Echecs - Les règles du jeu d'échecs pour les débutants</a>.
+                    </li>
+                </ul>
+            </section>
+
+            <section id="section-functional-analysis" data-tc=1>
+                <h2>Analyse fonctionnel</h2>
+                <p>
+                    Nous commençons par l'analyse du domaine,
+                    puis les processus et finalement les fonctions.
+                </p>
+
+                <section id="section-functional-analysis-domain" data-tc=2 data-toc-text="domaine">
+                    <h3>Modèle du domaine</h3>
+                    <p>
+                        Nous utilisons le diagramme de classes
+                        pour modéliser le jeu d'échecs.
+                    </p>
+                    <a href="images/1-1-domain-model-class-diagram.png">
+                    <img src="images/1-1-domain-model-class-diagram.png" alt=""></a>
+                    <p>
+                        Notons que:
+                    </p>
+                    <ul>
+                        <li>
+                            La classe <b>Piece</b> est abstraite (indiqué par l'italique).
+                        </li>
+                        <li>
+                            Nous avons deux liens entre <b>Player</b> et <b>Game</b>,
+                            car nous devons différencier le joueur noir du joueur blanc
+                            et que noir ou blanc est une caractéristique de l'association
+                            entre <b>Player</b> et <b>Game</b>.<br>
+                            Nous avons préféré cette solution
+                            à une solution <span class="scode">Player -2---n- Role -n---1- Game</span>
+                            où Role a l'attribut isBlack.
+                        </li>
+                        <li>
+                            <b>Player</b> modélise un joueur.
+                            Nous pouvons ajouter d'autres attributs ou retirer les attributs,
+                            ce n'est pas très important au niveau du domaine du jeu d'échecs.    
+                        </li>
+                        <li>
+                            Nous avons ajouté les méthodes
+                            <b>getWinner(): Player</b> et <b>getScore(): int</b>
+                            car c'est bien la classe <b>Game</b>
+                            qui a pour responsabilité de préciser qui a gagné
+                            et quel est le score.<br>
+                            Nous voyons aussi que nous pourrons coder cela
+                            car le perdant sera le joueur qui a "perdu" son roi
+                            <span class="scode">:Game --- :Board --- :King.isCaptured()</span>.<br>
+                            A ma connaissance, il n'y a pas de score dans une partie d'échecs.
+                            Mais nous aimons savoir si nous avons l'avantage.
+                            Un possibilité est de calculer un score sur base des pièces capturer:
+                            +1 pour un pion, +5 pour une tour, +3 pour un cheval ou un fou, +10 pour une reine.
+                            Il est logique de donner la responsabilité de calculer le score
+                            à la classe <b>Game</b> car c'est le score de la partie.
+                        </li>
+                        <li>
+                            <b>Piece</b> a la méthode <b>isCaptured(): boolean</b>
+                            qui retourne true si la pièce est dans une case,
+                            ce qui se traduit dans le modèle par le fait que la pièce n'a pas de lien avec une case.
+                            isCaptured retourne false si la pièce est dans une case.
+                        </li>
+                    </ul>
+                    <div style="display: none;">
+                        TODO réaliser un diagramme d'objets pour illustrer
+                    </div>
+                </section>
+
+                <section id="section-functional-analysis-process" data-tc=2 data-toc-text="processus">
+                    <h3>Modèle des processus</h3>
+                    <p>
+                        Il est difficile de modéliser par un diagramme d'activités
+                        l'ensemble des règles du jeu d'échecs.
+                        Par contre, nous pouvons facilement illustrer le fait
+                        qu'une partie se joue à deux joueurs
+                        et consiste à déplacer une pièce tour à tour.
+                    </p>
+                    <a href="images/1-2-processus-model-activity-diagram.png">
+                    <img src="images/1-2-processus-model-activity-diagram.png" alt=""></a>
+                    <p>
+                        C'est bien un processus du domaine,
+                        mais est-il nécessaire de le réaliser ?<br>
+                        C'est-à-dire, apporte-t'il de l'information nouvelle,
+                        un synthèse?<br>
+                        Personnellement, je pense que non,
+                        que ce modèle est soit connu, soit tellement simple
+                        qu'il sera vite appris.
+                    </p>
+                </section>
+
+                <section id="section-functional-analysis-functions" data-tc=2 data-toc-text="fonctions">
+                    <h3>modèle des fonctions</h3>
+                    <p>
+                        Nous choisissons de modéliser les fonctions
+                        à l'aide de use cases (cas d'utilisation).
+                    </p>
+                    <p>
+                        Nous commençons par lister les utilisateurs
+                        et les noms de cas d'utilisation.
+                        Puis nous représentons cela par un diagramme de cas d'utilisation
+                        (use case diagram):
+                    </p>
+                    <a href="images/1-3-functional-model-use-case.png">
+                    <img src="images/1-3-functional-model-use-case.png" alt=""></a>
+                    <p>
+                        Nous avons regroupé les use cases en trois packages:
+                    </p>
+                    <ul>
+                        <li>gestion de comptes</li>
+                        <li>gestion des parties</li>
+                        <li>administration</li>
+                    </ul>
+                    <p>
+                        Cela est utile car nous avons beaucoup de use cases.
+                    </p>
+                    <div id="section-functional-analysis-functions-signup" class="card">
+                        <h4>Créer un compte</h4>
+                        <div>
+                            <h5>Description</h5>
+                            <p>
+                                En tant qu'internaute,
+                                je veux pouvoir créer un compte
+                                ainsi je peux utiliser l'application.
+                            </p>
+                        </div>
+                        <div>
+                            <h5>Acteur</h5>
+                            <p>
+                                Un internaute.
+                            </p>
+                        </div>
+                        <div>
+                            <h5>Préconditions</h5>
+                            <p>
+                                Avoir accès à un PC connecté à internet.
+                                (Est-ce utile de le mentionner?)
+                            </p>
+                        </div>
+                        <div id="section-functional-analysis-functions-signup-happy" class=card>
+                            <h5 class="card-scenario-title">Scénario souhaité</h5>
+                            <ol>
+                                <li>
+                                    l'internaute complète le formule de création d'utilisateur (signup),
+                                    il doit préciser son nom de joueur et son email
+                                </li>
+                                <li>
+                                    l'application envoie un email à l'internaute
+                                    contenant un lien vers une page d'initialisation du mot de passe
+                                </li>
+                                <li>
+                                    l'internaute ouvre sa boîte mail,
+                                    sélectionne l'email
+                                    et clique sur le lien
+                                </li>
+                                <li>
+                                    l'application ouvre la page d'initialisation du mot de passe
+                                </li>
+                                <li>
+                                    l'utilisateur doit introduire un mot de passe à deux reprises
+                                </li>
+                            </ol>
+                            <div>
+                                <h6>Postconditions</h6>
+                                <ul>
+                                    <li>
+                                        l'internaute devient un joueur,
+                                        il peut dès présent s'authentifier 
+                                        et utiliser l'application;
+                                    </li>
+                                    <li>
+                                        le joueur est créé, avec l'email comme identifiant,
+                                        le nom comme nom d'affichage,
+                                        et le mot de passe.
+                                    </li>
+                                    <li>
+                                        le lien vers la page d'initialisation est déactivé
+                                        (on ne peut plus utiliser le lien)
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="section-functional-analysis-functions-signup-error-email" class="card">
+                            <h5 class="card-scenario-title">Scénario "erreur d'email"</h5>
+                            <p>
+                                Le scénario est identique
+                                excepté que l'internaute se trompe dans son email dans l'étape (1).
+                            </p>
+                            <p>
+                                Deux situations sont possibles:
+                            </p>
+                            <ol>
+                                <li>
+                                    si l'application échoue dans l'envoi de l'email
+                                    l'application affiche un message d'erreur,
+                                    par exemple:
+                                    <pre>
+    L'envoie d'une email à votre adresse $votre-email a échoué,
+    êtes-vous certain d'avoir encodé le bon email?
+                                    </pre>
+                                    et laisse l'utilisateur réencoder l'email.
+                                </li>
+                                <li>
+                                    l'email existe
+                                    et quelqu'un d'autre reçoit l'email.<br>
+                                    Ce n'est pas grave,
+                                    car si cette autre personne clique sur le lien,
+                                    elle pourra effectivement introduire
+                                    un mot de passe,
+                                    mais comme le compte est lié à l'email,
+                                    ce mot de passe sera lié à son propre email.
+                                </li>
+                            </ol>
+                        </div>
+                        <div id="section-functional-analysis-functions-signup-error-password" class="card">
+                            <h5 class="card-scenario-title">Scénario "erreur de mot de passe"</h5>
+                            <p>
+                                Le sénario est identique au sénario souhaité,
+                                excepté qu'à l'étape (5),
+                                l'internaute introduit deux mots de passe différents.
+                            </p>
+                            <p>
+                                L'application indique que les mots de passe ne sont pas identiques
+                                et laisse l'utilisateur répéter l'opération.
+                            </p>
+                        </div>
+                        <div id="section-functional-analysis-functions-signup-nothing" class="card">
+                            <h5 class="card-scenario-title">Scénario "rien ne se passe</h5>
+                            <p>
+                                Il se peut que l'utilisateur encode son nom et email
+                                mais qu'ensuite il n'entreprenne aucune action.
+                            </p>
+                            <p>
+                                Dans ce cas et après 20 minutes, l'application déactive le lien vers la page de confirmation d'inscription.
+                            </p>
+                        </div>
+                        <div id="section-functional-analysis-functions-signup-activity">
+                            <h5>Utilisation d'un diagramme d'activités</h5>
+                            <p>
+                                Nous voyons que c'est compliqué de documenter le use case "créer un compte" avec des scénarios,
+                                nous perdons la vue globale.
+                            </p>
+                            <p>
+                                Dans ce cas, nous pouvons utiliser le diagramme d'activités:
+                            </p>
+                            <a href="images/use-case-signup-activity-diagram.png">
+                            <img src="images/use-case-signup-activity-diagram.png" alt=""></a>
+                            <p>
+                                Ce diagramme d'activités ne doit pas être confondu avec le modèle des processus.<br>
+                                Dans le modèle des processus, nous étudions les processus du domaine,
+                                ici nous étudions le processus dans le cadre de l'application.
+                            </p>
+                            <p>
+                                En conséquence, nous représenterons ici les actions entreprises par l'application,
+                                et en général, nous dessinerons un couloir (swimlane) pour l'application
+                                (<b>chess-app</b> dans le diagramme.
+                            </p>
+                            <p>
+                                Le diagramme montre deux points faibles de ce processus de création de compte:
+                            </p>
+                            <ol>
+                                <li>
+                                    l'application permet un nombre infini de tentatives <i>set name and password</i>
+                                </li>
+                                <li>
+                                    l'application laisse un autre internaute finir le processus,
+                                    ce qui signifie qu'il utilise le nom de l'internaute initiateur du processus. 
+                                </li>
+                            </ol>
+                            <p>
+                                Nous pouvons bien sûr améliorer cela
+                                en limitant le nombres d'essai
+                                et en demande à l'utilisateur de créer son nom et mot de passe
+                                au moment de la confirmation.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-technical" data-tc=1>
+                <h2>Analyse technique</h2>
+                <p>
+                    Nous réalisons les modèles de base de données,
+                    de contextes et de déploiements.
+                    Les modèles de composants, de classes d'implémentation
+                    et d'interfaces dépassent le cadre de ces notes.
+                </p>
+                <section id="section-technical-database" data-tc=2 data-toc-text="database">
+                    <h3>Modèle de base de données</h3>
+                    <p>
+                        Nous utilisons un diagramme relationnel pour le modèle de base de données:
+                    </p>
+                    <a href="images/2-1-database-domain-relational-diagram.png">
+                    <img src="images/2-1-database-domain-relational-diagram.png" alt=""></a>
+                    <p>
+                        Nous notons que le modèle de base de données est plus simple
+                        que le modèle de contexte.
+                    </p>
+                    <p>
+                        Nous avons effectivement simplifié
+                        et éliminé différentes classes:
+                    </p>
+                    <ul>
+                        <li>
+                            <i>Board</i> parce qu'elle ne contient aucune information
+                        </li>
+                        <li>
+                            <i>Square</i> parce que les cellules sont toujours les mêmes,
+                            "1a", "1b", "1c", ...
+                            La seule information que <i>Square</i> c'est via l'association
+                            avec Piece qui permet de déterminer la position
+                            de la pièce et si la pièce a été capturé.
+                            Or nous avons reporté ses informations dans la table <i>Piece</i>.
+                        </li>
+                        <li>
+                            Nous n'avons pas de table <i>pawn</i>, <i>rook</i>, <i>knight</i>, ...
+                            seulement la table <i>piece</i> avec l'attribut <i>name</i>
+                            qui prend les valeurs "P" pour "pawn", "R" pour "rook", "K" pour ...
+                        </li>
+                        <li>
+                            Nous avons remplacé les classes
+                            <i>Pawn</i>, <i>Rook</i>, <i>Knight</i>, <i>Bishop</i>, <i>Queen</i> et <i>King</i>
+                            par l'attribut <i>name</i> dans la table <i>piece</i>.
+                        </li>
+                    </ul>
+                    <p>
+                        Après vérification avec les spécifications,
+                        nous notons que ce modèle ne permet pas de sauver l'historique
+                        d'une partie (cf <i>Il peut revisionner une partie déjà jouée</i>).
+                    </p>
+                    <div id="section-technical-database-history">
+                        <h4>Ajout de l'historique</h4>
+                        <p>
+                            La solution classique est d'ajouter un table de liaison
+                            entre <i>game</i> et <i>piece</i>.
+                        </p>
+                        <a href="images/2-1-database-domain-relational-diagram-history-1.png">
+                        <img src="images/2-1-database-domain-relational-diagram-history-1.png" alt=""></a>
+                        <p>
+                            Chaque mouvement est enregistré dans <b>movement</b>
+                            et il est possible de reconstituer la position actuelle
+                            en sélectionnant le dernier mouvement:
+                        </p>
+                        <pre>
+    SELECT row, column, is_capture
+    FROM position_history
+    WHERE piece_id = 0
+    ORDER BY timestamp DESC
+    LIMIT 1;
+                        </pre>
+                        <p>
+                            qui retourne la dernière position de la pièce d'identifiant 0.
+                        </p>
+                        <p>
+                            Remarquons que <i>LIMIT</i> est propre aux moteurs de base de données
+                            mysql ou mariadb.
+                        </p>
+                    </div>
+                    <div id="section-technical-database-history-2">
+                        <h4>Mouvement</h4>
+                        <p>
+                            Nous pouvons aussi penser le jeux d'échec comme une suite de mouvements,
+                            ce qui permet d'avoir une version simplifiée pour la base de données:
+                        </p>
+                        <a href="images/2-1-database-domain-relational-diagram-history-2.png">
+                        <img src="images/2-1-database-domain-relational-diagram-history-2.png" alt=""></a>
+                        <p>
+                            La table principale est alors <b>movement</b>
+                            qui précise le mouvement d'une pièce.
+                        </p>
+                        <p>
+                            Nous avons reporté les informations liées à la cellule
+                            dans la table <b>square</b>
+                            qui en pratique ne contiendra que 64 éléments.
+                        </p>
+                        <p>
+                            Ainsi, <b>movement.origin_id</b> indique la cellule d'origine
+                            et <b>movement_destination_id</b> indique la cellule de destination.
+                        </p>
+                        <p>
+                            Dans ce modèle,
+                            la base de données est incapable de donner la situation "finale"
+                            d'une partie car le moteur de base de données ne connait pas les règles du jeu d'échecs.
+                        </p>
+                        <p>
+                            Par contre, notre application <b>chess-app</b>
+                            sera capable de calculer la position finale des pièces,
+                            simplement en réexécutant tous les mouvements,
+                            dans l'ordre:
+                        </p>
+                        <pre>
+    SELECT *
+    FROM movement m
+    INNER JOIN square o INNER JOIN o.id = m.origin.id
+    INNER JOIN square d INNER JOIN d.id = m_destination.id
+    WHERE m.game_id = 0
+    ORDER BY m.timestamp
+                        </pre>
+                        <p>
+                            ici pour la partie d'identifiant 0.
+                        </p>
+                    </div>
+                </section>
+                <section id="section-technical-context" data-tc=2 data-toc-text="contexte">
+                    <h3>Modèle du contexte</h3>
+                    <p>
+                        L'application <b>chess-app</b> permet à des internautes
+                        de jouer aux échecs ensemble, à travers internet.
+                        <a href="images/2-1-context-model.png">
+                        <img src="images/2-1-context-model.png" alt=""></a>
+                    </p>
+                </section>
+                <section id="section-technical-deployment" data-tc=2 data-toc-text="déploiement">
+                    <h3>Modéle de déploiement</h3>
+                    <p>
+                        L'introduction précise
+                        <i>Techniquement, l'application sera une application web dynamique classique écrite en PHP avec un serveur web nginx et une base de données posgresql. L'application et postgresql seront déployées sur le serveur virtuel (VMWare) loué chez Contabo. Un backup de la base de données sera réalisé toutes les heures et déposé sur un "répertoire" dans le cloud (par exemple AWS S3)</i>
+                    </p>
+                    <a href="images/2-2-deployment-model.png">
+                        <img src="images/2-2-deployment-model.png" alt=""></a>    
+                </section>
+            </section>
+
+            <section id="section-references" data-tc=1>
+                <h2>Références</h2>
+                <p>
+                    Il y a d'autres analyses du jeu d'échecs disponibles sur internet
+                </p>
+                <ul>
+                    <li>
+                        <a href="https://silo.tips/download/software-design-description-chess-for-prepared-by-mayra-aguas-alfred-blackman-ge" target=_blank>
+                            Software Design Description for CHESS
+                        </a> présente une analyse complète d'une application
+                        ( <a href="assets/silo.tips_software-design-description-chess-for-prepared-by-mayra-aguas-alfred-blackman-george-dandrea-paul-vu-and-gurvinder-singh.pdf" download>un backup est disponible ici</a> )<br>
+                        <a href="images/aguas-and-co-domain-class-diagram.png">
+                            <img src="images/aguas-and-co-domain-class-diagram.png" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="https://stackoverflow.com/questions/58354719/how-to-constuct-a-uml-diagram-for-a-simple-chess-game-with-gui" target=_blank>
+                            stakeoverflow - discussion sur base du diagramme de classes d'implémentation
+                        </a><br>
+                        <a href="images/how-to-constuct-a-uml-diagram-for-a-simple-chess-game-with-gui.png">
+                        <img src="images/how-to-constuct-a-uml-diagram-for-a-simple-chess-game-with-gui.png" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="https://web.archive.org/web/20110624121350/http:/sharpchess.com/?page=50%20Development/01%20Object%20Model" target=_blank>
+                        web.archive.org - Sharp Chess</a>
+                        donne une version très différente, basée sur le mouvement<br>
+                        <a href="images/SharpChess_ObjectModel.gif">
+                        <img src="images/SharpChess_ObjectModel.gif" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="https://app.genmymodel.com/api/repository/Ramakrishna/ChessGame">
+                        Ramakrishna Chess Game</a> donne une version indienne du jeu<br>
+                        <a href="images/indian-chess.png">
+                        <img src="images/indian-chess.png" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="https://codereview.stackexchange.com/questions/71790/design-a-chess-game-using-object-oriented-principles" target=_blank>
+                            code review - Design a chess game using object-oriented principles
+                        </a><br>
+                        <a href="images/design-a-chess-game-using-object-oriented-principles.png">
+                        <img src="images/design-a-chess-game-using-object-oriented-principles.png" alt=""></a><br>
+                        avec du code java.
+                    </li>
+                </ul>
+            </section>
+        </article>
+
+        <footer>
+            &copy; 2020 - Jean-Michel Depaepe - dernière mise à jour 2020-04-25
+        </footer>
+    </sec>
+    <script>
+        var sdkj = {language: 'sql'};
+    </script>
+    <script src='../../../js/script.js'></script>
+</body>
+</html>

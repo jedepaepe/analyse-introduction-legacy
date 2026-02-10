@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Use cases</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">UML 2 - Cas d'utilisation</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td=1>
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Savoir lire et rédiger des cas d'utilisation.
+                </p>
+            </section>
+            <section id="section-introduction" data-tc=1>
+                <h2>Introduction</h2>
+                <div>
+                    <p>
+                        Les use cases servent à documenter les fonctions d'une application.
+                    </p>
+                    <p>
+                        Ils ont été introduites par Ivar Jacobson, au début des années 90,
+                        décrite dans le livre <i>Object-Oriented Software Engineering. A Use Case Driven Approach, Ivar Jacobson, Addison-Wesley, 1992</i>.
+                    </p>
+                    <p>
+                        Ils peuvent avoir différents rôles comme
+                    </p>
+                    <ol>
+                        <li>documenter les exigences fonctionnelles d'un système informatique</li>,
+                        <li>documenter les fonctions d'un système informatique dans le cadre d'un dossier d'analyse</li>
+                        <li>organiser l'implémentation</li>
+                        <li>servir de support pour des discussions, des communications, des workshops, ...</li>
+                    </ol>
+                    <p>
+                        Tous ces rôles sont semblables
+                        car le but est le même, <i>avoir un plan des fonctionnalités du système</i>.
+                    </p>
+                    <p>
+                        Dans le cadre du dossier d'analyse,
+                        les use cases serviront à analyser les fonctions de l'application,
+                        soit dans notre modélisation:
+                    </p>
+                    <a href="images/analyse-processus.jpg">
+                    position du use case dans le contexte du dossier d'analyse</a>.
+                    <p>
+                        Rappelons cependant que ce diagramme est un modèle,
+                        et qu'en réalité, il y a beaucoup d'autres manières de procéder.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-description" data-tc=1>
+                <h2>Description</h2>
+                <div>
+                    <p>
+                        Qu'est-ce qu'un use cases?
+                    </p>
+                    <p>
+                        C'est un cas d'utilisation du système.
+                    </p>
+                    <p>
+                        Nous regardons le système du point de vue des acteurs,
+                        et nous nous demandons comment ils utilisent le système.
+                    </p>
+                    <p>
+                        Le use case sert à capturer cette information.
+                    </p>
+                    <p>
+                        Les use cases ne se réduisent pas aux diagrammes de use cases,
+                        bien au contraire.
+                        Le use case sert à capturer l'usage du système.
+                        En général, trois outils sont utilisés pour documenter les use cases:
+                    </p>
+                    <ul>
+                        <li>le diagramme de use cases</li>
+                        <li>la description textuelle d'un use case</li>
+                        <li>le diagramme de séquence système</li>
+                    </ul>
+                    <p>
+                        Illustrons maintenant chacun de ses outils.
+                    </p>
+                </div>
+                <section id="section-description-diagram" data-tc=2 data-toc-text="diagramme">
+                    <h3>diagramme de use cases</h3>
+                    <div>
+                        <p>
+                            Le diagramme sert à illustrer l'ensemble des fonctionnalités du système,
+                            par exemple:
+                        </p>
+                        <blockquote>
+                            <a href="images/manage-inventory-5846.png">
+                                <img src="images/manage-inventory-5846.png" alt="">
+                            </a>
+                            <cite>
+                                <a href="https://sparxsystems.com/enterprise_architect_user_guide/14.0/guidebooks/tools_ba_use_case_diagram.html" target=_blank>
+                                    sparx systems, Use case diagram
+                                </a>
+                            </cite>
+                        </blockquote>
+                        <p>
+                            Nous trouvons sur ce diagramme cinq symboles:
+                        </p>
+                        <ul>
+                            <li>les acteurs, <i>Products Manager</i>, <i>Chief Editor</i>, <i>On-line Customer</i> et <i>Customer Support Officer</i></li>
+                            <li>les use cases, <i>Add New Titles</i>, <i>Manage Publishers</i>, <i>Manage Titles</i>, <i>Create Orders</i> et <i>List Stock Levels</i></li>
+                            <li>les associations entre acteurs et use cases</li>
+                            <li>le système (ou l'application), <i>Online Bookstore</i></li>
+                            <li>une note <i>Use case diagrams ...</i></li>
+                        </ul>
+                        <p>
+                            Seuls les acteurs, use cases et associations sont obligatoires,
+                            cependant il est rassurant de voir les limites de l'application en plaçant le rectangle autour des use cases.
+                            Cette information est redondante car tous les use cases que nous listons ici font partie de l'application.
+                        </p>
+                        <p>
+                            Les notes sont bien venues, mais nous devons faire attention à ne pas surcharger le diagramme.
+                        </p>
+                        <p>
+                            Le diagramme ci-dessus est une bonne illustration.
+                            Notons que les use cases sont pour la plupart de haut niveau d'abstraction.
+                            Par exemple <i>Manage Publishers</i> sert à gérer les éditeurs,
+                            il y aura donc en général quatre opérations,
+                            créer un éditeur, consulter un éditeur, mettre à jour un éditeur et supprimer un éditeur
+                            (les fameux CRUD - Cread Read Upadate Delete).
+                        </p>
+                    </div>
+                </section>
+                <section id="section-description-text" data-tc=2 data-toc-text="texte">
+                    <h3>description textuelle</h3>
+                    <div>
+                        <p>
+                            Il est très utile de décrire textuellement un use case,
+                            et il existe de nombreux patrons (templates) que nous pouvons utiliser.
+                        </p>
+                        <p>
+                            Prenons l'exemple d'une application pour gérer les demandes de congés
+                            (voir <a href="../E02-ddc/">exercice 2 - demande de congés</a> ).
+                            Le diagramme de use cases est:
+                        </p>
+                        <a href="../E02-ddc/images/ddc-use-cases-operations.png"></a>
+                        <p>
+                            La documentation textuelle du use case <i>demande congé</i>
+                            pourrait être:
+                        </p>
+                        <div id="section-functional-use-cases-operations-request" class=card>
+                            <h4>Demande congé</h4>
+                            <div>
+                                <h5>Description</h5>
+                                <p>
+                                    En tant que travailleur,
+                                    je veux pouvoir demander un congé,
+                                    ainsi je peux planifier mes vacances, mon temps libre.
+                                </p>
+                            </div>
+                            <div>
+                                <h5>Acteurs</h5>
+                                <ul>
+                                    <li>Travailleur: acteur principal</li>
+                                    <li>Manager: acteur secondaire (il veut être informé)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Préconditions</h4>
+                                <p>
+                                    Le travalleur doit être authentifié.
+                                </p>
+                            </div>
+
+                            <div id="section-functional-use-cases-operations-request-happy-flow" class=card>
+                                <h5>Scénario happy flow</h5>
+                                <ol>
+                                    <li>
+                                        <p>Le travailleur introduit les informations relatives à la demande de congé.</p>
+                                        <p>La demande de congés contient les informations suivantes</p>
+                                        <ul>
+                                            <li>son matricule</li>
+                                            <li>son nom</li>
+                                            <li>son prénom</li>
+                                            <li>la date de début de congé</li>
+                                            <li>la date de fin de congé</li>
+                                            <li>le type de congé (en chosissant dans une liste proposée par l'application)</li>
+                                            <li>optionnellement, il peut contenir un commentaire</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        L'application envoie une notification au travailleur
+                                        contenant l'information relative à la demande de congé (cf ci-dessus).
+                                    </li>
+                                    <li>
+                                        L'application envoie une notification au manager du trailleur 
+                                        contenant l'information relative à la demande congé (cf ci-dessus).
+                                    </li>
+                                </ol>
+                                <div>
+                                    <h6>Post conditions</h6>
+                                    <ul>
+                                        <li>Le congé a été enregistrée dans la base de données</li>
+                                        <li>L'état du congé est mis à "REQUESTED"</li>
+                                        <li>Une email de confirmation a été envoyé au travailleur</li>
+                                        <li>Un email d'information a été envoyé au manager</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="section-functional-use-cases-operations-request-boss" class=card>
+                                <h5>Scénario "boss"</h5>
+                                <p>
+                                    Un cas particulier concerne le patron,
+                                    celui qui n'a pas de chef,
+                                    celui qui est au sommet de la hiérarchie de l'entreprise.
+                                </p>
+                                <p>
+                                    Dans ce cas, il n'y a pas d'acteur secondaire (<i>Manager</i>),
+                                    aucun mail d'information n'est envoyé
+                                    et le congé passe directement à l'état approbation par les ressources humaine:
+                                </p>
+                                <ol>
+                                    <li>Le boss (<i>Travailleur</i>) introduit les informations relatives à la demande de congé (voir scénario précédent)</li>
+                                    <li>L'application envoie une notification de confirmation au boss</li>
+                                </ol>
+                                <div>
+                                    <h6>Post conditions</h6>
+                                    <ul>
+                                        <li>Le congé est enregistré dans la base de données</li>
+                                        <li>L'état du congé est mis à "APPROVED_MANAGER</li>
+                                        <li>Un email de confirmation a été envoyé au boss</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            Nous avons les informations suivantes:
+                        </p>
+                        <ul>
+                            <li>Le nom du use case, <i>Demande congé</i></li>
+                            <li>Une <b>description</b> courte</li>
+                            <li>La liste des <b>acteurs</b> impliqués avec indication "principal/primaire" ou "secondaire"</li>
+                            <li>Les <b>préconditions</b>, c'est-à-dire les conditions nécessaires pour que ce use cases puisse être exécuté</li>
+                            <li>Les scénarios, c'est-à-dire une description des échanges entre les acteurs et le système,
+                                c'est la partie la plus importante de la description.
+                                Il y a généralement plusieurs scénarios:
+                                <ul>
+                                    <li>
+                                        le scénario principal (ou happy flow) qui décrit le fonctionnement attendu;
+                                    </li>
+                                    <li>
+                                        des alternatives;
+                                    </li>
+                                    <li>
+                                        des scénarios avec erreur.
+                                    </li>
+                                </ul>
+                                Il est essentiel de décrire le flux de données dans les scénario
+                                (répondre à la question quelles données sont échangées entre les acteurs et l'application);
+                            </li>
+                            <li>
+                                Les <b>postconditions</b>,
+                                décrivent ce qui a changé dans l'état du système.
+                            </li>
+                        </ul>
+                        <div class="tips">
+                            <h4>Alistair Cockburn's template</h4>
+                            <p>
+                                Le template le plus connu est celui d'Alistair Cockburn,
+                                décrit dans l'article
+                                <a href="assets/use-case-template-cockburn-article.pdf">
+                                Basic Use Case Template, 1998
+                                </a>
+                                (téléchargé à partir de 
+                                <a href="http://cis.bentley.edu/lwaguespack/CS360_Site/Downloads.html" target=_blank>
+                                Bentley University, CS360 Business Information System Analysis and Modeling</a>
+                                ).
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <section id="section-description-dss" data-tc=2 data-toc-text="dds">
+                    <h3>diagramme de séquences "système"</h3>
+                    <div>
+                        <p>
+                            Nous pouvons documenter nos use cases
+                            à l'aide d'un diagramme de séquences dit "système",
+                            c'est-à-dire un diagramme de séquences
+                            où le système est réprésenté comme une boîte noire,
+                            voici un exemple:
+                        </p>
+                        <blockquote>
+                            <figure>
+                                <a href="images/uml-sequence-1600.png">
+                                    <img src="images/uml-sequence-1600.png" alt="">
+                                </a>
+                                <figcaption>
+                                    Diagramme de séquences "système" pour une plateforme de vente.
+                                </figcaption>
+                            </figure>
+                            <cite>
+                                <a href="https://moqups.com/templates/diagrams-flowcharts/uml-diagrams/sequence-diagram/" target=_blank>
+                                moqups - What is a sequence diagram?</a>
+                            </cite>
+                        </blockquote>
+                        <p>
+                            Ce diagramme présentent trois lignes de vie (lifelines):
+                        </p>
+                        <ul>
+                            <li>la première représente l'acteur <i>Visitor</i></li>
+                            <li>la seconde représente le système (l'application) <i>Online Store</i></li>
+                            <li>la troisième représente l'acteur <i>Store Owner</i></li>
+                        </ul>
+                        <p>
+                            Le diagramme visualise les échanges entre le système et les acteurs
+                            dans un ordre chronologique de haut en bas.
+                        </p>
+                        <p>
+                            Les échanges sont représentés par des messages entre les acteurs et le système.
+                        </p>
+                        <p>
+                            Optionnellement, nous pouvons documenter des opérations internes du système
+                            par un message vers lui-même, comme <i>Check Payment Method</i>.
+                        </p>
+                        <p>
+                            Les rectangles sont sans intérêt au niveau d'un diagramme de séquences système.
+                        </p>
+                        <p>
+                            Notons finalement que ce diagramme présente une étrangeté,
+                            le message <i>Forward Request To Warehouse</i>
+                            (un warehouse est un entrepôt).
+                            En effet, si un message est envoyé à l'entrepôt,
+                            c'est que nous avons un acteur de plus:
+                        </p>
+                        <a href="images/system-sequences-diagram.jpg">
+                        <img src="images/system-sequences-diagram.jpg" alt=""></a>
+                        <p>
+                            Le diagramme de séquences système est un bon outil de communication
+                            car il donne une représentation graphique des échanges
+                            ce qui est plus facile à lire qu'un long texte.
+                            Par contre, il est moins complet que la description textuelle.
+                        </p>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-definition" data-tc=1>
+                <h2>Définitions</h2>
+                <div>
+                    <p>
+                        Définissons avec plus de précision chaque élément d'un use case.
+                    </p>
+                </div>
+                <section id="section-definition-actor" data-tc=2>
+                    <h3>actors</h3>
+                    <div>
+                        <p>
+                            Un acteur est une personne ou un système informatique ou autre chose
+                            qui interragit avec notre application.
+                        </p>
+                        <p>
+                            Nous différençons les acteurs primaires des acteurs secondaires.
+                        </p>
+                        <p>
+                            Les acteurs primaires initient généralement la communication avec l'application
+                            et ils en tirent un bénéfice.
+                        </p>
+                        <p>
+                            Les acteurs secondaires fournissent un service au use cases.
+                        </p>
+                        <p>
+                            Voici un exemple:
+                        </p>
+                        <blockquote>
+                            <figure>
+                                <a href="images/cs-sjsu-edu-use-cases-primary-secondary.jpg">
+                                <img src="images/cs-sjsu-edu-use-cases-primary-secondary.jpg" alt=""></a>
+                                <figcaption>
+                                    Diagramme de use cases pour un ATM (bancontact).
+                                </figcaption>
+                            </figure>
+                            <cite>
+                                <a href="http://www.cs.sjsu.edu/faculty/pearce/modules/lectures/ooa/requirements/usecases.htm" target=_blank>
+                                San José State University - Requirement Modeling</a>
+                            </cite>
+                        </blockquote>
+                        <p>
+                            <i>Account Holder</i> est un acteur primaire,
+                            il initie les use cases et il en est le bénéficaire.
+                        </p>
+                        <p>
+                            <i>Bank Server</i> est un acteur secondaire,
+                            il n'initie pas les use cases, n'en tire pas de bénéfices
+                            et offre des services aux "System".
+                        </p>
+                        <p>
+                            Notons que le nom donné à l'application <i>System</i> est ... peu explite,
+                            il aurait été préférable d'écrire <i>ATM</i>.
+                        </p>
+                        <p>
+                            Notons aussi que nous éviterons d'utiliser l'icone "personne"
+                            pour représenter le <i>Bank Server</i>,
+                            un rectangle ou une image d'ordinateur est préférable.
+                        </p>
+                    </div>
+                </section>
+                <section id="section-definition-use-case" data-tc=2>
+                    <h3>use cases</h3>
+                    <div>
+                        <p>
+                            Un use case est un cas d'utilisation,
+                            ce n'est pas une ellipse sur un diagramme de use cases!
+                        </p>
+                        <p>
+                            Un cas d'utilisation est un concept abstrait
+                            et le diagramme de use case ne fait que documenter le cas d'utilisation
+                            en lui donnant un nom et en indiquant quels acteurs interragissent avec lui.
+                        </p>
+                        <p>
+                            Le diagramme de use cases n'est qu'une vue graphique,
+                            agréable mais finalement assez pauvre des use cases.
+                            C'est un résumé.
+                        </p>
+                        <p>
+                            Il est donc souvent nécessaire de documenter plus en détail le use case
+                            avec, par exemple:
+                        </p>
+                        <ol>
+                            <li>
+                                une description textuelle;
+                            </li>
+                            <li>
+                                un (des) diagrammes de séquence "système";
+                            </li>
+                            <li>
+                                un (des) diagrammes d'activités;
+                            </li>
+                            <li>
+                                des description d'interfaces, utilisateur ou autres;
+                            </li>
+                            <li>
+                                la description des acteurs, via des personna;
+                            </li>
+                            <li>
+                                des examples de réalisation des use cases;
+                            </li>
+                            <li>
+                                des spécifications de tests,
+                                formalisées par exemple avec gherkin;
+                            </li>
+                            <li>
+                                ...
+                            </li>
+                        </ol>
+                        <p>
+                            Habituellement, les analystes utilisent les 2 premiers moyens.
+                            Personnellement, je trouve que les exemples et gherkin sont des approches très intéressantes
+                            car elles confrontent le use cases avec la réalité, au prix d'une perte de généricité.
+                        </p>
+                        <p>
+                            La documentation via les interfaces utilisateurs est aussi très intéressante
+                            car c'est un moyen de communication facilement compréhensible par tous
+                            et une approche très motivante, comparer à du texte.
+                            Cependant, elle présente bien des risques dont
+                            le risque de se perdre dans des détails graphiques,
+                            le risque de faire deux choses à la fois (préciser l'interface graphique et définir ce que dois faire le système),
+                            le risque de décrire à un niveau d'abstraction trop bas (et donc, nous serons obligés de passer à un niveau d'abstraction supérieur pour réaliser un bon design de notre application).
+                        </p>
+                    </div>
+                </section>
+                <section id="section-definition-system" data-tc=2>
+                    <h3>système</h3>
+                    <div>
+                        <p>
+                            Le rectangle "system" représente l'application,
+                            il permet de visualiser les limites de l'application,
+                            par exemple:
+                        </p>
+                        <blockquote>
+                            <figure>
+                                <a href="images/warren2lynch-use-case.png">
+                                <img src="images/warren2lynch-use-case.png" alt=""></a>
+                            </figure>
+                            <figcaption>
+                                Diagramme de use cases pour une application 
+                                d'enregistrement des voyageurs.
+                                L'application est représentée par le rectangle de fond mauve.
+                            </figcaption>
+                            <cite>
+                                <a href="https://warren2lynch.medium.com/use-case-tutorial-for-dummies-8cf426043710" target=_blank>
+                                Warren Lynch, Use Case Diagram</a>
+                            </cite>
+                        </blockquote>
+                    </div>
+                </section>
+            </section>
+
+
+            <section id="section-check" data-tc=1>
+                <h2>Vérifications</h2>
+                <div>
+                    <p>
+                        Avons-nous collecté tous les use cases?
+                        Comment s'assurer que nous avons de bon use case?
+                        Quels sont caractéristiques d'un bon use case?
+                    </p>
+                </div>
+                <section id="section-check-penzenstadler" data-tc=2>
+                    <h3>Brigit Penzenstadler</h3>
+                    <div>
+                        <p>
+                            Dans sa vidéo 
+                            <a href="https://www.youtube.com/watch?v=CyRx64pN5VI&list=PLUgFMzuE8lQDLRhCNs19-RHpUY-_6ZI6Y&index=6" target=_blank>
+                                Scenario-based models: Use cases
+                            </a>,
+                            Brigit Penzenstadler donne la checkliste suivante:
+                        </p>
+                        <ul>
+                            <li>Avons-nous trouvé tous les acteurs?</li>
+                            <li>Avons-nous trouvé tous les rôles dans l'environnement de le système?</li>
+                            <li>Y-a-t'il au moins un use case pour chaque acteur?</li>
+                            <li>Avons-nous des acteurs qui jouent un rôle similaire dans leur relation avec le système?
+                                Si c'est le cas, nous les fusionnons en un seul acteur.
+                            </li>
+                            <li>Est-il facile de comprendre ce que le système fait en relisant les use cases?</li>
+                            <li>Le nom de chaque use case est-il unique, intuitif et auto-explicatif?</li>
+                            <li>La description résumée donne-t-elle une image précise du use case?</li>
+                            <li>Y-a-t'il au moins un acteur pour chaque use case?</li>
+                            <li>Aucun use cases n'ont des comportements ou des flux d'événements similaires?</li>
+                            <li>Avons-nous identifié tous les use cases?</li>
+                            <li>Chaque use case est-il bien lié à une exigence fonctionnelle?</li>
+                            <li>Tous les use cases de type CRUD (Create, Retrieve, Update, Delete) ont été supprimés
+                                (et remplacé par un use case "Gère")?
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="section-check-larman" data-tc=2>
+                    <h3>Craig Larman</h3>
+                    <div>
+                        <p>
+                            Dans son livre "Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development, 3rd Edition",
+                            Craig Larman écrit:
+                        </p>
+                        <blockquote>
+                            <h4>6.16 Principe: quels sont les tests qui permettent d'identifier des cas d'utilisation valides?</h4>
+                            <div>
+                                <p>Lequel des cas d'utilisation suivants est-il valide?</p>
+                                <ul>
+                                    <li>négocier un contrat avec un fournisseur;</li>
+                                    <li>traiter les retours;</li>
+                                    <li>se connecter;</li>
+                                    <li>déplacer un pion sur un plateau de jeu.</li>
+                                </ul>
+                                <p>
+                                    Nous pourrions soutenir que ce sont tous des cas d'utilisation à différents niveaux,
+                                    en fonction des limites du système, des acteurs et des objectifs.
+                                    Nous évaluerons leur validité après avoir présenté les processus métider élémentaires.
+                                </p>
+                                <p>
+                                    Mais au lieu de nous demander de façon générale ce qu'est un cas d'utilisation valide,
+                                    une question plus pertinente serait celle-ci:
+                                    à quel niveau faut-il exprimer un cas d'utilisation 
+                                    de façon qu'il soit utile pour l'analyse des besoins de l'application?
+                                </p>
+                                <p>
+                                    Plusieurs règles empiriques existent, notamment les suivantes:
+                                </p>
+                                <ul>
+                                    <li>le test du patron</li>
+                                    <li>le test PME</li>
+                                    <li>le test de la taille</li>
+                                </ul>
+                                <div id="section-check-larman-patron">
+                                    <h5>Le test du patron</h5>
+                                    <div>
+                                        <p>
+                                            Si votre patron vous demande:
+                                            "A quoi avez-vous passé la journée ?".
+                                            Vous répondez: "Je me suis connecté".
+                                            Votre patron sera-t-il content?
+                                        </p>
+                                        <p>
+                                            Si ce n'est pas le cas,
+                                            le cas d'utilisation échoue le test du patron,
+                                            ce qui implique qu'il n'est pas fortement associé à l'obtention d'un résultat de valeur mesurable.
+                                            C'est peut-être un cas d'utilisation de très bas niveau,
+                                            mais ce niveau n'est pas adapté à notre analyse des besoins.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="section-check-larman-pme">
+                                    <h5>Le test PME</h5>
+                                    <div>
+                                        <p>
+                                            Un <b>processus métier élémentaire</b> ou PME est un terme issu du domaine de la réingénierie des processus de l'entreprise,
+                                            dont voici la définition:
+                                        </p>
+                                        <div class="tips">
+                                            <h6>PME</h6>
+                                            <p>
+                                                Tâche effectuée par une personne en un lieu et un temps données,
+                                                en réponse à un événement,
+                                                et qui ajoute une valeur commerciale mesurable
+                                                et laisse les données dans un état cohérent
+                                                (par exemple Autoriser un crédit ou Tarifier une commande)
+                                                [source perdue].
+                                            </p>
+                                            <p>
+                                                <b>Concentrez-vous sur les cas d'utilisation qui reflètent des processus métier élémentaires.</b>
+                                            </p>
+                                            <p>
+                                                Le test PME est similaire au test du patron,
+                                                en particulier en termes de détermination d'une valeur mesurable.
+                                            </p>
+                                            <p>
+                                                Cet énoncé n'est pas à prendre absolument au pied de la lettre.
+                                                Un cas d'utilisation n'est pas qualifiable de PME
+                                                s'il nécessite deux personnes ou un déplacement ?
+                                                Généralement, si.
+                                                Mais l'espreit de la définition est tout à fait juste.
+                                                Il ne s'agit pas d'une petite étape consistant par exemple à "supprimer un article"
+                                                ou "imprimer un document".
+                                                En revanche, le scénario principal comprendra souvent de cinq à dix étapes.
+                                                Mais il ne demandera pas plusieurs journées ou plusieurs scéances de travail
+                                                comme négocier un contrat avec un fournisseur":
+                                                c'est une tâche qui s'effectue en une seule session et
+                                                prendra probablement de cinq minutes à une heure.
+                                                Comme cela est défini dans le Processus Unifié,
+                                                le scénario met l'accent sur l'ajout d'une valeur observable et mesurable,
+                                                et se termine lorsque le système et les données se trouve dans un état stable et cohérent.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="section-check-larman-size">
+                                    <h5>Le test de la taille</h5>
+                                    <div>
+                                        <p>
+                                            Un cas d'utilisation est très rarement constitué d'une seule action ou d'une seule étape.
+                                            Il comprend généralement de nombreuses étapes
+                                            et sa version détaillée nécessitera souvent de trois à dix pages de texte.
+                                            Lors de la modélisation des cas d'utilisation,
+                                            une erreur courante consiste à considérer une étape appartenant à une suite d'étapes apparentées
+                                            comme un cas d'utilisation en soi,
+                                            par exemple définir un cas d'utilisation nommé Saisir un code d'article.
+                                            Imaginez-en une version détaillée: 
+                                            sa taille réduite vous donne une indication de l'erreur.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="section-check-larman-example">
+                                    <h5>Exemple: appliquer les test</h5>
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                Négocier un contrat avec un fournisseur.
+                                                <ul><li>
+                                                    Beaucoup plus vaste et plus long qu'un PME.
+                                                    Pourrait être utilisé comme cas d'utilisation métier,
+                                                    et non comme cas d'utilisation système.
+                                                </li></ul>
+                                            </li>
+                                            <li>
+                                                Gérer les retours.
+                                                <ul><li>
+                                                    Le patron est content.
+                                                    Présente les caractéristiques d'un PME.
+                                                    La taille est correcte.
+                                                </li></ul>
+                                            </li>
+                                            <li>
+                                                Se connecter.
+                                                <ul><li>
+                                                    Le patron n'est pas content si vous y avez passé la journée.
+                                                </li></ul>
+                                            </li>
+                                            <li>
+                                                Déplacer un pion sur le plateau de jeu.
+                                                <ul><li>
+                                                    Ce n'est qu'une étape. La taille est trop réduites.
+                                                </li></ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="section-check-larman-violation">
+                                    <h5>Violations raisonnables des tests</h5>
+                                    <div>
+                                        <p>
+                                            Même si la majorité des cas d'utilisation identifiés 
+                                            pour une application doivent réussir ces tests, 
+                                            les exceptions sont courantes.
+                                        </p>
+                                        <p>
+                                            Il est parfois utile de créer des cas d'utilisation correspondant à des sous-fonctions
+                                            à l'intérieur d'n cas d'utilisation PME ordinaire.
+                                            Une sous-tâche ou un extension, par exemple "payer à crédit", peut se répéter dans plusieurs cas de base.
+                                            Il est alors préférable de l'isoler dans son propre cas d'utilisation, 
+                                            même si elle échoue au test PME ou au test de la taille,
+                                            et de la lier à ces autres cas pour éviter de dupliquer du texte.
+                                        </p>
+                                        <p>
+                                            Authentifier un utilisateur ne passe peut-être pas le test du patron,
+                                            mais c'est peut-être suffisemment comlexe pour justifier une analyse soigneuse,
+                                            par exemple pour une fonctionnalité de "signature unique.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <cite>
+                                Le livre "UML 2 et les design patterns: Analyse et conception orientées objet et développement itératif"
+                                de Craig Larman, traduit par Emmanuelle Burr, Marie-Cécile Baland et Luc Carité.
+                                L'original est <a href="https://www.pearson.com/us/higher-education/program/Larman-Applying-UML-and-Patterns-An-Introduction-to-Object-Oriented-Analysis-and-Design-and-Iterative-Development-3rd-Edition/PGM86272.html" target=_blank>
+                                    Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development, 3rd Edition</a>
+                                    de Craig Larman, 2005.        
+                            </cite>
+                        </blockquote>
+                    </div>
+                </section>
+                <section id="section-check-depaepe" data-tc=2>
+                    <h3>JMD</h3>
+                    <div>
+                        <p>
+                            Je propose une approche
+                            où chaque use case est une transaction élémentaire avec l'application.
+                        </p>
+                        <div class="tips">
+                            <p>
+                                Une transaction élémentaire est déclenchée par un acteur.
+                                Nous parlerons d'événement.
+                            </p>
+                            <p>
+                                Elle est caractérisé par un flux de données entre l'application. 
+                                et au moins un acteur.
+                            </p>
+                            <p>
+                                Elle est cohérente et laisse l'application dans un état cohérent.
+                            </p>
+                        </div>
+                        <p>
+                            Par exemple, <i>Saisir son nom</i> n'est pas une transaction élémentaire,
+                            elle est incomplète.
+                        </p>
+                        <p>
+                            Par contre, <i>Créer un compte</i> est une transaction élémentaire.
+                        </p>
+                        <p>
+                            L'approche proposée ici est de plus bas niveau
+                            que celle proposée par Brigit Penzendler et Craig Larman.
+                            En particulier, les opérations <i>Mettre à jour son compte</i>
+                            et bien un use case
+                            alors que Brigit exclut les opérations CRUD
+                            et Larman sous-entend que ce sont des use cases trop petits.
+                        </p>
+                        <p>
+                            Le désavantage de cette approche est 
+                            que nous avons beaucoup plus de use cases.
+                        </p>
+                        <p>
+                            L'avantage est que chaque use case représente une petite fonction du système
+                            et cela rendra l'organisation de l'implémentation plus aisée.
+                        </p>
+                    </div>
+                    <div>
+                        <div>
+                            <p>
+                                Nous pouvons aussi vérifier la qualité de de notre diagramme de cas d'utilisation:
+                            </p>
+                            <ol>
+                                <li>
+                                    avons-nous utiliser <span class="scode">verbe + complément d'objet directe</span>
+                                    pour nommer le cas d'utilisation (bien sûr, il y a des exceptions);
+                                </li>
+                                <li>
+                                    évitons les verbes "vides", comme <i>faire, effectuer, metter</i>,
+                                    par exemple <i>faire une réservation d'hôtel</i> devient <i>réserver un hôtel</i>;
+                                </li>
+                                <li>
+                                    utilisons le langage du métier;
+                                </li>
+                                <li>
+                                    évitons les synonymes;
+                                </li>
+                                <li>
+                                    un cas d'utilisation est généralement une suite d'opérations synchrones
+                                    (effectuées sans interruption dans la majorité des cas);
+                                </li>
+                            </ol>
+                        </div>
+                        <div>
+                            <p>
+                                Nous pouvons aussi vérifier la qualité de nos descriptions:
+                            </p>
+                            <ol>
+                                <li>
+                                    décrivons-nous ce que font les acteurs avec l'application et rien d'autres ?
+                                </li>
+                                <li>
+                                    décrivons-nous les informations échangées entre l'application et les acteurs ?
+                                </li>
+                                <li>
+                                    ET signifie souvent que nous avons deux étapes;
+                                </li>
+                                <li>
+                                    n'inventons pas des règles métiers sans les discuter avec les représentants du métier;
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-references" data-tc=1>
+                <h2>Références:</h2>
+                <ul>
+                    <li>
+                        Object-Oriented Software Engineering. A Use Case Driven Approach, Ivar Jacobson, Addison-Wesley, 1992
+                    </li>
+                    <li>
+                        <a href="https://www.ivarjacobson.com/sites/default/files/field_iji_file/article/use-case_2_0_jan11.pdf" target=_blank>
+                            Ivar Jacobson, The use case 2.0, The Guide to Succeeding with Use Cases
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://sdkj.website/notes/analyse/E01-book-shop/note.html#subsection-functional-use-case">
+                            exemple du la boutique de livres
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://sdkj.website/notes/analyse/E02-ddc/note.html#section-functional-use-case">
+                            exemple de la demande de congé
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://laurent-audibert.developpez.com/Cours-UML/?page=diagramme-cas-utilisation" target=_blank>
+                            Audibert - Diagrammes de cas d'utilisation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://openclassrooms.com/fr/courses/2035826-debutez-lanalyse-logicielle-avec-uml/2111926-le-diagramme-d-activite" target=_blank>
+                            openclassrooms - le diagramme d'activité
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.omg.org/spec/UML/2.5.1/PDF" target=_blank>
+                            omg.org UML specifications, section 15 Activities
+                        </a>
+                    </li>
+                    <li>
+                        Le livre "UML 2 et les design patterns: Analyse et conception orientées objet et développement itératif"
+                        de Craig Larman, traduit par Emmanuelle Burr, Marie-Cécile Baland et Luc Carité.
+                        L'original est <a href="https://www.pearson.com/us/higher-education/program/Larman-Applying-UML-and-Patterns-An-Introduction-to-Object-Oriented-Analysis-and-Design-and-Iterative-Development-3rd-Edition/PGM86272.html" target=_blank>
+                            Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development, 3rd Edition</a>
+                            de Craig Larman, 2005.
+                    </li>
+                    <li>
+                        Les vidéos de Delphine Longuet
+                        <ul>
+                            <li>
+                                <a href="https://www.youtube.com/watch?v=GC5BdRve38A&list=PLSVDd2z0rl6PlOscYvneTFvU8qqPFzFkl" target=_blank>
+                                    UML - Cas d'utilisation - 1. Diagrammes de cas d'utilisation</a>
+                                    : en français, très clair mais concentrée sur UML et pas le processus d'analyse, je conseille de ne pas utiliser les relations <<extends>> et <<includes>> car ces diagrammes doivent être compréhensible entre tous. La généralisation est très bien mais il ne faut pas créer des acteurs "abstrait" ou des use cases "abstraits".            
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/watch?v=1G0omjzh1OQ&list=PLSVDd2z0rl6PlOscYvneTFvU8qqPFzFkl&index=2" target=_blank>
+                                    UML - Cas d'utilisation - 2. Scénarios détaillés et diagrammes de séquence</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        La vidéo de Brigit Penzenstadler, 
+                        <a href="https://www.youtube.com/watch?v=CyRx64pN5VI&list=PLUgFMzuE8lQDLRhCNs19-RHpUY-_6ZI6Y&index=6" target=_blank>
+                            Scenario-based models: Use cases</a>
+                        : Birgit explique beaucoup plus le contexte.
+                    </li>
+                </ul>
+            </section>
+        </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2019-10-29
+        </footer>
+    </sec>
+    <script src='../../../js/script.js'></script>
+</body>
+
+</html>

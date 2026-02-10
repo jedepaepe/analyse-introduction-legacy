@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Use cases</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Analyse fonctionnelle - L2 - Modèle des fonctions</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td=1>
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Savoir lire et rédiger un modèle des fonctions
+                </p>
+            </section>
+
+            <section id="section-introduction" data-tc="1">
+                <h2>Introduction</h2>
+                <p>
+                    L'analyse des fonctions ou analyse des besoins consiste à spécifier ce que l'application doit faire.
+                </p>
+                <p>
+                    C'est le modèle le plus important de l'analyse fonctionnelle,
+                    car si les modèles du domaine et des processus sont importants,
+                    ils ne décrivent pas réellement l'application
+                    mais plutôt son environnement.
+                    Ce n'est pas le cas du modèle des fonctions
+                    qui, pour l'essentiel, liste les fonctions de l'application
+                    et les acteurs (utilisateurs ou systèmes interragissant avec l'application).
+                </p>
+                <p>
+                    De nos jours, il existe 4 manières de modéliser les fonctions:
+                </p>
+                <ol>
+                    <li>
+                        avec des <b>use cases</b>
+                    </li>
+                    <li>
+                        avec des <b>user stories</b>
+                    </li>
+                    <li>
+                        par du texte
+                    </li>
+                    <li>
+                        via les interfaces utilisateurs
+                    </li>
+                </ol>
+
+                <section id="section-introduction-usecase" data-tc=2>
+                    <h3>use cases</h3>
+                    <p>
+                        La modélisation avec des <b>use cases</b> est la méthode traditionnelle de l'IT.
+                        Mis au point dans les années 90,
+                        elle est centrale à la méthode UP (Unified Process).
+                    </p>
+                    <blockquote>
+                        <a href="images/visual-paradigm-exemple.png">
+                        <img src="images/visual-paradigm-exemple.png" alt=""></a>
+                    </blockquote>
+                    <p>
+                        Voici un autre exemple, réaliser pour application de demande de congés:
+                    </p>
+                    <a href="use-case-diagram-demande-de-conges.png">
+                        <img src="use-case-diagram-demande-de-conges.png" alt="">
+                    </a>
+                    <p>
+                        Pour plus d'information, voir les notes de
+                        <a href="https://laurent-audibert.developpez.com/Cours-UML/?page=diagramme-cas-utilisation" target="_blank">
+                        Laurent Audiber</a>
+                        ou les <a href="http://sdkj.website/notes/analyse/UML02-use-cases/note.html" target="_blank">
+                        notes du cours</a>.
+                    </p>
+                </section>
+
+                <section id="section-introduction-userstories" data-tc=2>
+                    <h3>user stories</h3>
+                    <p>
+                        Les user stories sont très utilisés avec les méthodes agiles,
+                        SCRUM ou eXtreme programming.
+                    </p>
+                    <p>
+                        Elles ont le même rôle que les use cases.
+                    </p>
+                    <p>
+                        Les "histoires utilisateurs" (user stories) sont une autre manière de capturer les besoins des utilisateurs et les fonctionnalités à implémenter.
+                    </p>
+                    <p>
+                        Une user story décrit une fonctionnalité qui a de la valeur pour un utilisateur ou pour l'acheteur du système ou du logiciel. Les user stories ont trois aspects:
+                    </p>
+                    <ul>
+                        <li>
+                            une description de l'histoire, utilisée pour planifier le travail et pour se souvenir de la fonctionnalité
+                        </li>
+                        <li>
+                            des conversions sur l'histoire qui nous incitent à analyser en détail l'histoire
+                        </li>
+                        <li>
+                            des tests qui documentent les détails et qui peuvent être utilisé pour déterminer quand une histoire est complètement implémentée
+                        </li>
+                    </ul>
+                    <p>
+                        Ces trois points sont souvent nommés les 3 C:
+                    </p>
+                    <ul>
+                        <li>Card (l'histoire est souvent décrite sur une carte et celle-ci collée à un mur)</li>
+                        <li>Conversations</li>
+                        <li>Confirmation</li>
+                    </ul>
+                    <p>
+                        Voir par exemple <a href="https://www.organisation-performante.com/comment-bien-rediger-ses-user-stories-dans-scrum/" target="_blank">
+                        Comment bien rédiger ses users stories dans scrum?</a>
+                    </p>
+                    <p>
+                        Finissons par l'acronyme INVEST, qui est un mnémonique pour les valeurs des user stories:
+                    </p>
+                    <ul>
+                        <li>Independent : doivent être le plus indépendante les unes des autres (idéalement, elles doivent pouvoir être mise en production sans dépendre d'autres user stories)</li>
+                        <li>Negotiable : capturons seulement le principal du besoin utilisateur et laissons de la place pour la conversation, la négociation, les user stories ne sont pas des contrats</li>
+                        <li>Valuable : la story doit produire de la valeur pour l'utilisateur</li>
+                        <li>Estimable : il doit être possible d'estimer l'effort nécessaire pour implémenter, tester, metttre en production la story</li>
+                        <li>Small : la story doit être suffisemment petite, afin d'être implémentable rapidement, quelques heures à quelques jours (ce n'est bien sur pas toujours possible)</li>
+                        <li>Testable : la story doit être testable et nous parlerons de critères d'acceptation (acceptance criteria)</li>
+                    </ul>
+                </section>
+
+                <section id="section-introduction-text" data-tc=2>
+                    <h3>texte</h3>
+                    <p>
+                        La description des fonctionnalités d'une application par du texte sont courantes
+                        mais cette approche présente beaucoup de défaut:
+                    </p>
+                    <ul>
+                        <li>comment organiser son texte? ou chaque analyse suit un schéma différent et donc comment retrouver rapidement l'information?</li>
+                        <li>long à lire</li>
+                        <li>grand risque d'incohérence</li>
+                        <li>grand risque de répétition</li>
+                    </ul>
+                    <p>
+                        Bref, à éviter.
+                    </p>
+                </section>
+
+                <section id="section-introduction-ui" data-tc=2>
+                    <h3>ui</h3>
+                    <p>
+                        La description des fonctions d'un logiciel à partir des interfaces utilisateurs
+                        est peut être très efficace
+                        car tout le monde comprend c'est qu'est une interface utilisateur
+                        et cela permet de penser concrêtement, devant un dessin de l'interface utilisateur.
+                    </p>
+                    <p>
+                        Cependant, la méthode présente des difficultés:
+                    </p>
+                    <ul>
+                        <li>
+                            nous devons résoudre deux problèmes à la fois:
+                            la fonction et l'interface utilisateur
+                        </li>
+                        <li>
+                            nous risquons de nous perdre dans des détails de l'interface utilisateur,
+                            comme la couleur, la position exacte d'un bouton, une police de caractères
+                            et oublier la vue d'ensemble.
+                        </li>
+                        <li>
+                            il est malgré tout important de lister les use cases/user stories
+                            car il permettent d'organiser l'application.
+                        </li>
+                    </ul>
+                    <p>
+                        Nous pouvons approfondir ces réflexions en lisant
+                        <a href="https://www.sebastien-gaudin.com/2014/02/07/mariage-entre-us-et-wireframes/" >
+                        Sébastien Gaudin, mariage entre User Stories et Wireframs</a>.
+                    </p>
+                </section>
+                <p>
+                    Références:
+                </p>
+                <ul>
+                    <li><a href="http://sdkj.website/notes/analyse/E01-book-shop/note.html#subsection-functional-use-cases"
+                        >exemple du la boutique de livres</a></li>
+                    <li><a href="../E02-ddc#section-functional-use-cases">exemple de la demande de congé</a></li>
+                </ul>
+            </section>
+        </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2019-10-29
+        </footer>
+    </sec>
+    <script src='../../../js/script.js'></script>
+</body>
+
+</html>

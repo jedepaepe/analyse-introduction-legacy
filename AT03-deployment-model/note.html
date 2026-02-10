@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>AT03-DEPLOYMENT</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+    <link rel="stylesheet" href="../../../css/codemirror.css">
+    <script src="../../../js/codemirror.js"></script>
+    <script src="../../../js/sql.js"></script>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Leçon T03 - Deployment Model</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td="1">
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Savoir réaliser un modèle de déploiement.
+                </p>
+                <p>
+                    Durée estimée : 3 heures.
+                </p>
+                <p>
+                    Type d'enseignement : ex-cathédra &amp; démo &amp; discussions.
+                </p>
+                <p></p>
+            </section>
+
+            <section id="section-introduction" data-tc="1">
+                <h2>Introduction</h2>
+                <div>
+                    <p>
+                        Le modèle de déploiement est la description physique du système,
+                        il décrit les différents ordinateurs nécessaires à l'application
+                        et les différents logiciels, exécutables, fichiers, ...
+                        nécessaire au bon fonctionnement de l'application.
+                        En UML, nous parlerons de noeuds et d'artefacts:
+                    </p>
+                    <ul>
+                        <li>
+                            les noeuds (nodes) sont les composants physiques ou logiques qui exécuteront du code,<br>
+                            les noeuds physiques sont des ordinateurs, des smart-phones, des robots, des IOTs, ...
+                            les noeuds logiques sont des machines virtuelles, par exemple un machine virtuelle VMWare, vsphere, virtual box
+                            ou un conteneur docker
+                            ou même la JVM (Java Virtual Machine), l'environnement d'exécution PHP ou python ou javascript, ...
+                            <blockquote>
+                                <figure>
+                                    <a href="deployment-node.png">
+                                        <img src="deployment-node.png" alt="">
+                                    </a>
+                                    <figcaption>
+                                        <cite>
+                                            <a href="https://www.uml-diagrams.org/deployment-diagrams.html" target="_blank">
+                                                uml-diagrams.org
+                                            </a>
+                                        </cite>
+                                    </figcaption>
+                                </figure>
+                            </blockquote>
+                        </li>
+                        <li>
+                            les artefacts sont les composants logiciels produits
+                            lors de l'implémentation de notre système,
+                            ce sont des exécutables, des fichiers, des librairies, ...
+                            <blockquote>
+                                <figure>
+                                    <a href="Artifact.png">
+                                        <img src="Artifact.png" alt="">
+                                    </a>
+                                </figure>
+                                <cite>
+                                    <a href="https://www.visual-paradigm.com/VPGallery/diagrams/Deployment.html" target="_blank">
+                                        Visual Paradigm - Gallery - Deployment diagram
+                                    </a>
+                                </cite>
+                            </blockquote>
+                        </li>
+                    </ul>
+                    <p>
+                        Pour illustrer notre modèle de déploiment,
+                        nous utiliserons principalement le diagramme UML de déploiement,
+                        qui illustre les relations entre noeuds,
+                        entre artefacts
+                        et entre noeuds et artefacts.
+                    </p>
+                    <blockquote>
+                        <figure>
+                            <a href="pict--uml-deployment-diagram-uml-deployment-diagram-template.png">
+                                <img src="pict--uml-deployment-diagram-uml-deployment-diagram-template.png" alt="">
+                            </a>
+                            <figcaption>
+                                Diagramme de déploiement d'une application Web conçue suivant l'architecture en trois couches.
+                            </figcaption>
+                        </figure>
+                        <cite>
+                            <a href="https://conceptdraw.com/a661c3/p1/preview/640" target="_blank">
+                                ConceptDraw.com - UML deployment diagram
+                            </a>
+                        </cite>
+                    </blockquote>
+                    <div class="tips">
+                        <h5>note</h5>
+                        <p>
+                            Il est important de noter
+                            que nous avons ici une utilisation simplifiée
+                            des diagrammes de déploiement UML,
+                            tout en respectant la norme.
+                            Par contre, nous simplifions les définitions,
+                            par exemple
+                            </p><blockquote>
+                                <i>
+                                    Un <b>Noeud</b> est une <b>cible de déploiement</b>
+                                    qui représente une ressource de calcul
+                                    sur laquelle les <b>Arefacts</b> peuvent être déployés pour exécution.
+                                </i>
+                            </blockquote>
+                            et limitons nos diagrammes aux <b>Node</b> et <b>Artifact</b>,
+                            alors qu'UML propose
+                            <ul>
+                                <li>Manifestation</li>
+                                <li>Deployment Target</li>
+                                <li>Device</li>
+                                <li>Execution Environment</li>
+                                <li>Communication Path</li>
+                                <li>Deployment</li>
+                                <li>deployment Specification</li>
+                            </ul>
+                        <p></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-projet" data-tc="1">
+                <h2>Contexte</h2>
+                <div>
+                    <p>
+                        Maintenant que nous avons une idée
+                        du rôle du <b>modèle de déploiement</b>,
+                        voyons comment il s'insère
+                        dans le processus d'analyse:
+                    </p>
+                    <figure>
+                        <a href="analysis-process.png">
+                            <img src="analysis-process.png" alt="">
+                        </a>
+                        <figcaption>
+                            en bleu l'analyse fonctionnelle<br>
+                            en vert l'analyse technique<br>
+                            en rouge l'implémentation
+                        </figcaption>
+                    </figure>
+                    <p>
+                        Le modèle de déploiement peut être débuté
+                        très tôt dans le processus d'analyse,
+                        pratiquement dès le départ,
+                        car il est généralement fait sur base de contraintes techniques,
+                        par exemple:
+                    </p>
+                    <ul>
+                        <li>c'est une application web</li>
+                        <li>les utilisateurs doivent pourvoir utiliser leurs smartphones</li>
+                        <li>le système doit interconnecter à un système informatique extérieur</li>
+                        <li>...</li>
+                    </ul>
+                    <p>
+                        Il sera souvent réalisé après une première version du modèle des uses cases,
+                        car ceux-ci nous permettent d'inventoriser tous les acteurs.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-exemples" data-tc="1">
+                <h2>Exemple</h2>
+                <p>
+                    Etudions le déploiement d'applications simples.
+                </p>
+                <section id="section-exemples-desktop-exe" data-tc="2">
+                    <h3>desktop binaire</h3>
+                    <p>
+                        Imaginons une application "desktop",
+                        c'est à dire pour un ordinateur, Mac, Linux ou Windows,
+                        de type "binaire",
+                        c'est-à-dire compilée pour l'ordinateur cible et son OS (Operating System).
+                    </p>
+                    <p>
+                        Le diagramme de déploiement sera:
+                    </p>
+                    <a href="images/1-application-desktop-binaire-deploymentdiagram.jpg">
+                    <img src="images/1-application-desktop-binaire-deploymentdiagram.jpg" alt=""></a>
+                    <ul>
+                        <li>
+                            <i>PC</i> est le "node",
+                            il représente l'ordinateur de l'utilisateur.
+                        </li>
+                        <li>
+                            <i>word.exe</i> est l'"artefact",
+                            ici un fichier contenant le code exécutable de l'application,
+                            et word.exe est le nom du fichier.
+                        </li>
+                    </ul>
+                    <p>
+                        Notons que nous avons légèrement triché
+                        puisque le diagramme de déploiement UML ne prévoit pas d'illustrer les acteurs.
+                    </p>
+                    <p>
+                        Finalement,
+                        nous pourrions détailler le diagramme
+                        en précisant quelle type de PC et OS compatible avec notre exécutable,
+                        par exemple:
+                    </p>
+                    <a href="images/1-application-desktop-binaire-deploymentdiagram2.jpg">
+                    <img src="images/1-application-desktop-binaire-deploymentdiagram2.jpg" alt=""></a>
+                    <p>
+                        ici un ordinateur avec processeur d'architecture x64
+                        et le système d'exploitation Windows 10.
+                    </p>
+                </section>
+                <section id="section-exemples-desktop-java" data-tc="2">
+                    <h3>java</h3>
+                    <p>
+                        Imaginons la même application
+                        mais codée en java
+                        et déployée sur l'ordinateur en tant fichier jar
+                        (Java ARchive):
+                    </p>
+                    <a href="images/2-application-desktop-java-deployment-diagram.jpg">
+                    <img src="images/2-application-desktop-java-deployment-diagram.jpg" alt=""></a>
+                    <p>
+                        nous avons ici deux "nodes":
+                    </p>
+                    <ul>
+                        <li>
+                            <i>PC</i> l'ordinateur
+                        </li>
+                        <li>
+                            </li><li>JVM</li> la Java Virtual Machine,
+                            le logiciel qui éxécute le java byte code.
+                        
+                    </ul>
+                    <p>
+                        Le déploiement de l'application se fait donc en deux étapes:
+                    </p>
+                    <ol>
+                        <li>
+                            déploiement de la <i>JVM</i>
+                            (notons que beaucoup d'ordinateurs ont une JVM installée);
+                        </li>
+                        <li>
+                            déploiement de <i>word.jar</i>.
+                        </li>
+                    </ol>
+                    <p>
+                        Nous pourrions aussi être plus précis
+                        et indiquer quelle version de la JVM,
+                        par exemple version 11.
+                    </p>
+                </section>
+                <section id="section-exemples-client-server" data-tc="2">
+                    <h2>client / serveur</h2>
+                    <p>
+                        L'architecture client/serveur était très courante dans les années nonantes.
+                    </p>
+                    <p>
+                        Facile à mettre en oeuvre,
+                        facile à développer,
+                        elle met en oeuvre 
+                        une application déployée sur les ordinateurs des utilisateurs
+                        et une base de données centralisée.
+                    </p>
+                    <p>
+                        Prenons l'exemple de l'application demande de congé
+                        et imaginons que nous l'avons développée en java.
+                        Le résultat de notre travail est donc un fichier <i>jar</i>,
+                        soit <i>holiday-app.jar</i>.
+                    </p>
+                    <p>
+                        Le déploiement de l'application consiste à copier le fichier
+                        <i>holiday-app.jar</i> sur les ordinateurs des utilisateurs
+                        et le schéma de la base de données sur le serveur DB, SQL Server par exemple:
+                    </p>
+                    <a href="images/3-application-client-dbserver.jpg">
+                    <img src="images/3-application-client-dbserver.jpg" alt=""></a>
+                </section>
+                <section id="section-exemples-static-web" data-tc="2">
+                    <h3>web static</h3>
+                    <p>
+                        Un serveur web statique est un serveur web
+                        qui "publie" du contenu statique,
+                        c'est-à-dire de l'HTML, du CSS, du javascript, des images, de l'audio, des polices de caractères ...
+                        Ces contenus sont dits statiques
+                        car ils préexistent à la requête.
+                    </p>
+                    <p>
+                        Par opposition un serveur web dynamique
+                        construit du contenu au moment de la requête.
+                    </p>
+                    <a href="images/4-static-website Deployment Diagram2.jpg">
+                    <img src="images/4-static-website Deployment Diagram2.jpg" alt=""></a>
+                    <p>
+                        Le diagramme illustre un serveur web
+                        qui "publie" deux sites,
+                        <i>www.epfc.eu</i> et <i>moodle.epfc.eu</i>.
+                    </p>
+                    <p>
+                        Pour déployer ces applications,
+                        il faut:
+                    </p>
+                    <ol>
+                        <li>
+                            un ordinateur qui joue le rôle de serveur;
+                        </li>
+                        <li>
+                            installer le logiciel <i>apache</i>
+                            et le configurer pour accueillir les deux sites web;
+                        </li>
+                        <li>
+                            installer les fichiers des deux sites sur le serveur,
+                            il suffit simplement de copier coller les fichiers
+                            dans un répertoire précis,
+                            cela se fait souvent en utilisant le protocole SFTP (Secure File Transfer Protocole).
+                        </li>
+                    </ol>
+                    <p>
+                        Bien sûr, il y a quelques étapes complémentaires à faire,
+                        comme acheter le nom de domaine, installer un certicat SSL et probablement configurer un firewall.
+                    </p>
+                </section>
+                <section id="section-exemples-dynamic-web" data-tc="2">
+                    <h3>web dynamique</h3>
+                    <p>
+                        Un serveur web dynamique
+                        est un serveur web capable de générer du contenu
+                        dynamiquement,
+                        c'est-à-dire à l'instant où il reçoit la requête HTTP.
+                    </p>
+                    <p>
+                        Un serveur web dynamique s'appuie sur un serveur de base de données
+                        qui a la responsabilité du données
+                        qui permettent de reconstituer les pages web.
+                    </p>
+                    <p>
+                        Il y a beaucoup de solutions possibles,
+                        et l'une des plus populaire est la combinaison Apache / PHP / mysql:
+                    </p>
+                    <a href="images/5-dynamic-website-deployment-diagram.jpg">
+                    <img src="images/5-dynamic-website-deployment-diagram.jpg" alt=""></a>
+                    <p>
+                        Le serveur web dynamique est à la base un serveur web statique
+                        auquel nous avons ajouté un interpréteur PHP,
+                        un composant logiciel capable d'exécuter du PHP.
+                    </p>
+                    <p>
+                        Ici l'interpréteur PHP a été installé en tant que module d'Apache,
+                        c'est pourquoi nous l'avons représenté dans le noeud Apache.
+                    </p>
+                    <p>
+                        L'interpréteur PHP sert à exécuter le code PHP
+                        stoké dans les fichiers des sites, 
+                        par exemple les fichiers dans le répertoire <i>www/epfc</i>.
+                    </p>
+                </section>
+
+                <section id="section-exemples-onepage" data-tc=2>
+                    <h3>one page</h3>
+                    <p>
+                        L'architecture "one page web application" est très courante aujourd'hui
+                        car elle a quelques avantages
+                    </p>
+                    <ul>
+                        <li>décharger le serveur du calcul de l'HTML</li>
+                        <li>offrir un interface commune pour les applications web et mobile</li>
+                    </ul>
+                    <a href="images/6-one-page-application-deployment-diagram.png">
+                    <img src="images/6-one-page-application-deployment-diagram.png" alt=""></a>
+                    <p>
+                        Nous avons:
+                    </p>
+                    <ul>
+                        <li>
+                            <b>l'internaute</b> qui utilise son PC pour interagir avec l'application
+                        </li>
+                        <li>
+                            <b>PC</b> le PC personnel de l'internaute, connecté à internet
+                        </li>
+                        <li>
+                            <b>browser</b>, chrome, firefox, edge, ...
+                        </li>
+                        <li>
+                            <b>STATIC WEBSERVER</b> est l'ordinateur jouant le rôle de serveur web statique
+                        </li>
+                        <li>
+                            <b>apache</b> le logiciel servant de serveur web, ce pourrait être IIS ou Nginx ...
+                            qui "publie" l'application html/css/javascript, dite FE (front end)
+                        </li>
+                        <li>
+                            <b>app-web-site-files</b> le répertoire contenant tous les fichiers statiques de l'application FE
+                        </li>
+                        <li>
+                            <b>DYNAMIC WEBSERVER</b> l'ordinateur jouant le rôle de serveur web qui offre du contenu dynamique,
+                            ici sous forme de data
+                        </li>
+                        <li>
+                            <b>tomcat</b> est le serveur web java le plus utilisé au monde
+                        </li>
+                        <li>
+                            <b>app-res-api.war</b> est le Web ARchive contenant l'application java BE (backend) compilée
+                        </li>
+                        <li>
+                            <b>DB SERVER</b> l'ordinateur est le serveur de base de données
+                        </li>
+                        <li>
+                            <b>ms sql server</b> est le DB Engine de Microsoft, ce pourrait être Oracle, posgresql, mariadb, ...
+                        </li>
+                        <li>
+                            <b>app-schema</b> est le schéma de la base de données utilisée par l'application <i>app-res-api</i>
+                        </li>
+                        <li>
+                            <b>mobile-person</b> est une personne un mouvement
+                        </li>
+                        <li>
+                            <b>ANDROID</b> est un ordinateur androïd
+                        </li>
+                        <li>
+                            <b>DVM</b> est la Dalvik Virtual Machine (l'équivalent androïd de la JVM)
+                        </li>
+                        <li>
+                            <b>app.dex</b> est l'application, au format dex (Dalvik EXecutable),
+                            en général app.dex sera installé via le google play (le magasin d'applications androïd de google, non représenté ici).
+                        </li>
+                    </ul>
+                    <p>
+                        Le PC et l'androïd communiquent de la même manière avec l'application app-rest-api.
+                        Ici, ils utilisent un design REST, mais ce pourrait être du SOAP ou du graphQL
+                        ou du sur mesure. L'important, c'est que l'interface est commune,
+                        et qu'en conséquence, le code de app-rest-api est commun
+                        (pas de IF browser ELSE IF android ...).
+                    </p>
+                </section>
+            </section>
+
+            <section id="section-ddc" style="display: none;">
+                <h2>DDC</h2>
+                <section id="section-ddc-introduction">
+                    <h3>introduction</h3>
+                    <div>
+                        <p>
+                            Dans cet section, nous illustrons le modèle de déploiement
+                            par l'exemple de l'application "demande de congé" (ddc).
+                        </p>
+                        <p>
+                            Nous réalisons différents modèles de déploiement
+                            pour différentes architectures de l'application,
+                            illustrant ainsi le fait
+                            que le modèle de déploiement n'a pas une grande dépendance envers le modèle de use cases.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="section-ddc-desktop">
+                    <h3>deskop</h3>
+                    <div>
+                        <p>
+                            Notre client souhaite avoir une application type "desktop",
+                            souvent appelé <b>client lourd</b>.
+                        </p>
+                        <p>
+                            Dans cette architecture,
+                            l'application est déployée sur tous les ordinateurs
+                            de l'entreprise
+                            et un serveur de database centralisé
+                            est installé dans l'intranet de l'entreprise.
+                        </p>
+                        <p>
+                            Le serveur de database est le point de partage des données de l'application.
+                        </p>
+                        <p>
+                            Notre client souhaite aussi que l'application soit développée en Java,
+                            car il a des ordinateurs de type PC/Windows et des macs.
+                        </p>
+                        <p>
+                            Finalement, il impose la database <i>mysql</i>,
+                            car son équipe IT a une très bonne connaissance de moteur de base de données.
+                        </p>
+                        <p>
+                            Nous en déduisons le diagramme de déploiement suivant:
+                        </p>
+                        <figure>
+                            <a href="1-ddc-console.png">
+                                <img src="1-ddc-console.png" alt="">
+                            </a>
+                        </figure>
+                        <p>
+                            Nous avons:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>USER-COMPUTER</b> le noeud où est exécuté l'application
+                                (un PC/windows ou un mac)
+                            </li>
+                            <li>
+                                <b>ddc-app.jar</b> l'exécutable java de notre application
+                                (jar tient pour Java ARchive),
+                                nous l'avons stéréotypé comme <i>executable</i>
+                                pour mieux documenter le diagramme.
+                            </li>
+                            <li>
+                                <b>mysql.jar</b> est le pilote java pour la base de donnée mysql
+                                (<a href="https://dev.mysql.com/downloads/connector/j/" target="_blank">MySQL Connector/J 8.0.20</a>)
+                            </li>
+                            <li>
+                                <b>java.exe</b> est la <b>Java Virtual Machine</b>
+                                (<a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/index.html" target="_blank">Oracle JVM Technology</a>)
+                            </li>
+                            <li>
+                                <b>DB-SERVER</b> est l'ordinateur sur lequel se trouve le serveur de la base de données.
+                            </li>
+                            <li>
+                                <b>mysqld.exe</b> est le DB Engine de MySQL
+                                (<a href="https://dev.mysql.com/doc/refman/8.0/en/mysqld.html" target="_blan">mysqld documentation</a>)
+                            </li>
+                            <li>
+                                <b>ddc-db</b> est le répertoire où mysql enregistre les données
+                                (en général, ce n'est pas documenté,
+                                car nous ne nous préoccupons pas de ces répertoires,
+                                excepté pour des aspects sécurités, contrôle d'accès)
+                            </li>
+                        </ul>
+                        <div class="tips">
+                            <h5>acteurs</h5>
+                            <p>
+                                Dans ce diagramme de déploiement,
+                                nous prenons un peu de liberté par rapport au standard UML
+                                qui ne permet pas de mettre des acteurs
+                                sur les diagrammes de déploiement.
+                            </p>
+                            <p>
+                                Nous prenons cette liberté
+                                car cela rend les diagrammes plus lisibles.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-ddc-client-server">
+                    <h3>client - serveur</h3>
+                    <div>
+                        <p>
+                            Cette fois-ci,
+                            notre client nous impose une architecture client serveur
+                            où l'application doit être décomposée en deux parties:
+                        </p>
+                        <ul>
+                            <li>
+                                <i>le client</i> responsable de la <i>présentation</i>,
+                                c'est-à-dire de l'interface utilisateur
+                            </li>
+                            <li>
+                                <i>le serveur</i> responsable de la <i>logique de l'application</i>,
+                                souvent appelée <i>couche business</i>
+                                et la <i>persistance des données</i> (les échanges avec la database)
+                            </li>
+                        </ul>
+                        <p>
+                            Il nous indique aussi que le <i>manager</i>
+                            doit aussi pouvoir recevoir les demandes de congés par SMS
+                            et qu'il doit pouvoir les approuver par SMS
+                            (ceci est peu probable, mais cela nous fournit un bon exemple pédagogique et relativement simple).
+                        </p>
+                        <p>
+                            Nous proposons le diagramme de déploiement suivant:
+                        </p>
+                        <figure>
+                            <a href="2-ddc-client-server.png">
+                                <img src="2-ddc-client-server.png" alt="">
+                            </a>
+                        </figure>
+                        <p>
+                            nous avons:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>user-computer</b> le PC/Windows ou mac des utilisateurs
+                            </li>
+                            <li>
+                                <b>application-server</b> le serveur sur lequel est exécuté la logique de l'application
+                            </li>
+                            <li>
+                                <b>db-server</b> le serveur de database
+                            </li>
+                            <li>
+                                <b>sms-gateway-server</b> un serveur connecté au réseau téléphonique
+                                et capable d'envoyer des SMS
+                            </li>
+                            <li>
+                                <b>
+                                    java.exe est la machine virtuelle java
+                                </b>
+                            </li>
+                            <li>
+                                <b>mysql.jar</b> est le pilote Java de la base de données mysql
+                            </li>
+                            <li>
+                                <b>msqld.exe</b> est le moteur de la base données mysql
+                            </li>
+                            <li>
+                                <b>ddc-db</b> est le repertoire contenant les données de l'application
+                            </li>
+                            <li>
+                                <b>ddc-client.jar</b> est l'application java
+                                qui implémente l'interface utilisateur
+                            </li>
+                            <li>
+                                <b>dd-server.jar</b> est l'application java
+                                qui implémente la logique de l'application
+                                et l'accès la base de données
+                            </li>
+                            <li>
+                                <b>ddc-sms.exe</b> est l'application
+                                qui implémente l'envoie et la reception
+                                des SMS pour la demande de congé.
+                            </li>
+                        </ul>
+                        <p>
+                            Notons que <b>ddc-client.jar</b> et <b>ddc-sms.exe</b>
+                            utilisent la même interface pour communiquer
+                            avec <b>ddc-server.jar</b>.
+                            Ceci n'est possible
+                            que si l'application a bien été découpée
+                            et que toute la logique de l'application se trouve bien dans <b>ddc-server.jar</b>.
+                            Nous apprendrons comment faire cela grâce aux use cases.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="section-ddc-web">
+                    <h3>web</h3>
+                    <div>
+                        <p>
+                            Notre client veut une application web.
+                        </p>
+                        <p>
+                            Nous sommes spécialisés dans les technologies java, tomcat et mysql,
+                            que nous proposons:
+                        </p>
+                        <figure>
+                            <a href="3-ddc-web-tomcat.png">
+                                <img src="3-ddc-web-tomcat.png" alt="">
+                            </a>
+                        </figure>
+                        <p>
+                            Les éléments de cette architecture sont:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>user-computer</b> l'ordinateur de l'utilisateur
+                            </li>
+                            <li>
+                                <b>web-server</b> l'ordinateur serveur web
+                            </li>
+                            <li>
+                                <b>db-server</b> l'ordinateur serveur de base de données
+                            </li>
+                            <li>
+                                <b>browser (firefox)</b> le browser firefox
+                                (<a href="https://www.mozilla.org/fr/" target="_blank">firefox</a>)
+                            </li>
+                            <li>
+                                <b>tomcat</b> le serveur web java le plus utilisé
+                                <a href="http://tomcat.apache.org/" target="_blank">Apache Tomcat</a>
+                            </li>
+                            <li>
+                                <b>ddc-web.war</b> l'application web java (WAR = Web ARchive)
+                                contenant le code de l'application ddc
+                            </li>
+                            <li>
+                                <b>mysql.jar</b> le pilote java de mysql
+                            </li>
+                            <li>
+                                <b>java.exe</b> la machine virtuelle java
+                            </li>
+                            <li>
+                                <b>mysqld.exe</b> le DB Engine de MySQL
+                            </li>
+                            <li>
+                                <b>ddc-db</b> le repertoire contenant les données
+                            </li>
+                        </ul>
+                        <p>
+                            Notons que tous ces artefacts existent
+                            excepté <b>ddc-web.war</b>
+                            qui nécessite un développement sur mesure.
+                        </p>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-references" data-tc="1">
+                <h2>Références</h2>
+                <ul>
+                    <li>
+                        <a href="https://laurent-audibert.developpez.com/Cours-UML/?page=diagrammes-composants-deploiement" target="_blank">
+                            Laurent Audibert - Diagrammes de composants et diagrammes de déploiement
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.omg.org/spec/UML/2.5.1/PDF" target="_blank">
+                            omg.org - spécification UML 2.5.1, setion 19 Deployments
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.uml-diagrams.org/deployment-diagrams.html" target="_blank">
+                            uml-diagrams.org : UML Deployment Diagrams
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=nTtQwGoUUNc" target="_blank">
+                            vidéo derek banas : UML2 deployment diagram
+                        </a>
+                    </li>
+                </ul>
+                <p>
+                    Nous pouvons aussi exploirer les questions d'architecture avec les experts:
+                </p>
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=2yko4TbC8cI" target="_blank">
+                            Martin Fowler - Microservices
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </article>
+        <footer>
+            &copy; 2020 - Jean-Michel Depaepe - dernière mise à jour 2020-04-25
+        </footer>
+    </sec>
+    <script>
+        var sdkj = {language: 'sql'};
+    </script>
+    <script src='../../../js/script.js'></script>
+</body>
+</html>

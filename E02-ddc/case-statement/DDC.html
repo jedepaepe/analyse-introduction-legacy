@@ -1,0 +1,2484 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=windows-1252"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 7.0.4.2 (Windows)"/>
+	<meta name="author" content="DEPAEPE Jean-Michel (External)"/>
+	<meta name="created" content="2019-01-28T12:25:00"/>
+	<meta name="changedby" content="DEPAEPE Jean-Michel (External)"/>
+	<meta name="changed" content="2019-02-11T09:15:00"/>
+	<meta name="AppVersion" content="16.0000"/>
+	<style type="text/css">
+		@page { size: 21.59cm 27.94cm; margin: 2.54cm }
+		p { margin-bottom: 0.25cm; direction: ltr; line-height: 115%; text-align: left; orphans: 2; widows: 2; background: transparent }
+		h1 { margin-bottom: 0cm; direction: ltr; color: #2f5496; line-height: 108%; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; background: transparent; page-break-after: avoid }
+		h1.western { font-family: "Calibri Light", serif; font-size: 16pt }
+		h1.cjk { font-family: ; font-size: 16pt }
+		h1.ctl { font-family: ; font-size: 16pt }
+		h2 { margin-top: 0.07cm; margin-bottom: 0cm; direction: ltr; color: #2f5496; line-height: 108%; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; background: transparent; page-break-after: avoid }
+		h2.western { font-family: "Calibri Light", serif; font-size: 13pt }
+		h2.cjk { font-family: ; font-size: 13pt }
+		h2.ctl { font-family: ; font-size: 13pt }
+		h3 { margin-top: 0.07cm; margin-bottom: 0cm; direction: ltr; color: #1f3763; line-height: 108%; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; background: transparent; page-break-after: avoid }
+		h3.western { font-family: "Calibri Light", serif; font-size: 12pt }
+		h3.cjk { font-family: ; font-size: 12pt }
+		h3.ctl { font-family: ; font-size: 12pt }
+		p.sdfootnote { margin-bottom: 0cm; direction: ltr; font-size: 10pt; line-height: 100%; text-align: left; orphans: 2; widows: 2; background: transparent }
+		a:link { color: #0563c1; text-decoration: underline }
+		a.sdfootnoteanc { font-size: 57% }
+	</style>
+</head>
+<body lang="en-US" link="#0563c1" vlink="#800000" dir="ltr"><p style="margin-bottom: 0cm; letter-spacing: -0.5pt; line-height: 100%">
+<font face="Calibri Light, serif"><font size="6" style="font-size: 28pt"><span lang="fr-BE">Demande
+De Cong&eacute;</span></font></font></p>
+<h1 class="western"><span lang="fr-BE">Introduction</span></h1>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Situons-nous
+dans une entreprise, appelons la &laquo;&nbsp;Philippe &amp; Co&nbsp;&raquo;.
+Cette entreprise a d&eacute;cid&eacute; de digitaliser le processus
+&laquo;&nbsp;Demande de Cong&eacute;&nbsp;&raquo; ou DdC, le
+processus par lequel un employ&eacute; de Philippe &amp; Co demande
+un cong&eacute; et par lequel ce cong&eacute; est octroy&eacute; ou
+refus&eacute;.</span></p>
+<h1 class="western"><span lang="fr-BE">Processus</span></h1>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">La
+demande de cong&eacute; version actuelle, non digitalis&eacute;e, est
+mod&eacute;lis&eacute;e avec le diagramme d&rsquo;activit&eacute;s
+suivant&nbsp;:</span></p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><img src="DDC_html_f47b4007d69398f2.png" name="Image 1" align="bottom" width="624" height="516" border="0"/>
+</p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><i>Illustration
+du processus &laquo;&nbsp;Demande de Cong&eacute;&nbsp;&raquo; par un
+diagramme d&rsquo;activit&eacute;s (UML)<a class="sdfootnoteanc" name="sdfootnote1anc" href="#sdfootnote1sym"><sup>1</sup></a>.</i></span></p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Le
+</span><span lang="fr-BE"><b>demandeur</b></span><span lang="fr-BE">
+est un employ&eacute; de Philippe &amp; Co.</span></p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Le
+</span><span lang="fr-BE"><b>manager</b></span><span lang="fr-BE">
+est le chef du demandeur. Il travaille aussi pour Philippe &amp; Co.</span></p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>ressources
+humaines</b></span><span lang="fr-BE"> ou RH est un employ&eacute;
+des ressources humaines.</span></p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Le
+processus est d&eacute;crit comme une suite d&rsquo;activit&eacute;s
+(rectangles) et de d&eacute;cisions (lozanges) reli&eacute;es par des
+fl&egrave;ches. Le disque noir indique le d&eacute;but et le disque
+noir entour&eacute; d&rsquo;un disque blanc indique la fin du
+processus. Dans le cas de la DdC, l&rsquo;encha&icirc;nement est le
+suivant&nbsp;:</span></p>
+<ol>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Activit&eacute;
+	</span><span lang="fr-BE"><b>demandeur demande cong&eacute;s</b></span><span lang="fr-BE">&nbsp;:
+	le demandeur remplit un formulaire papier de demande de cong&eacute;
+	et le remet &agrave; son manager, soit via le courrier interne, soit
+	en remettant le formulaire au manager</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Activit&eacute;
+	</span><span lang="fr-BE"><b>manager v&eacute;rifie planning</b></span><span lang="fr-BE">&nbsp;:
+	le manager v&eacute;rifie que le cong&eacute; n&rsquo;a pas de
+	cons&eacute;quences grave sur le planning de son &eacute;quipe.</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">D&eacute;cision
+	</span><span lang="fr-BE"><b>manager accepte</b></span><span lang="fr-BE">&nbsp;:
+	le manager d&eacute;cide d&rsquo;accepter ou de refuser le cong&eacute;</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Activit&eacute;
+	</span><span lang="fr-BE"><b>manager notifie refus</b></span><span lang="fr-BE">&nbsp;:
+	le manager notifie le refus au demandeur, en indiquant la raison du
+	refus, soit par courrier interne, soit en remettant le formulaire au
+	demandeur</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Activit&eacute;
+	</span><span lang="fr-BE"><b>RH v&eacute;rifie r&egrave;gles</b></span><span lang="fr-BE">&nbsp;:
+	les ressources humaines v&eacute;rifient si le demandeur a bien
+	droit &agrave; ces cong&eacute;s</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">D&eacute;cision
+	</span><span lang="fr-BE"><b>RH accepte</b></span><span lang="fr-BE">&nbsp;:
+	les ressources humaines d&eacute;cident d&rsquo;accepter ou de
+	refuser le cong&eacute;</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Activit&eacute;
+	</span><span lang="fr-BE"><b>RH notifie refus</b></span><span lang="fr-BE">&nbsp;:
+	les ressources humaines notifient le demandeur du refus d&rsquo;octroyer
+	le cong&eacute;, en indiquant la raison du refus</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Activit&eacute;
+	</span><span lang="fr-BE"><b>RH notifie approbation</b></span><span lang="fr-BE">&nbsp;:
+	les ressources humaines notifient le demandeur de l&rsquo;acceptation
+	du cong&eacute;, ils compl&egrave;tent le formulaire avec le nombre
+	de jours de cong&eacute; annuel total, le nombre de jours de cong&eacute;
+	d&eacute;j&agrave; pris, le nombre de jours de cong&eacute;s pris,
+	le nombre de jours de cong&eacute;s futures et le solde</span></p>
+</ol>
+<p lang="fr-BE" style="margin-bottom: 0.28cm; line-height: 108%"><br/>
+<br/>
+
+</p>
+<h1 class="western"><span lang="fr-BE">Exemples de formulaires</span></h1>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Voici
+des exemples de demandes de cong&eacute;s</span></p>
+<p lang="fr-BE" style="margin-bottom: 0.28cm; line-height: 108%"><br/>
+<br/>
+
+</p>
+<h2 class="western" style="page-break-before: always"><span lang="fr-BE">Acceptation</span></h2>
+<table width="411" cellpadding="7" cellspacing="0">
+	<col width="69"/>
+
+	<col width="110"/>
+
+	<col width="107"/>
+
+	<col width="69"/>
+
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td colspan="2" width="231" style="background: transparent" style="border: 1px solid #000000; padding: 0cm 0.19cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><b>FORMULAIRE DE
+			DEMANDE DE CONGES</b></font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td colspan="2" width="231" style="background: transparent" style="border: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>A
+			compl&eacute;ter par l'employ&eacute;</b></i></font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Date</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">07-01-19</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Employ&eacute;</b></i></font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Nom</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Le Roi</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Pr&eacute;nom</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Mathilde</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Matricule</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">A182</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Cong&eacute;</b></i></font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">D&eacute;but</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">01-04-19</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Fin</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">15-04-19</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Raison</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Vacances
+			annuelles</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td colspan="2" width="231" style="background: transparent" style="border: 1px solid #000000; padding: 0cm 0.19cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>A
+			compl&eacute;ter par le manager</b></i></font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Date</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">14-01-19</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Manager</b></i></font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Nom</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Le Roi</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Pr&eacute;nom</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Paola</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Matricule</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">A028</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Cong&eacute;</b></i></font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Approbation</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">oui</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Raison du refus</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td colspan="2" width="231" style="background: transparent" style="border: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>A
+			compl&eacute;ter par RH</b></i></font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Date</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">21-01-19</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Cong&eacute;s</b></i></font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Approbation</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">oui</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Raison du refus</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Total</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">30</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Pris</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">4</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Reserv&eacute;s</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">10</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Solde</font></font></p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">16</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p align="right" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+</table>
+<p lang="fr-BE" style="margin-bottom: 0.28cm; line-height: 108%"><br/>
+<br/>
+
+</p>
+<p lang="fr-BE" style="margin-bottom: 0.28cm; line-height: 108%"><br/>
+<br/>
+
+</p>
+<h2 class="western" style="page-break-before: always"><span lang="fr-BE">Refus
+par le manager</span></h2>
+<table width="476" cellpadding="7" cellspacing="0">
+	<col width="69"/>
+
+	<col width="107"/>
+
+	<col width="175"/>
+
+	<col width="69"/>
+
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="175" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td colspan="2" width="297" style="background: transparent" style="border: 1px solid #000000; padding: 0cm 0.19cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><b>FORMULAIRE DE
+			DEMANDE DE CONGES</b></font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="175" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td colspan="2" width="297" style="background: transparent" style="border: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>A
+			compl&eacute;ter par l'employ&eacute;</b></i></font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Date</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">03-12-18</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Employ&eacute;</b></i></font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Nom</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Le Roi</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Pr&eacute;nom</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Philippe</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Matricule</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">A87</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Cong&eacute;</b></i></font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">D&eacute;but</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">23-12-18</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Fin</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">03-01-19</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Raison</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Vacances
+			annuelles</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="175" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td colspan="2" width="297" style="background: transparent" style="border: 1px solid #000000; padding: 0cm 0.19cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>A
+			compl&eacute;ter par le manager</b></i></font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Date</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">05-12-18</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Manager</b></i></font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Nom</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Le Roi</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Pr&eacute;nom</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Albert</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Matricule</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">A020</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Cong&eacute;</b></i></font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Approbation</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Non</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Raison du refus</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Surcharge de fin
+			d'ann&eacute;e</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="175" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td colspan="2" width="297" style="background: transparent" style="border: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>A
+			compl&eacute;ter par RH</b></i></font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Date</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Cong&eacute;s</b></i></font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Approbation</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Raison du refus</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Total</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Pris</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Reserv&eacute;s</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Solde</font></font></p>
+		</td>
+		<td width="175" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="107" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="175" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+</table>
+<p lang="fr-BE" style="margin-bottom: 0.28cm; line-height: 108%"><br/>
+<br/>
+
+</p>
+<p lang="fr-BE" style="margin-bottom: 0.28cm; line-height: 108%"><br/>
+<br/>
+
+</p>
+<h2 class="western" style="page-break-before: always"><span lang="fr-BE">Refus
+par RH</span></h2>
+<table width="497" cellpadding="7" cellspacing="0">
+	<col width="69"/>
+
+	<col width="110"/>
+
+	<col width="194"/>
+
+	<col width="69"/>
+
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="194" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td colspan="2" width="318" style="background: transparent" style="border: 1px solid #000000; padding: 0cm 0.19cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><b>FORMULAIRE DE
+			DEMANDE DE CONGES</b></font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="194" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td colspan="2" width="318" style="background: transparent" style="border: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>A
+			compl&eacute;ter par l'employ&eacute;</b></i></font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Date</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">07-01-19</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Employ&eacute;</b></i></font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Nom</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Le Roi</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Pr&eacute;nom</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Laurent</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Matricule</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">A121</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Cong&eacute;</b></i></font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">D&eacute;but</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">01-04-19</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Fin</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">01-09-19</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Raison</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Vacances
+			annuelles</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="194" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td colspan="2" width="318" style="background: transparent" style="border: 1px solid #000000; padding: 0cm 0.19cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>A
+			compl&eacute;ter par le manager</b></i></font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Date</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">14-01-19</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Manager</b></i></font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Nom</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Le Roi</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Pr&eacute;nom</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Paola</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Matricule</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">A028</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Cong&eacute;</b></i></font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Approbation</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">oui</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Raison du refus</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="194" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td colspan="2" width="318" style="background: transparent" style="border: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>A
+			compl&eacute;ter par RH</b></i></font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Date</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">21-01-19</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif"><i><b>Cong&eacute;s</b></i></font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000">&nbsp;</font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Approbation</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">non</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="24" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Raison du refus</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">d&eacute;passement
+			du nombre de jours de cong&eacute;s autoris&eacute;s</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p lang="fr-BE" style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Total</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">30</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Pris</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">10</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Reserv&eacute;s</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">10</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0cm 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">Solde</font></font></p>
+		</td>
+		<td width="194" style="background: transparent" style="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.19cm"><p style="orphans: 0; widows: 0">
+			<font color="#000000"><font face="Calibri, serif">10</font></font></p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr valign="bottom">
+		<td width="69" height="5" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="110" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="194" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+		<td width="69" style="background: transparent" style="border: none; padding: 0cm"><p style="orphans: 0; widows: 0">
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+</table>
+<p lang="fr-BE" style="margin-bottom: 0.28cm; line-height: 108%"><br/>
+<br/>
+
+</p>
+<h1 class="western"><span lang="fr-BE">User stories</span></h1>
+<h2 class="western"><span lang="fr-BE">E01 - EPIC demande de cong&eacute;s</span></h2>
+<h3 class="western"><span lang="fr-BE">E01-D01 &ndash; Demandeur
+introduit DdC</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story<a class="sdfootnoteanc" name="sdfootnote2anc" href="#sdfootnote2sym"><sup>2</sup></a>&nbsp;:
+</b></span><span lang="fr-BE">En tant que demandeur, je veux pouvoir
+introduire une nouvelle demande de cong&eacute;s, ainsi ma demande
+sera trait&eacute;e et j&rsquo;esp&egrave;re recevoir une r&eacute;ponse
+rapide pour que je puisse organiser mes cong&eacute;s.</span></p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>Valeur
+Business&nbsp;<a class="sdfootnoteanc" name="sdfootnote3anc" href="#sdfootnote3sym"><sup>3</sup></a></b></span><span lang="fr-BE">:
+900</span></p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>Points
+effort<a class="sdfootnoteanc" name="sdfootnote4anc" href="#sdfootnote4sym"><sup>4</sup></a></b></span><span lang="fr-BE">&nbsp;:
+2</span></p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>ROI
+de base<a class="sdfootnoteanc" name="sdfootnote5anc" href="#sdfootnote5sym"><sup>5</sup></a></b></span><span lang="fr-BE">&nbsp;:
+450</span></p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>R&egrave;gles
+m&eacute;tier<a class="sdfootnoteanc" name="sdfootnote6anc" href="#sdfootnote6sym"><sup>6</sup></a>&nbsp;:</b></span></p>
+<ol>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Le
+	formulaire est conforme au formulaire papier, c&rsquo;est-&agrave;-dire
+	qu&rsquo;il contient les champs</span></p>
+	<ol type="a">
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Date
+		(de la demande)</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Nom
+		du demandeur</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Pr&eacute;nom
+		du demandeur</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Matricule</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Date
+		d&eacute;but de cong&eacute;</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Date
+		fin de cong&eacute;</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Raison</span></p>
+	</ol>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><a name="_Hlk536614427"></a>
+	<span lang="fr-BE">Les champs suivants sont automatiquement remplis</span></p>
+	<ol type="a">
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Date
+		&agrave; la date courante</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Nom
+		est le nom de l&rsquo;utilisateur</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Pr&eacute;nom
+		est le pr&eacute;nom de l&rsquo;utilisateur</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Matricule
+		est le matricule de l&rsquo;utilisateur</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Date
+		d&eacute;but de cong&eacute; au lendemain ouvrable</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Date
+		fin de cong&eacute; au surlendemain ouvrable</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Raison
+		&agrave; &laquo;&nbsp;Cong&eacute; annuel&nbsp;&raquo;</span></p>
+	</ol>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Les
+	champs suivant ne sont pas modifiables</span></p>
+	<ol type="a">
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Date</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Nom</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Pr&eacute;nom</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Matricule</span></p>
+	</ol>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">La
+	date de d&eacute;but de cong&eacute; est dans le future</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">La
+	date de fin est plus grande que la date de d&eacute;but</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Les
+	raisons sont soit<a class="sdfootnoteanc" name="sdfootnote7anc" href="#sdfootnote7sym"><sup>7</sup></a></span></p>
+	<ol type="a">
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Cong&eacute;
+		annuel</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Cong&eacute;
+		d&rsquo;accueil</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Cong&eacute;
+		d&rsquo;adoption</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Cong&eacute;-&eacute;duction
+		pay&eacute;</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Cong&eacute;
+		de maternit&eacute;</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Cong&eacute;
+		de paternit&eacute;</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Cong&eacute;
+		parental</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Cong&eacute;
+		pour soins palliatifs</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Cong&eacute;
+		pour maladie grave d&rsquo;un membre du m&eacute;nage ou de la
+		famille</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Cr&eacute;dit-temps</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Petit
+		ch&ocirc;mage ou cong&eacute; de circonstance</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Cong&eacute;
+		pour raisons imp&eacute;rieuses</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Cong&eacute;
+		politique</span></p>
+		<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Cong&eacute;
+		sans solde</span></p>
+	</ol>
+</ol>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>Wireframe&nbsp;:</b></span></p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><img src="DDC_html_bf0a9a490eff3678.png" name="Image 3" align="bottom" width="333" height="523" border="0"/>
+</p>
+<h3 class="western"><span lang="fr-BE">E01-D02 &ndash; Demandeur
+consulte DdCs</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que demandeur, je
+veux pouvoir consulter les demandes de cong&eacute;s en cours, ainsi
+je peux v&eacute;rifier le statut de mes demandes.</span></p>
+<h3 class="western"><span lang="fr-BE">E01-D03 &ndash; Demandeur
+modifie DdC</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que demandeur, je
+veux pouvoir modifier une demande de cong&eacute; en cours, ainsi je
+peux corriger une erreur ou adapter une demande.</span></p>
+<h3 class="western"><span lang="fr-BE">E01-D05 &ndash; Demandeur
+annule DdC</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que demandeur, je
+veux pouvoir annuler une demande de cong&eacute; en cours, ainsi je
+peux corriger une erreur.</span></p>
+<h3 class="western"><span lang="fr-BE">E01-D06 &ndash; Demandeur est
+inform&eacute; de la d&eacute;cision</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que demandeur, je
+veux &ecirc;tre notifi&eacute; par email de la d&eacute;cision
+concernant ma demande de cong&eacute;, ainsi je peux m&rsquo;organiser
+en cons&eacute;quence.</span></p>
+<h3 class="western"><span lang="fr-BE">E01-M01 &ndash; Manager
+consulte DdCs &agrave; traiter</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que manager, je
+veux pouvoir consulter toutes les demandes en attente de mon
+approbation, ainsi je peux lister toutes les approbations que j&rsquo;ai
+&agrave; faire.</span></p>
+<h3 class="western"><span lang="fr-BE">E01-M02 &ndash; Manager traite
+DdC</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que manager, je
+veux traiter une demande d&rsquo;approbation, ainsi l&rsquo;organisation
+et le degr&eacute; de satisfaction de mon &eacute;quipe en est
+am&eacute;lior&eacute;.</span></p>
+<h3 class="western"><span lang="fr-BE">E01-M03 &ndash; Manager
+consulte DdCs de son &eacute;quipe</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que manager, je
+veux pouvoir consulter toutes les demandes de cong&eacute; du
+personnel sous ma responsabilit&eacute;, les trier et les filtrer,
+ainsi je peux v&eacute;rifier que les demandes de cong&eacute; sont
+trait&eacute;es avec diligence et je peux facilement retrouver une
+demande particuli&egrave;re.</span></p>
+<h3 class="western"><span lang="fr-BE">E01-M04 &ndash; Manager
+recherche personne qui a trait&eacute; la DdC</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que manager, je
+veux savoir qui a trait&eacute; une demande de cong&eacute;, ainsi je
+peux facilement contacter cette personne pour lui demander des
+informations compl&eacute;mentaires.</span></p>
+<h3 class="western"><span lang="fr-BE">E01-M05 &ndash; Manager est
+notifi&eacute; par la demande</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que manager, je
+veux &ecirc;tre notifi&eacute; lorsqu&rsquo;un demandeur introduit ou
+modifie une demande de cong&eacute;s, ainsi je peux la traiter
+directement.</span></p>
+<h3 class="western"><span lang="fr-BE">E01-R01 &ndash; RH consulte
+DdCs  &agrave; traiter</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant qu&rsquo;employ&eacute;
+RH, je veux pouvoir consulter toutes les demandes de cong&eacute;s en
+attente de traitement par RH, ainsi j&rsquo;ai une id&eacute;e de la
+quantit&eacute; de travail &agrave; effectuer.</span></p>
+<h3 class="western"><span lang="fr-BE">E01-R02 &ndash; RH traite DdC</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant qu&rsquo;employ&eacute;
+RH, je veux pouvoir traiter une demande de cong&eacute;, ainsi le
+demandeur conna&icirc;t la r&eacute;ponse &agrave; sa demande.</span></p>
+<h3 class="western"><span lang="fr-BE">E01-U01 &ndash; Utilisateur
+visualise l&rsquo;historique d&rsquo;un DdC</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant qu&rsquo;utilisateur,
+je veux pouvoir visualiser l&rsquo;historique des actions ex&eacute;cut&eacute;s
+sur une demande de cong&eacute;, ainsi je analyser, comprendre et
+v&eacute;rifier chaque demande.</span></p>
+<h2 class="western"><span lang="fr-BE">E02 &ndash; EPIC gestion des
+cong&eacute;s</span></h2>
+<h3 class="western"><span lang="fr-BE">E02-U01 &ndash; Manager
+consulte cong&eacute;s de son &eacute;quipe</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que manager, je
+veux consulter tous les cong&eacute;s de mon &eacute;quipe, ainsi je
+peux v&eacute;rifier si mon &eacute;quipe est suffisante &agrave;
+tout moment ce qui facilite ma d&eacute;cision concernant un cong&eacute;.</span></p>
+<h3 class="western"><span lang="fr-BE">E02-R01 &ndash; RH consulte
+cong&eacute;s d&rsquo;un employ&eacute;</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant qu&rsquo;employ&eacute;
+RH, je veux pouvoir consulter l&rsquo;ensemble des cong&eacute;s prix
+par un employ&eacute; ainsi je peux v&eacute;rifier que les r&egrave;gles
+concernant les cong&eacute;s sont bien respect&eacute;es.</span></p>
+<h2 class="western"><span lang="fr-BE">E03 &ndash; EPIC gestion du
+processus de demande de cong&eacute;s</span></h2>
+<h3 class="western"><span lang="fr-BE">E03-R01 &ndash; Responsable
+consulte KPI</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que responsable du
+processus DDC, je veux disposer d&rsquo;un dashboard avec les
+diff&eacute;rents KPI, ainsi je peux facilement contr&ocirc;ler que
+le processus fonctionne correctement.</span></p>
+<h3 class="western"><span lang="fr-BE">E03-U01 &ndash; Utilisateur
+&eacute;value le processus DdC</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant qu&rsquo;utilisateur
+du processus DDC, je veux avoir la possibilit&eacute; d&rsquo;&eacute;valuer
+le processus de DDC, ainsi le processus peut plus facilement &ecirc;tre
+am&eacute;lior&eacute;.</span></p>
+<h3 class="western"><span lang="fr-BE">E04-R02 &ndash; Responsable
+consulte &eacute;valuations</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que responsable du
+processus DDC, je veux pouvoir consulter, trier et filtrer les
+&eacute;valuations r&eacute;alis&eacute;es par les utilisateurs du
+processus, ainsi je suis inform&eacute; de qualit&eacute; ressentie
+par les utilisateurs et je peux prendre des d&eacute;cisions en
+meilleure connaissance de causes.</span></p>
+<h2 class="western"><span lang="fr-BE">E05 - EPIC Connectivit&eacute;
+et authentification</span></h2>
+<h3 class="western"><span lang="fr-BE">E05-U01 &ndash; Utilisateur
+connecte via enterprise PC</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant qu&rsquo;utilisateur,
+je veux pouvoir me connecter avec l&rsquo;ordinateur de la soci&eacute;t&eacute;
+et b&eacute;n&eacute;ficier du SSO, ainsi je peux utiliser
+l&rsquo;application.</span></p>
+<h3 class="western"><span lang="fr-BE">E05-U02 &ndash; Utilisateur
+SSO</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant qu&rsquo;utilisateur,
+je veux b&eacute;n&eacute;ficier du SSO lorsque je me connecte avec
+l&rsquo;ordinateur de la soci&eacute;t&eacute;, ainsi je gagne du
+temps car je dois m&rsquo;authentifier qu&rsquo;une seule fois. </span><span lang="fr-BE"><i>(SSO
+&ndash; Single Sign On)</i></span><span lang="fr-BE">.</span></p>
+<h3 class="western"><span lang="fr-BE">E05-D03 &ndash; Demandeur ou
+manager connecte via web</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que demandeur ou
+manager, je veux pouvoir me connecter &agrave; partir de n&rsquo;importe
+quel ordinateur connect&eacute; &agrave; internet ainsi je peux g&eacute;rer
+les demandes de cong&eacute;s de n&rsquo;importe o&ugrave;.</span></p>
+<h3 class="western"><span lang="fr-BE">E05-D04 &ndash; Demandeur ou
+manager s&rsquo;authentifie via web</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que demandeur ou
+manager, je veux devoir m&rsquo;authentifier via un nom et un
+password lorsque je me connecte via un ordinateur quelconque, ainsi
+il est difficile d&rsquo;utiliser l&rsquo;application en mon nom.</span></p>
+<h3 class="western"><span lang="fr-BE">E05-D05 &ndash; Demandeur ou
+manageur connecte via smart phone</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que demandeur ou
+manager, je veux pouvoir me connecter &agrave; partir de mon
+smartphone, ainsi je peux g&eacute;rer les demandes de cong&eacute;s
+n&rsquo;importe o&ugrave;.</span></p>
+<h3 class="western"><span lang="fr-BE">E05-D06 &ndash; Demandeur ou
+manager s&rsquo;authentifie via smart phone</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que demandeur ou
+manager, je veux b&eacute;n&eacute;ficier d&rsquo;un moyen
+d&rsquo;authentification s&ucirc;r et facile lorsque je me connecte
+via mon smartphone, ainsi il est difficile d&rsquo;utiliser
+l&rsquo;application en mon nom.</span></p>
+<h2 class="western"><span lang="fr-BE">E06 D&eacute;l&eacute;gation
+de demandes de cong&eacute;s</span></h2>
+<h3 class="western"><span lang="fr-BE">E06-M01 &ndash; Manager
+d&eacute;l&egrave;gue l&rsquo;approbation</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que manager, je
+veux pouvoir d&eacute;l&eacute;guer l&rsquo;approbation des demandes
+de cong&eacute;s qui me sont assign&eacute;es &agrave; un coll&egrave;gue,
+ainsi je peux me consacrer &agrave; d&rsquo;autres t&acirc;ches.</span></p>
+<h3 class="western"><span lang="fr-BE">E06-M02 &ndash; Manager
+planifie la d&eacute;l&eacute;gation</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que manager, je
+veux pouvoir planifier la d&eacute;l&eacute;gation des demandes de
+cong&eacute;s qui me sont assign&eacute;es &agrave; un coll&egrave;gue,
+ainsi je peux partir en cong&eacute; ou me consacrer d&rsquo;autres
+t&acirc;ches pendant cette p&eacute;riode.</span></p>
+<h3 class="western"><span lang="fr-BE">E06-M03 &ndash; Manager
+d&eacute;signe backup</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que manager, je
+veux pouvoir d&eacute;signer un ou plusieurs backup qui peuvent &agrave;
+tout moment g&eacute;rer les demandes de cong&eacute;s qui me sont
+assign&eacute;es, ainsi il y aura moins de risques qu&rsquo;une
+demande de cong&eacute;s soit bloqu&eacute;e.</span></p>
+<h3 class="western"><span lang="fr-BE">E06-M04 &ndash; Manager du
+manager d&eacute;l&egrave;gue</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que manager, je
+veux pouvoir d&eacute;l&eacute;guer les demandes de cong&eacute;s
+assign&eacute;es &agrave; un manager de mon &eacute;quipe &agrave;
+une tierce personne, ainsi le suivi des demandes de cong&eacute;s
+peut &ecirc;tre assur&eacute; lorsqu&rsquo;un manager est dans
+l&rsquo;incapacit&eacute; de proc&eacute;der &agrave; la gestion des
+cong&eacute;s, par exemple parce qu&rsquo;il est malade.</span></p>
+<h3 class="western"><span lang="fr-BE">E07-R01 &ndash; Responsable
+d&eacute;l&egrave;gue des DdCs</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que responsable du
+processus de demande de cong&eacute;s, je veux pouvoir d&eacute;l&eacute;guer
+les demandes de cong&eacute;s assign&eacute;es &agrave; un manager &agrave;
+une tierce personne, ainsi le suivi des demandes de cong&eacute;s
+peut &ecirc;tre assur&eacute; lorsqu&rsquo;un manager est dans
+l&rsquo;incapacit&eacute; de proc&eacute;der &agrave; la gestion des
+cong&eacute;s, par exemple parce qu&rsquo;il est malade.</span></p>
+<h3 class="western"><span lang="fr-BE">E08-S01 &ndash; Utilise Active
+Directory</span></h3>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE"><b>User
+Story&nbsp;: </b></span><span lang="fr-BE">En tant que responsable
+IT, je veux que AppDdC utilise l&rsquo;Active Directory de &laquo;&nbsp;Phillipe
+&amp; Co&nbsp;&raquo; pour</span></p>
+<h1 class="western"><span lang="fr-BE">Diagramme de contexte</span></h1>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Le
+diagramme de contexte illustre les acteurs (UML actors, normalement
+appel&eacute; Terminator dans le diagramme de contexte) qui
+interagissent avec l&rsquo;application AppDdC</span></p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><a name="_GoBack"></a>
+<img src="DDC_html_c589ca461a2470cf.png" name="Image 2" align="bottom" width="620" height="435" border="0"/>
+</p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Les
+acteurs sont&nbsp;:</span></p>
+<ul>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Demandeur&nbsp;:
+	l&rsquo;employ&eacute; de &laquo;&nbsp;Philippe &amp; Co&nbsp;&raquo;
+	qui demande un cong&eacute;</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Manager&nbsp;:
+	un manager de &laquo;&nbsp;Philippe &amp; Co&nbsp;&raquo;. Il a sous
+	sa responsabilit&eacute; un ou plusieurs employ&eacute;s et il est
+	responsable de la v&eacute;rification des cong&eacute;s</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">RH&nbsp;:
+	personne des ressources humaines en charge des demandes de cong&eacute;</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Responsable
+	Processus&nbsp;: une personne qui est responsable du processus de
+	demande de cong&eacute;. Elle aide les utilisateurs dans les cas
+	particuliers et elle surveille le processus de sorte &agrave;
+	l&rsquo;am&eacute;liorer</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">D&eacute;l&eacute;gu&eacute;&nbsp;:
+	personne &agrave; qui on a d&eacute;l&eacute;gu&eacute; des demandes
+	de cong&eacute;s et qui peut les approuver ou refuser au nom du
+	manager</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">Active
+	Directory&nbsp;: logiciel de microsoft servant de r&eacute;pertoire
+	des ressources de &laquo;&nbsp;Philippe &amp; Co&nbsp;&raquo; tant
+	informatique qu&rsquo;humaine et qui est en charge de
+	l&rsquo;authentification et des permissions</span></p>
+	<li><p style="margin-bottom: 0.28cm; line-height: 108%"><span lang="fr-BE">AppConge&nbsp;:
+	application de gestion des cong&eacute;s</span></p>
+</ul>
+<p lang="fr-BE" style="margin-bottom: 0.28cm; line-height: 108%"><br/>
+<br/>
+
+</p>
+<p lang="fr-BE" style="margin-bottom: 0.28cm; line-height: 108%"><br/>
+<br/>
+
+</p>
+<p style="margin-bottom: 0.28cm; line-height: 108%"><br/>
+<br/>
+
+</p>
+<div id="sdfootnote1"><p class="sdfootnote"><a class="sdfootnotesym" name="sdfootnote1sym" href="#sdfootnote1anc">1</a><span lang="fr-BE">
+	Le diagramme d&rsquo;activit&eacute;s est un diagramme de UML
+	(Unified Modeling Langage) permettant de mod&eacute;liser, entre
+	autres, des processus ou workflow. Voir par exemple les notes du
+	cours ou </span><font color="#0563c1"><u><a href="https://www.lucidchart.com/pages/uml-activity-diagram?a=1"><span lang="fr-BE">UML
+	Activity Diagram Tutorial</span></a></u></font><span lang="fr-BE">
+	ou </span><font color="#0563c1"><u><a href="https://laurent-audibert.developpez.com/Cours-UML/?page=diagramme-activites"><span lang="fr-BE">Laurent
+	Audibert UML 2 chapitre 6 Diagramme d&rsquo;activit&eacute;</span></a></u></font><span lang="fr-BE">
+	ou </span><font color="#0563c1"><u><a href="https://openclassrooms.com/fr/courses/2035826-debutez-lanalyse-logicielle-avec-uml/2111926-le-diagramme-d-activite"><span lang="fr-BE">OpenClassRoom
+	Le diagramme d&rsquo;activit&eacute;</span></a></u></font><span lang="fr-BE">
+	ou les sp&eacute;cifications.</span></p>
+</div>
+<div id="sdfootnote2"><p class="sdfootnote"><a class="sdfootnotesym" name="sdfootnote2sym" href="#sdfootnote2anc">2</a><span lang="fr-BE">
+	Les users stories servent &agrave; d&eacute;crire les
+	fonctionnalit&eacute;s d'un syst&egrave;me. Elles sont r&eacute;dig&eacute;es
+	suivant le patron suivant: En que &lt;&lt;qui&gt;&gt;, je veux
+	&lt;&lt;quoi&gt;&gt; afin de &lt;&lt;pourquoi&gt;&gt;.</span></p>
+</div>
+<div id="sdfootnote3"><p class="sdfootnote"><a class="sdfootnotesym" name="sdfootnote3sym" href="#sdfootnote3anc">3</a><span lang="fr-BE">
+	La valeur business ou business value est une estimation relative de
+	la valeur pour le business de la user story. Voir par exemple
+	</span><font color="#0563c1"><u><a href="https://blog.myagilepartner.fr/index.php/2017/01/16/prioriser-avec-les-business-value/"><span lang="fr-BE">Prioriser
+	avec les business values</span></a></u></font><span lang="fr-BE">.
+	Par convention, 1000 est la valeur business maximum et 0 le minimum
+	(on pourrait penser &agrave; des valeurs n&eacute;gatives, mais cela
+	pourrait f&acirc;cher certains)</span></p>
+</div>
+<div id="sdfootnote4"><p class="sdfootnote"><a class="sdfootnotesym" name="sdfootnote4sym" href="#sdfootnote4anc">4</a><span lang="fr-BE">
+	Le nombre de points d&rsquo;effort (ou Story Points) est une mesure
+	de l&rsquo;effort n&eacute;cessaire pour r&eacute;aliser la t&acirc;che.
+	Lorsqu&rsquo;une &eacute;quipe d&eacute;marre, c&rsquo;est une
+	mesure relative. L&rsquo;id&eacute;e est ensuite de la traduire en
+	homme-jour, gr&acirc;ce &agrave; l&rsquo;exp&eacute;rience gagn&eacute;e
+	au cours du projet. Voici par exemple </span><font color="#0563c1"><u><a href="https://blog.myagilepartner.fr/index.php/2018/12/08/comment-mettre-des-points-deffort-dans-une-equipe/"><span lang="fr-BE">Comment
+	mettre des points d&rsquo;effort dans une &eacute;quipe&nbsp;?</span></a></u></font><span lang="fr-BE">
+	et </span><font color="#0563c1"><u><a href="https://blog.thiga.fr/glossaire/story-points/"><span lang="fr-BE">Story
+	Points</span></a></u></font><span lang="fr-BE">. Notez que j&rsquo;utilise
+	la </span><font color="#0563c1"><u><a href="https://fr.wikipedia.org/wiki/Suite_de_Fibonacci"><span lang="fr-BE">suite
+	de Fibonacci</span></a></u></font><span lang="fr-BE"> (1, 2, 3, 5,
+	8, 13, 21, &hellip;) parce que l&rsquo;estimation est en principe
+	d&rsquo;autant plus pr&eacute;cise que l&rsquo;effort est petit.</span></p>
+</div>
+<div id="sdfootnote5"><p class="sdfootnote"><a class="sdfootnotesym" name="sdfootnote5sym" href="#sdfootnote5anc">5</a><span lang="fr-BE">
+	ROI signifie Return of Invest (retour sur investissement). Ici, il
+	s&rsquo;agit d&rsquo;une estimation relative obtenue par la formule
+	&laquo;&nbsp;valeur-business / points-d-effort&nbsp;&raquo;</span></p>
+</div>
+<div id="sdfootnote6"><p class="sdfootnote"><a class="sdfootnotesym" name="sdfootnote6sym" href="#sdfootnote6anc">6</a><span lang="fr-BE">
+	Une r&egrave;gle m&eacute;tier (business rule) est un r&egrave;gle
+	venant du business. C&rsquo;est une condition qui doit &ecirc;tre
+	satisfaite lorsqu&rsquo;une activit&eacute; m&eacute;tier est
+	ex&eacute;cut&eacute;e (ref&nbsp;: </span><font color="#0563c1"><u><a href="https://www.ibm.com/support/knowledgecenter/fr/SSFTDH_8.5.5/com.ibm.wbpm.wid.bpel.doc/busrules/topics/cundbus.html"><span lang="fr-BE">IBM
+	R&egrave;gles m&eacute;tier</span></a></u></font><span lang="fr-BE">).</span></p>
+</div>
+<div id="sdfootnote7"><p class="sdfootnote"><a class="sdfootnotesym" name="sdfootnote7sym" href="#sdfootnote7anc">7</a><span lang="fr-BE">
+	Voir </span><font color="#0563c1"><u><a href="https://www.jobat.be/fr/articles/12-types-de-conge-lesquels-vous-concernent/"><span lang="fr-BE">12
+	types de cong&eacute;&nbsp;: lesquels vous concernent&nbsp;?</span></a></u></font><span lang="fr-BE">
+	ou </span><font color="#0563c1"><u><a href="https://fedweb.belgium.be/fr/conge_absences_et_temps_de_travail"><span lang="fr-BE">Fedweb
+	cong&eacute;, absence et temps de travail</span></a></u></font><span lang="fr-BE">.</span></p>
+</div>
+</body>
+</html>

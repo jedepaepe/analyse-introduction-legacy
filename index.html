@@ -1,0 +1,53 @@
+<script>
+  const repoOwner = 'VOTRE_NOM_UTILISATEUR';
+  const repoName = 'VOTRE_DEPOT';
+  const targetUl = document.querySelector('#section-table-content ul');
+
+  fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/`)
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(item => {
+        // On filtre pour n'avoir que les dossiers et exclure ceux qu'on ne veut pas
+        if (item.type === 'dir' && item.name !== 'animations' && item.name !== 'css' && item.name !== 'js') {
+          const li = document.createElement('li');
+          li.innerHTML = `<a href="${item.name}/index.html">${item.name}</a>`;
+          targetUl.appendChild(li);
+        }
+      });
+    });
+</script>
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Analyse</title>
+        <link rel='stylesheet' href='../../css/style.css'>
+    </head>
+
+    <body>
+        <a href="..">
+                <div class="home"></div>
+        </a>
+        <nav id="toc" class="toc"></nav>
+
+        <header>
+            <h1 class="center">Cours  d'Analyse</h1>
+            <h2 class="center">Table des matières</h2>
+        </header>
+        <article class="contents">
+            <section id='section-table-content' data-tc="1">
+                <h2>Table des matières</h2>
+                <ul>
+                </ul>
+            </section>
+        </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2019-10-24
+        </footer>
+        <script src='../../js/script.js'></script>
+    </body>
+
+</html>

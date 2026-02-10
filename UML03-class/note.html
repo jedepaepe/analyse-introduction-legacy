@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CLASS DIAGRAM</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+    <link rel="stylesheet" href="../../../css/codemirror.css">
+    <script src="../../../js/codemirror.js"></script>
+    <script src="../../../js/clike.js"></script>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Leçon UML Diagrammes de classes</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td=1>
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Savoir réaliser un diagramme de classe
+                </p>
+                <p>
+                    Après cette leçon, l'étudiant saura
+                    <ul>
+                        <li>comprendre des diagrammes de classes</li>
+                        <li>réaliser des diagrammes de classes</li>
+                    </ul>
+                </p>
+                <p>
+                    Durée estimée : 3 heures.
+                </p>
+                <p>
+                    Type d'enseignement : théorie & démo & discussions.
+                </p>
+            </section>
+
+            <section id="section-introduction" data-tc=1>
+                <h2>Introduction</h2>
+                <div id="section-introduction-introduction">
+                    <p>
+                        Le diagramme de classes est le diagramme central de la programmation orientée objet.
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Tous les diagrammes de ce tutoriel ont été réalisés avec Visual Paradigm
+                        et <a href="class-diagrams.vpp" download=>le fichier .vpp est disponible ici</a>.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-visual-paradigm-tutorial" data-tc=1>
+                <h2>Visual Paradigm</h2>
+                <div>
+                    <p>
+                        Visual Paradigm propose
+                        <a href="https://www.visual-paradigm.com/support/documents/vpuserguide/94/2579/6714_creatingstat.html" target=_blank>
+                            un tutoriel précis pour réaliser un diagramme de classe.
+                        </a>.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-patterns" data-tc=1>
+                <h2>Patrons</h2>
+                <div>
+                    <p>
+                        En analyse, nous rencontrons souvent les mêmes "motifs",
+                        les mêmes types d'organisation entre classes.
+                        Nous appelons ces modifs "patterns" ou "patrons" en français.
+                    </p>
+                    <p>
+                        La référence dans ce domaine est certainement le livre de Martin Fowler,
+                        <a href="https://martinfowler.com/books/ap.html">
+                            Analysis patterns
+                        </a>, qui malheureusement date de 1996 et utilise des notations "pré-UML".
+                        Depuis Martin a publié différents pdf avec des versions UML des patterns,
+                        par exemple:
+                    </p>
+                    <ul>
+                        <li>
+                            <a href="https://martinfowler.com/apsupp/apchap2.pdf">
+                                UML Diagrams for Chapter 2 of Analysis Patterns
+                            </a>
+                        </li>
+                        <li>
+                                <a href="https://martinfowler.com/apsupp/apchap3.pdf">
+                                    UML Diagrams for Chapter 3 of Analysis Patterns
+                                </a>
+                            </li>
+                        <li>
+                            <a href="https://martinfowler.com/apsupp/apchap4.pdf">
+                                UML Diagrams for Chapter 4 of Analysis Patterns
+                            </a>
+                        </li>
+                        <li>
+                            ...
+                        </li>
+                    </ul>
+                </div>
+
+                <section id="section-patterns-n2n-association" data-tc=2>
+                    <h3>Association n2n</h3>
+                    <div>
+                        <p>
+                            Nous rencontrons souvent des classes qui sont liées par des associations n à n,
+                            c'est-à-dire qu'un objet instance de la classe A peut référencer n objets instances de la classe B
+                            et qu'un objet de la classe B peut référencer n objets instances de la classe C.
+                        </p>
+                        <p>
+                            Voyons cela par des exemples.
+                        </p>
+                    </div>
+
+                    <section id="section-patterns-n2n-association-worker-firm">
+                        <h3>travailleurs</h3>
+                        <div>
+                            <div>
+                                <p>
+                                    Imaginons la classe <strong>Worker</strong> (travailleur),
+                                    et ses attributs
+                                </p>
+                                <ul>
+                                    <li>nr: le numéro de matricule</li>
+                                    <li>firstname: le prénom</li>
+                                    <li>lastname: le nom de famille</li>
+                                    <li>email</li>
+                                    <li>phone: le numéro de téléphone</li>
+                                    <li>address</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p>
+                                    Nous aurons aussi la classe <strong>Firm</strong> (entreprise),
+                                    et les attributs:
+                                </p>
+                                <ul>
+                                    <li>vat: numéro de TVA</li>
+                                    <li>name: le nom de l'entreprise</li>
+                                    <li>address</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p>
+                                    Le diagramme de classe sera:
+                                </p>
+                                <figure>
+                                    <a href="worker-firm-class-diagram.png">
+                                        <img src="worker-firm-class-diagram.png" alt="diagramme de classe Worker, Firm">
+                                    </a>
+                                </figure>
+                                <p>
+                                    Nous avons choisi de typer l'attribut adresse
+                                    car une adresse est une structure complexe.
+                                    Cependant, nous ne représentons pas la classe <i>Address</i>
+                                    dans le diagramme car elle est considérer comme un type,
+                                    au même titre que la classe <i>String</i>.
+                                    Représenter la classe <i>Address</i> rendrait le diagramme moins lisible
+                                    sans ajouter d'information importante.
+                                </p>
+                                <p>
+                                    Le point important est la relation entre <i>Worker</i> et <i>Firm</i>,
+                                    nous avons:
+                                </p>
+                                <ul>
+                                    <li>Un <i>:Worker</i> peut travailler pour une ou plusieurs <i>:Firm</i></li>
+                                    <li>Une <i>:Firm</i> peut avoir zéro ou plusieurs <i>:Worker</i></li>
+                                </ul>
+                                <p>
+                                    C'est une association "N to N" sans propriété,
+                                    car dans cette étude nous ne sommes pas intéressés
+                                    aux propriétés de la relation,
+                                    comme par exemple,
+                                    le contrat de travail,
+                                    le salaire,
+                                    ...
+                                </p>
+                                <div>
+                                    <p>
+                                        Vérifions notre diagramme de classes
+                                        par un exemple
+                                        et utilisons le diagramme d'objets pour représenter cet exemple:
+                                    </p>
+                                    <a href="images/worker-firm-exemple-1-object-diagram.jpg">
+                                        <img src="images/worker-firm-exemple-1-object-diagram.jpg" alt="">
+                                    </a>
+                                </div>
+                                <p>
+                                    Une implémentation java simplifiée est donnée en annexe.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="section-patterns-n2n-association-invoice">
+                        <h4>factures</h4>
+                        <div id=section-patterns-n2n-association-invoice-introduction>
+                            <p>
+                                Nombres de cas suivent le même modèle que les <i>factures</i> (invoice),
+                                citons <i>commandes</i>, <i>livraison</i>, <i>devis</i>, ...
+                            </p>
+                            <p>
+                                Il s'agit de documents qui sont structurés comme suit:
+                            </p>
+                            <blockquote>
+                                <figure>
+                                    <a href="modele-facture-fr-bande-bleu-750px.png">
+                                        <img src="modele-facture-fr-bande-bleu-750px.png" alt="Modèle de facture">
+                                    </a>
+                                </figure>
+                                <cite>
+                                    <a href="https://invoicehome.com/?locale=fr" target=_blank>
+                                        invoicehome.com Factures PDF professionnelles
+                                    </a>
+                                </cite>
+                            </blockquote>
+                            <p>
+                                Mettons en évidence les classes qui nous intéressent:
+                            </p>
+                            <ul>
+                                <li>client en mauve</li>
+                                <li>facture en vert</li>
+                                <li>article en bleu clair</li>
+                                <li>ligne de facture en orange</li>
+                            </ul>
+                            <figure>
+                                <a href="modele-facture-modifie.png">
+                                    <img src="modele-facture-modifie.png" alt="Modéle de facture avec mise en évidence des classes">
+                                </a>
+                            </figure>
+                            <p>
+                                Nous avons aussi entouré de gris les données calculées.
+                            </p>
+                            <p>
+                                Notons que
+                                certaines entités sont présentes sur la facture,
+                                mais non analysées dans le diagramme de classes présenté ici:
+                            </p>
+                            <ul>
+                                <li>la personne/firme qui émet la émet la facture, en haut à gauche</li>
+                                <li>le numéro de la commande apparaît à droite</li>
+                            </ul>
+                        </div>
+                        <div id=section-patterns-n2n-association-invoice-client>
+                            <p>
+                                La classe <i>Client</i> pourrait avoir les attributs suivants:
+                            </p>
+                            <ul>
+                                <li>nr est le numéro de client</li>
+                                <li>name</li>
+                                <li>email</li>
+                                <li>phone</li>
+                                <li>address</li>
+                            </ul>
+                        </div>
+                        <div id=section-patterns-n2n-association-invoice-article>
+                            <p>
+                                La classe <i>Article</i> pourrait avoir les attributs suivants:
+                            </p>
+                            <ul>
+                                <li>nr est le numéro d'article</li>
+                                <li>label est le nom donné à l'article</li>
+                                <li>description</li>
+                                <li>price</li>
+                                <li>unit est l'unité de l'article (à la pière, kg, litre, ...)</li>
+                            </ul>
+                        </div>
+                        <div id=section-patterns-n2n-association-invoice-invoice>
+                            La classe <i>Invoice</i> pourrait avoir les attributs suivants:
+                            <ul>
+                                <li>nr est le numéro de la facture</li>
+                                <li>date est la date de facturation</li>
+                                <li>dueDate est la date d'échéance</li>
+                            </ul>
+                        </div>
+                        <div id= id=section-patterns-n2n-association-invoice-invoiceline>
+                            <p>
+                                Finalement, nous avons la classe d'association <i>InvoiceLine</i>
+                                avec <i>quantity</i> pour seul attribut.
+                            </p>
+                            <p>
+                                <i>InvoiceLine</i> est une classe d'association
+                                car elle qualifie l'association entre la facture et l'article.
+                            </p>
+                        </div>
+                        <div id=section-patterns-n2n-association-invoice-association-class>
+                            <p>
+                                Le diagramme de classes est:
+                            </p>
+                            <figure>
+                                <a href="invoice-with-association-class-diagram.png">
+                                    <img src="invoice-with-association-class-diagram.png" alt="Diagramme de classes pour la facture">
+                                </a>
+                            </figure>
+                            <p>
+                                Cette manière de représenter l'association est très élégante
+                                car elle met l'accent sur le fait que les classes <i>Invoice</i>
+                                et <i>Article</i> sont liées entre elles et
+                                que la classe <i>InvoiceLine</i> ne fait que donner des informations sur l'association.
+                            </p>
+                        </div>
+                        <div id=section-patterns-n2n-association-invoice-basic-class>
+                            <p>
+                                Une façon plus simple de représenter la liaison
+                                consiste à placer la classe <i>InvoiceLine</i> directement
+                                entre <i>Invoice</i> et <i>Article</i>
+                            </p>
+                            <figure>
+                                <a href="invoice-without-association-class-diagram.png">
+                                    <img src="invoice-without-association-class-diagram.png" alt="diagramme de classes pour la facture sans classe d'association">
+                                </a>
+                            </figure>
+                            <p>
+                                Ce diagramme a l'avantage d'être plus proche de l'implémentation (du code),
+                                mais il est plus éloigné de la réalité,
+                                puisque la classe <i>InvoiceLine</i> apparaît comme aussi importante
+                                que les autres classes,
+                                et que l'association entre <i>Invoice</i> et <i>Article</i> est moins apparente.
+                            </p>
+                        </div>
+                        <div id="section-patterns-n2n-association-invoice-objects">
+                            <p>
+                                Réprésentons maintenant les éléments de notre exemple de facture
+                                sous la forme d'un diagramme d'objets:
+                            </p>
+                            <figure>
+                                <a href="invoice-with-association-class-object-diagram.png">
+                                    <img src="invoice-with-association-class-object-diagram.png" alt="Diagramme d'objets">
+                                </a>
+                            </figure>
+                            <p>
+                                Nous retrouvons les éléments du document "facture":
+                            </p>
+                            <ul>
+                                <li><i>cendrillon :Client</i> est le client</li>
+                                <li><i>FR-001 : Invoice</i> est la facture (invoice)</li>
+                                <li>les 3 <i>:InvoiceLine</i> sont les trois lignes de facture avec la quantité</li>
+                                <li><i>grand :Article</i> est le première ligne</li>
+                                <li><i>petit :Article</i> est le seconde ligne</li>
+                                <li><i>facile :Article</i> est l'article de la troisième ligne</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p>
+                                En annexe,
+                                nous trouvons une implémentation java simplifiée
+                                REF-TODO.
+                            </p>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="section-patterns-tree" data-tc=2>
+                    <h3>Arbre simple</h3>
+                    <div>
+                        <p>
+                            Les structures en arbre sont très courantes dans le monde réel
+                            et elles tiennent une place de choix en informatique.
+                        </p>
+                        <p>
+                            En analyse fonctionnelle, les arbres sont utilisés pour représenter
+                            des structures hiérarchiques, comme les organigrammes d'entreprise:
+                        </p>
+                        <blockquote>
+                            <figure>
+                                <a href="type-orga1.png">
+                                    <img src="type-orga1.png" alt="exemple d'organigramme d'entrprise">
+                                </a>
+                            </figure>
+                            <cite>
+                                <a href="https://www.advaloris.ch/nos-services/intelligence-organisationnelle/organisation-fonctionnement-de-lentreprise/differents-types-dorganigramme-dentreprise" target=_blank>
+                                    ADVALORIS - Les différents types d'organigrammes d'entreprise
+                                </a>
+                            </cite>
+                        </blockquote>
+                        <p>
+                            Ou bien la taxonomie des espèces animales:
+                        </p>
+                        <blockquote>
+                            <figure>
+                                <a href="species.jpg">
+                                    <img src="species.jpg" alt="taxonomie des espèces animales">
+                                </a>
+                            </figure>
+                            <cite>
+                                <a href="http://people.cs.ksu.edu/~schmidt/300s05/Lectures/Week7b.html" target=_blank>
+                                    Kansas State University - Tree data structures
+                                </a>
+                            </cite>
+                        </blockquote>
+                        <p>
+                            ou encore une structure hiérarchique des pages d'un site web:
+                        </p>
+                        <blockquote>
+                            <a href="website_tree_structure.jpg">
+                                <img src="website_tree_structure.jpg" alt="Structure hiérarchique des pages d'un site web">
+                            </a>
+                            <cite>
+                                <a href="https://www.kreezalid.com/blog/78407-how-to-build-an-effective-navigation-for-your-online-marketplace" target=_blank>
+                                    Kreezalid - How to build an effective navigation for your online marketplace
+                                </a>
+                            </cite>
+                        </blockquote>
+                        <p>
+                            le système de fichiers des ordinateurs:
+                        </p>
+                        <blockquote>
+                            <figure>
+                                <a href="tree-filesystem.jpg">
+                                    <img src="tree-filesystem.jpg" alt="Arbre des fichiers et répertoires"
+                                </a>
+                            </figure>
+                            <cite>
+                                <a href="http://people.cs.ksu.edu/~schmidt/300s05/Lectures/Week7b.html">
+                                    Kansas State University - Tree data structures
+                                </a>
+                            </cite>
+                        </blockquote>
+                        <p>
+                            Le vocabulaire associé au structure en arbre est le suivant:
+                        </p>
+                        <ul>
+                            <li><strong>root</strong> est la racine de l'arbre (la base)</li>
+                            <li><strong>node</strong> est un noeud de l'arbre, un noeud peut contenir d'autres noeuds et des feuilles</li>
+                            <li><strong>leaf</strong> est une feuille de l'arbre, une feuille est une extrémité de l'arbre, elle ne peut pas contenir d'autres noeuds ni d'autres feuilles</li>
+                            <li><strong>parent</strong> est un noeud parent d'autres noeuds ou feuilles</li>
+                            <li><strong>child</strong> est un noeud ou une feuille enfant d'un autre noeud, notons qu'une feuille est toujours l'enfant d'un noeud</li>
+                        </ul>
+                        <blockquote>
+                            <figure>
+                                <a href="iPQWB-tree-structure.gif">
+                                    <img src="iPQWB-tree-structure.gif" alt="structure en arbre">
+                                </a>
+                            </figure>
+                            <cite>
+                                <a href="https://stackoverflow.com/questions/50568138/how-to-store-linked-tree-with-children-in-relational-database">
+                                    stackoverflow - How to store Linked Tree with children in Relational Database?
+                                </a>
+                            </cite>
+                        </blockquote>
+                    </div>
+
+                    <section id="section-patterns-tree-graphical-basic">
+                        <h4>fenêtre</h4>
+                        <div>
+                            <p>
+                                Décomposons une fenêtre d'une application comme une structure en arbre,
+                                partons du container de plus haut niveau "la fenêtre",
+                                jusqu'aux éléments graphiques de plus bas niveau,
+                                comme le "texte", la "zone de saisie de texte" (input text), le bouton, ...
+                            </p>
+                            <p>
+                                Voici une représentation grossière d'une telle fenêtre:
+                            </p>
+                            <figure>
+                                <a href="raw-window-representation.png">
+                                    <img src="raw-window-representation.png" alt="représentation grossière d'une fenêtre">
+                                </a>
+                            </figure>
+                            <p>
+                                avec:
+                            </p>
+                            <ul>
+                                <li>le <i>header</i> (entête) en vert</li>
+                                <li>le <i>main</i> (corps de le fenêtre) en rouge</li>
+                                <li>le <i>text</i> en bleu foncé</li>
+                                <li>le <i>input text</i> en mauve</li>
+                                <li>le <i>button</i> en orange</li>
+                                <li>le <i>footer</i> (bas de page) en bleu clair</li>
+                            </ul>
+                            <p>
+                                Imaginons maintenant les objets composant cette fenêtre et leur relation:
+                            </p>
+                            <figure>
+                                <a href="graphical-object-basic-object-diagram.png">
+                                    <img src="graphical-object-basic-object-diagram.png" alt="diagramme d'objets composants une fenêtre">
+                                </a>
+                            </figure>
+                            <p>
+                                où nous avons considéré que tous les objets graphiques sont du type <i>GraphicalObject</i>.
+                            </p>
+                            <p>
+                                Le diagramme de classes correspond est:
+                            </p>
+                            <figure>
+                                <a href="graphical-objects-class-diagram.png">
+                                    <img src="graphical-objects-class-diagram.png" alt="diagramme de classe pour des objets graphiques">
+                                </a>
+                            </figure>
+                            <p>
+                                L'association 1 à N d'une classe avec elle-même, comme c'est le cas dans ce diagramme,
+                                est la signature d'une structure en arbre.
+                            </p>
+                            <p>
+                                Notons que nous avons utilisé un lozange à l'extrémité <i>parent</i> de l'association.
+                                Cela indique que nous avons affaire à une composition.
+                                C'est un notion que nous verrons à la prochaine section.
+                            </p>
+                            <p>
+                                Notons cependant que la structure ici est fort simple
+                                puisque nous ne différençons pas la racine des noeuds et des feuilles.
+                            </p>
+                        </div>
+                        <div>
+                            <p>
+                                Une implémentation possible est fournie en annexe.
+                            </p>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="section-patterns-tree-complex" data-tc=2>
+                    <h3>Arbre complexe</h3>
+                    <div>
+                        <p>
+                            Dans bien des cas nous aurons des arbres composés de deux sortes d'éléments,
+                            les branches et les feuilles.
+                        </p>
+                        <p>
+                            Les branches peuvent contenir d'autres branches et des feuilles.
+                        </p>
+                        <p>
+                            Les feuilles sont des points terminaux de l'arbre.
+                        </p>
+                    </div>
+                    <section id="section-patterns-tree-complex-file-system">
+                        <h4>fichiers</h4>
+                        <div>
+                            <p>
+                                Les fichiers et les répertoires sont gérés par un module des systèmes d'exploitation
+                                appelé "système de gestion de fichiers" (file system).
+                            </p>
+                            <p>
+                                Nous avons donc deux types d'objets,
+                                des répertoires (directories)
+                                et des fichiers (files).
+                            </p>
+                            <p>
+                                Nous réalisons un premier diagramme de classes:
+                            </p>
+                            <a href="images/3-file-system-naive-class-diagram.jpg">
+                                <img src="images/3-file-system-naive-class-diagram.jpg" alt="">
+                            </a>
+                            <p>
+                                Nous avons deux associations.
+                            </p>
+                            <p>
+                                La première est simple, un répertoire contient des fichiers
+                                et un fichier est contenu dans un répertoire
+                            </p>
+                            <p>
+                                La seconde est un peu plus complexe, un répertoire contient des répertoire
+                                et un répertoire est contenu dans un répertoire dit "parent"
+                                ou aucun répertoire, dans le cas du répertoire racine de l'arbre.
+                            </p>
+                            <p>
+                                Nous voyons que ce modèle peut être factorisé
+                                car les classes Directory et File contiennent le même attribut "name"
+                                et ont le même type de relation.
+                            </p>
+                            <p>
+                                Pour ce faire, nous ajoutons la classe Node
+                                dont Directory et File héritent:
+                            </p>
+                            <a href="images/3-file-system-2-generalisation-class-diagram.jpg">
+                                <img src="images/3-file-system-2-generalisation-class-diagram.jpg" alt="">
+                            </a>
+                            <p>
+                                Notons que <b>Node</b> est en italique,
+                                ce qui indique que Node est une classe abstraite,
+                                elle ne peut pas être instanciée,
+                                ce qui est logique
+                                puisque les Node sont une seulement idée
+                                et que dans la réalité 
+                                nous n'avons que des répertoires et des fichiers.
+                            </p>
+                            <p>
+                                Prenons l'exemple d'une arborescence simple de fichiers:
+                            </p>
+                            <pre>
+    c:
+        data
+            info.txt
+            letter.docx
+        readme.txt
+        tmp
+                            </pre>
+                            <p>
+                                où c:, data et tmp sont des répertoires.
+                            </p>
+                            <p>
+                                Réalisons le diagramme d'objets:
+                            </p>
+                            <a href="images/3-file-system-2-generalisation-exemple-1-object-diagram.jpg">
+                                <img src="images/3-file-system-2-generalisation-exemple-1-object-diagram.jpg" alt="">
+                            </a>
+                        </div>
+                    </section>
+                    <section id="section-patterns-tree-graphical-advanced">
+                        <h4>fenêtre 2</h4>
+                        <div id="section-patterns-tree-graphical-advanced-introduction">
+                            <p>
+                                Remettons notre cas précédent sur l'atelier
+                                Premièrement, nous différençons les noeuds, appelés ici <i>Container</i>
+                                car ils contiennent d'autres objets.
+                                Ensuite, nous créons une classe spécifique pour le <i>Text</i>, le <i>InputText</i> et le <i>Button</i>.
+                            </p>
+                            <p>
+                                Le diagramme de classe devient:
+                            </p>
+                            <figure>
+                                <a href="graphical-object-advanced-class-diagram.png">
+                                    <img src="graphical-object-advanced-class-diagram.png" alt="diagramme de classes des objets graphiques">
+                                </a>
+                            </figure>
+                            <p>
+                                Cette organisation des classes est une nouvelle signature d'une struture en arbre,
+                                certe plus complexe.
+                            </p>
+                            <p>
+                                Au sommet du diagramme, nous avons <i>GraphicalObject</i> qui est en italique,
+                                pour indiquer que cette classe est <strong>abstraite</strong>,
+                                c'est-à-dire qu'elle ne pourrait jamais être instanciée.
+                                En effet, nous ne voulons pas instancier des objets de type <i>GraphicalObject</i>
+                                car tous les objets seront soit du type <i>Container</i>, soit <i>Text</i>, soit <i>InputText</i>, soit <i>Button</i>.
+                            </p>
+                            <p>
+                                Les classes <i>Text</i>, <i>InputText</i> et <i>Button</i> héritent de <i>GraphicalObject</i>,
+                                c'est-à-dire qu'ils sont des <i>GraphicalObject</i>.
+                                Ils ont chacun leurs caractéristiques et comportements mais ils sont tous des <i>GraphicalObject</i>.
+                            </p>
+                            <p>
+                                La classe <i>Container</i> sera utilisée pour représenter la fenêtre, l'entête, le "main" et le pied de page,
+                                bref toutes les zones d'affichage qui contiendrons d'autres objets graphiques.
+                            </p>
+                            <p>
+                                En plus d'hériter de <i>GraphicalObject</i>, <i>Container</i>  a une association 1 to N avec <i>GraphicalObject</i>.
+                                Cette association est la signature d'une structure en arbre 
+                                avec <i>GraphicalObject</i> qui représente n'importe quel noeud ou feuille de l'arbre,
+                                et <i>Container</i> qui représente un noeud, c'est à dire un élément de l'arbre qui peut contenir d'autres élément.
+                            </p>
+                            <p>
+                                Nous notons que les classes <i>Text</i>, <i>InputText</i> et <i>Button</i> ne peuvent pas avoir le rôle <strong>parent</strong>,
+                                elles ne font qu'hériter du rôle de <strong>children</strong> à travers la classe <i>GraphicalObject</i>.
+                            </p>
+                        </div>
+                        <div id="section-patterns-tree-graphical-advanced-example">
+                            <p>
+                                Dessinons maintenant le diagramme d'objets correspondant à notre exemple de fenêtre:
+                            </p>
+                            <figure>
+                                <a href="graphical-object-advanced-object-diagram.png">
+                                    <img src="graphical-object-advanced-object-diagram.png" alt="diagramme d'objets pour les objets graphiques">
+                                </a>
+                            </figure>
+                            <p>
+                                Nous notons que nous n'avons pas un seul objet du type <i>GraphicalObject</i>
+                                seulement des objets de types qui héritent de <i>GraphicalObject</i>.
+                            </p>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="section-patterns-n2n-self" data-tc=2>
+                    <h3>n-n sur soi</h3>
+                    <div>
+                        <p>
+                            Nous avons des cas de classes 
+                            qui ont une relation n--n sur elles-mêmes.
+                        </p>
+                        <p>
+                            Le cas le plus évident est celui des réseaux sociaux
+                            avec une personne et ses amis:
+                        </p>
+                        <a href="images/social-network-class-diagram.jpg">
+                            <img src="images/social-network-class-diagram.jpg" alt="">
+                        </a>
+                        <p>
+                            Illustrons cela par un cas simple:
+                        </p>
+                        <ul>
+                            <li>Gudule a pour ami Oscar</li>
+                            <li>Oscar a pour ami Yvette</li>
+                            <li>Yvette a pour ami Raoult</li>
+                            <li>Raoul a pour amis Gudule et Oscar</li>
+                        </ul>
+                        <p>
+                            Nous considérons que la relation d'amitié est bidirectionnelle.
+                        </p>
+                        <p>
+                            Le diagramme d'objets correspondant est:
+                        </p>
+                        <a href="images/social-network-exemple-1.jpg">
+                            <img src="images/social-network-exemple-1.jpg" alt="">
+                        </a>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-domain-class" data-tc=1>
+                <h2>Domain class</h2>
+                <div>
+                    <p>
+                        Nous proposons ici des exemples de diagramme de classes du domaine,
+                        c'est-à-dire des diagrammes de classes qui servent à modéliser un domaine de compétence.
+                    </p>
+                </div>
+
+
+
+                <section id="section-domain-class-ddc" data-tc=2>
+                    <h3>DDC</h3>
+                    <div>
+                        <p>
+                            DDC ou demande de congés est l'application "modèle" de ce cours.
+                        </p>
+                        <p>
+                            Le diagramme de classe pourrait être celui-ci:
+                        </p>
+                        <figure>
+                            <a href="projet-ddc-class-diagram.png">
+                                <img src="projet-ddc-class-diagram.png" alt="diagramme de classe pour la demande de congés">
+                            </a>
+                        </figure>
+                        <p>
+                            Nous avons 4 classes:
+                        </p>
+                        <ul>
+                            <li>
+                                <p>
+                                    <i>Worker</i> qui modélise un travailleur,
+                                    nous avons considéré les attributs suivants:
+                                </p>
+                                <ul>
+                                    <li><i>number</i> qui est le numéro de matricule du travailleur</li>
+                                    <li><i>firstname</i></li>
+                                    <li><i>lastname</i></li>
+                                    <li><i>email</i></li>
+                                    <li><i>phonae</i></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p>
+                                    <i>Manager</i> qui hérite de <i>Worker</i>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <i>DayOff</i>, le congé,
+                                    qui a pour attributs:
+                                </p>
+                                <ul>
+                                    <li><i>start</i> la date de début de congé</li>
+                                    <li><i>end</i> la date de fin de congé</li>
+                                    <li>
+                                        <p>
+                                            <i>state</i> l'état du congé, de type <i>DayOffState</i> 
+                                            qui liste tous les états que peut prendre un congé:
+                                        </p>
+                                        <ul>
+                                            <li><i>REQUESTED</i> pour une demande qui vient d'être introduite</li>
+                                            <li><i>APPROVED_MANAGER</i> lorsque la demande est approuvée par le manager</li>
+                                            <li><i>APPROVED</i> lorsqu'elle est approuvée par tous</li>
+                                            <li><i>CONSUMED</i> lorsque le travail a pris son congé</li>
+                                            <li><i>REFUSED_MANAGER</i> lorsque la demande a été refusée par le manager</li>
+                                            <li><i>REFUSED_RH</i> lorsque la demande a été refusée par le RH</li>
+                                            <li><i>CANCELLED</i> lorsque la demande a été annulée</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <i>comment</i>, un commentaire libre fournit par le demandeur
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p>
+                                    <i>DayOffCategory</i>, les catégories des congés,
+                                    par exemple, "congé annuel", "congé de maternité", "congé de paternité", ...
+                                </p>
+                            </li>
+                        </ul>
+                        <p>
+                            Le <i>Manager</i> est un <i>Worker</i>,
+                            il hérite donc de <i>Worker</i>.
+                            Nous avons aussi une association 1-N entre <i>Manager</i> et <i>Worker</i>,
+                            avec l'héritage, c'est la signature d'une structure en arbre,
+                            celle de l'organigramme de l'entreprise.
+                        </p>
+                        <p>
+                            Concernant les associations, nous avons:
+                        </p>
+                        <ul>
+                            <li>
+                                Un <i>Worker</i> a zéro ou un <i>Manager</i>,
+                                celui qui a aucun manager est le grand patron
+                            </li>
+                            <li>Un <i>Manager</i> a zéro ou plusieurs <i>Worker</i> sous sa responsabilité</li>
+                            <li>
+                                Un <i>Worker</i> peut avoir zéro ou plusieurs <i>DayOff</i>
+                            </li>
+                            <li>
+                                Un <i>DayOff</i> concerne un seul <i>Worker</i>
+                            </li>
+                            <li>
+                                Un <i>DayOff</i> est d'une seule <i>DayOffCategory</i>
+                            </li>
+                            <li>
+                                Une <i>DayOffCategory</i> est la catégorie de zéro ou plusieurs <i>DayOff</i>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-annexes" data-tc=1>
+                <h2>Implémentations</h2>
+                <div>
+                    <p>Nous donnons ici des implémentations pédagogique des différents diagrammes
+                        de classes et objets.
+                    </p>
+                </div>
+
+                <section id="section-annexes-workerfirm" data-tc=2>
+                    <h3>worker-firm</h3>
+                    <div>
+                        <p>
+                            Nous implémentons le cas <a href="#section-patterns-n2n-association">worker -*---*- firm</a>
+                            en java simplifié (pas de private, pas de getters/setters pas de List) comme suit:
+                        </p>
+                        <div id="section-annexes-workerfirm-worker">
+                            <h4>Worker</h4>
+                            <div>
+                                <textarea>
+import java.util.HashSet;
+
+public class Worker {
+    String nr;
+    String firstname;
+    String lastname;
+    String email;
+    String phone;
+    Address address;
+    HashSet<Firm> firms = new HashSet<>();
+
+    public Worker(String nr, String firstname, String lastname,
+                  String email, String phone, Address address) {
+        this.nr = nr;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+    }
+}
+                                </textarea>
+                            </div>
+                        </div>
+                        <div id="section-annexes-workerfirm-firm">
+                            <h4>Firm</h4>
+                            <div>
+                                <textarea>
+import java.util.HashSet;
+
+public class Firm {
+    String vat;
+    String name;
+    Address address;
+    HashSet<Worker> workers = new HashSet<>();
+
+    public Firm(String vat, String name, Address address) {
+        this.vat = vat;
+        this.name = name;
+        this.address = address;
+    }
+}
+
+                                </textarea>
+                            </div>
+                        </div>
+                        <div id="section-annexes-workerfirm-address">
+                            <h4>Address</h4>
+                            <div>
+                                <p>
+                                    La classe <b>Address</b> est une classe pour typer les adresses.
+                                    En voici une implémentation possible:
+                                </p>
+                                <div>
+                                    <textarea>
+public class Address {
+    String street;
+    String number;
+    String box;
+    String line2;
+    String line3;
+    int zipCode;
+    String city;
+    String country;
+
+    public Address(String street, String number, String box,
+                   String line2, String line3,
+                   int zipCode, String city, String country) {
+        this.street = street;
+        this.number = number;
+        this.box = box;
+        this.line2 = line2;
+        this.line3 = line3;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.country = country;
+    }
+}
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="section-annexes-workerfirm-demo">
+                            <h4>DemoN2N</h4>
+                            <div>
+                                <p>
+                                    La classe DemoN2N n'a qu'une méthode static main
+                                    utilisée pour instancier les objets
+                                    comme documenté dans 
+                                    <a href="images/worker-firm-exemple-1-object-diagram.jpg">le diagramme d'objets</a>:
+                                </p>
+                                <div>
+                                    <textarea>
+public class DemoN2N {
+    public static void main(String[] args) {
+        Worker helene = new Worker("matricule-1", "Hélène", "Zeus",
+                "helene@troie.gr", "00991",
+                new Address("Rue du Roi", "1", null, null, null,
+                        23100, "Sparte", "Grèce"));
+
+        Worker ulysse = new Worker("matricule-2", "Ulysse", "d'Ithaque",
+                "ulysse@ithaque.gr", "00981",
+                new Address("Rue du Palais", "1", null, null, null,
+                        83100, "Vathy ", "Greece"));
+
+        Firm zaventemAirport = new Firm("BE 0890.082.292", "Zaventem Airport",
+                new Address("Boulevard Auguste Reyers", "80", null, null, null,
+                        1030,"Bruxelles", "Belgique"));
+        zaventemAirport.workers.add(helene);
+        helene.firms.add(zaventemAirport);
+
+        Firm epfc = new Firm("BE 0435.187.629", "EPFC",
+                new Address("Avenue de l'Astronomie",  "19", null, null, null,
+                        1210, "Bruxelles", "Belgique"));
+        epfc.workers.add(helene);
+        helene.firms.add(epfc);
+        epfc.workers.add(ulysse);
+        ulysse.firms.add(epfc);
+    }
+}
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-annexes-invoice" data-tc=2>
+                    <h3>factures</h3>
+                    <div>
+                        <p>
+                            Voici une implémentation simplifiée
+                            de nos diagrammes
+                            <a href="invoice-with-association-class-diagram.png">de classes</a>
+                            et <a href="invoice-with-association-class-object-diagram.png">d'objets</a>
+                            pour l'exemple de la facture.
+                        </p>
+                        <p>
+                            Notons qu'il s'agit d'une implémentation pédagogique,
+                            parce que du code réaliste travaillerait avec une base de données
+                            et pas avec des données codées dans le code (voir DemoInvoice)
+                            et d'autre part
+                            du code professionnelle appliquerait les bonnes pratiques du java
+                            comme private, getters/setters, pas de méthodes obsolètes (constructeur de Date),
+                            implémentation complète d'Address,
+                            utilisation de List.
+                        </p>
+                        <div id="section-annexes-invoice-client">
+                            <h4>Client</h4>
+                            <div>
+                                <textarea>
+import java.util.HashSet;
+
+public class Client {
+    String nr;  // référence client
+    String name;
+    String email;
+    String phone;
+    String addresss;    // simplification: pas de classe Address
+    HashSet<Invoice> invoices = new HashSet<>();
+
+    public Client(String nr, String name, String email, String phone, String addresss) {
+        this.nr = nr;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.addresss = addresss;
+    }
+}
+                                </textarea>
+                            </div>
+                        </div>
+                        <div id="section-annexes-invoice-article">
+                            <h4>Article</h4>
+                            <div>
+                                <textarea>
+import java.util.HashSet;
+
+public class Article {
+    String nr;  // référence article
+    String label;
+    String description;
+    double price;
+    String unit;
+    HashSet<InvoiceLine> invoiceLines = new HashSet<>();
+
+    public Article(String nr, String label, String description, double price, String unit) {
+        this.nr = nr;
+        this.label = label;
+        this.description = description;
+        this.price = price;
+        this.unit = unit;
+    }
+}
+                                </textarea>
+                            </div>
+                        </div>
+                        <div id="section-annexes-invoice-invoice">
+                            <h4>Invoice</h4>
+                            <div>
+                                <textarea>
+import java.util.HashSet;
+import java.util.Date;
+
+public class Invoice {
+    String nr;  // référence facture
+    Date date;
+    Date dueDate;
+    Client client;
+    HashSet<InvoiceLine> invoiceLines = new HashSet<>();
+
+    public Invoice(String nr, Date date, Date dueDate, Client client) {
+        this.nr = nr;
+        this.date = date;
+        this.dueDate = dueDate;
+        this.client = client;
+    }
+}
+                                </textarea>
+                            </div>
+                        </div>
+                        <div id="section-annexes-invoice-invoiceline">
+                            <h4>InvoiceLine</h4>
+                            <div>
+                                <textarea>
+public class InvoiceLine {
+    double quantity;
+    Invoice invoice;
+    Article article;
+
+    public InvoiceLine(double quantity, Invoice invoice, Article article) {
+        this.quantity = quantity;
+        this.invoice = invoice;
+        this.article = article;
+    }
+}
+                                </textarea>
+                            </div>
+                        </div>
+                        <div id="section-annexes-invoice-demoinvoice">
+                            <h4>DemoInvoice</h4>
+                            <div>
+                                <p>
+                                    Comme le dit son nom, 
+                                    <b>DemoInvoice</b> est une classe de démonstration,
+                                    de test, d'exploration.
+                                    Elle instancie les objets
+                                    <a href="invoice-with-association-class-object-diagram.png">
+                                        du diagramme d'objets donné en exemple.
+                                    </a>
+                                </p>
+                                <div>
+                                    <textarea>
+package n2n.invoice;
+
+import java.util.Date;
+
+public class DemoInvoice {
+    public static void main(String[] args) {
+        Client cendrillon = new Client("client-1", "Cendrillon Ayot",
+                "cendrillon@ayot.fre", "0033001", "69 rue des Nations, Paris");
+
+        Article grand = new Article("AG-001", "grand",
+                "Grand brun escargot pour manger", 100.00, "pièce");
+        Article petit = new Article("AP-001", "petit",
+                "Petit marinière uniforme bleu", 15.00, "pièce");
+        Article facile = new Article("AF-001", "facile",
+                "Facile à jouer accordéon", 5.00, "pièce");
+
+        // crée la facture et toutes les associations
+        Invoice fr001 = new Invoice("FR-001",
+                new Date(2021, 4, 4),
+                new Date(2021, 5, 4),
+                cendrillon);
+        InvoiceLine line1 = new InvoiceLine(1, fr001, grand);
+        fr001.invoiceLines.add(line1);
+        grand.invoiceLines.add(line1);
+        InvoiceLine line2 = new InvoiceLine(2, fr001, petit);
+        fr001.invoiceLines.add(line2);
+        petit.invoiceLines.add(line2);
+        InvoiceLine line3 = new InvoiceLine(3, fr001, facile);
+        fr001.invoiceLines.add(line3);
+        facile.invoiceLines.add(line3);
+        cendrillon.invoices.add(fr001);
+        // il est évident que ce code est trop complexe
+        // et que nous avons tout intérêt à créer une fonction pour cela
+        // => voir le pattern Factory
+        // nous devrons aussi utiliser une autre classe que Date (obsolète, mais facile)
+    }
+}
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-annexes-graphicalobject" data-tc=2>
+                    <h3>graphical object</h3>
+                    <div>
+                        <p>
+                            Les diagrammes de classes<br>
+                            <a href="graphical-objects-class-diagram.png">
+                                <img src="graphical-objects-class-diagram.png" alt="diagramme de classes">
+                            </a><br>
+                            et d'objets:<br>
+                            <a href="graphical-object-basic-object-diagram.png">
+                                <img src="graphical-object-basic-object-diagram.png" alt="diagramme d'objets">
+                            </a>
+                            peuvent être implémentés comme suit:
+                        </p>
+                        
+                        <div id="section-annexes-graphicalobject-graphicalobject">
+                            <h4>GraphicalObject</h4>
+                            <div>
+                                <textarea>
+import java.util.HashSet;
+
+public class GraphicalObject {
+    // dans une classe réaliste, il y aurait des attributs
+    // couleurs, tailles, ...
+
+    GraphicalObject parent;
+    HashSet<GraphicalObject> children = new HashSet<>();
+}
+                                </textarea>
+                            </div>
+                        </div>
+
+                        <div id="section-annexes-graphicalobject-demographicalobject">
+                            <h4>DemoGraphicalObject</h4>
+                            <div>
+                                <p>
+                                    La classe <b>DemoGraphicalObject</b>
+                                    instancie les objects comme décrit dans
+                                    le <a href="graphical-object-basic-object-diagram.png">diagramme d'objets</a>
+                                </p>
+                                <div>
+                                    <textarea>
+public class DemoGraphicalObject {
+    public static void main(String[] args) {
+        GraphicalObject window = new GraphicalObject();
+
+        GraphicalObject header = new GraphicalObject();
+        header.parent = window;
+        window.children.add(header);
+        // nous pourrions factoriser ce code
+
+        GraphicalObject main = new GraphicalObject();
+        main.parent = window;
+        window.children.add(main);
+
+        GraphicalObject footer = new GraphicalObject();
+        footer.parent = window;
+        window.children.add(footer);
+
+        GraphicalObject texte = new GraphicalObject();
+        texte.parent = main;
+        main.children.add(texte);
+
+        GraphicalObject zoneDeSaisie = new GraphicalObject();
+        zoneDeSaisie.parent = main;
+        main.children.add(zoneDeSaisie);
+
+        GraphicalObject boutonOk = new GraphicalObject();
+        boutonOk.parent = main;
+        main.children.add(boutonOk);
+    }
+}
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-annexes-filesystem" data-tc=2>
+                    <h3>file system</h3>
+                    <div>
+                        <p>
+                            Voici une implémentation java
+                            cohérente avec <br>
+                            <a href="images/3-file-system-2-generalisation-class-diagram.jpg">
+                                <img src="images/3-file-system-2-generalisation-class-diagram.jpg" alt="">
+                            </a><br>
+                            le diagramme de classes pour un file system et<br>
+                            <a href="images/3-file-system-2-generalisation-exemple-1-object-diagram.jpg">
+                                <img src="images/3-file-system-2-generalisation-exemple-1-object-diagram.jpg" alt="">
+                            </a><br>
+                            le diagramme d'objets.
+                        </p>
+                        <div id="section-annexes-filesystem-node">
+                            <h4>Node</h4>
+                            <div>
+                                <textarea>
+public abstract class Node {
+    String name;
+    Directory parent;
+
+    public Node(String name, Directory parent) {
+        this.name = name;
+        this.parent = parent;
+    }
+}
+                                </textarea>
+                            </div>
+                        </div>
+
+                        <div id="section-annexes-filesystem-directory">
+                            <h4>Directory</h4>
+                            <div>
+                                <textarea>
+import java.util.HashSet;
+
+public class Directory extends Node {
+    // nous utilisons un Set car il garantit
+    // que l'objet n'est présent qu'une seule fois dans la liste
+    HashSet<Node> children = new HashSet<>();
+
+    public Directory(String name, Directory parent) {
+        super(name, parent);
+    }
+}
+                                </textarea>
+                            </div>
+                        </div>
+
+                        <div id="section-annexes-filesystem-file">
+                            <h4>File</h4>
+                            <div>
+                                <textarea>
+    public class File extends Node {
+        public File(String name, Directory parent) {
+            super(name, parent);
+        }
+    }
+                                </textarea>
+                            </div>
+                        </div>
+
+                        <div id="section-annexes-filesystem-demofilesystem">
+                            <h4>DemoFileSystem</h4>
+                            <div>
+                                <p>
+                                    La classe <b>DemoFileSystem</b> est une classe pour écrire du code d'exploration.
+                                    Elle instancie les objets listés dans le diagramme d'objets.
+                                </p>
+                                <div>
+                                    <textarea>
+public class DemoFileSystem {
+    public static void main(String[] args) {
+        // c: est la racine de l'arbre => pas de parent
+        // https://docs.oracle.com/javase/tutorial/collections/implementations/set.html
+        Directory c2Dots = new Directory("c:", null);
+
+        Directory data = new Directory("data", c2Dots);
+        c2Dots.children.add(data);
+
+        File readmeTxt = new File("readme.txt", c2Dots);
+        c2Dots.children.add(readmeTxt);
+
+        Directory tmp = new Directory("tmp", c2Dots);
+        c2Dots.children.add(tmp);
+
+        File infoTxt = new File("info.txt", data);
+        data.children.add(infoTxt);
+
+        File letterDocx = new File("letter.docx", data);
+        data.children.add(letterDocx);
+        // remarque:
+        //  nous voyons toujours le même code se répéter
+        //  => nous devrions factoriser
+    }
+}
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-annexes-graphicalobject2" data-tc=2>
+                    <h3>graphical object 2</h3>
+                    <div>
+                        <p>
+                            Voici une implémentation des diagrammes de classes<br>
+                            <a href="graphical-object-advanced-class-diagram.png">
+                                <img src="graphical-object-advanced-class-diagram.png" alt="">
+                            </a><br>
+                            et d'objets <br>
+                            <a href="graphical-object-advanced-object-diagram.png">
+                                <img src="graphical-object-advanced-object-diagram.png" alt="">
+                            </a><br>
+                            pour la version "complexe" des objets graphiques.
+                        </p>
+                    </div>
+
+                    <div id="section-annexes-graphicalobject2-graphicalobject">
+                        <h4>GraphicalObject</h4>
+                        <div>
+                            <textarea>
+public abstract class GraphicalObject {
+    GraphicalObject parent;
+
+    public GraphicalObject(GraphicalObject parent) {
+        this.parent = parent;
+    }
+}
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div id="section-annexes-graphicalobject2-container">
+                        <h4>Container</h4>
+                        <div>
+                            <textarea>
+import java.util.HashSet;
+
+public class Container extends GraphicalObject {
+    HashSet<GraphicalObject> children = new HashSet<>();
+
+    public Container(GraphicalObject parent) {
+        super(parent);
+    }
+}
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div id="section-annexes-graphicalobject2-text">
+                        <h4>Text</h4>
+                        <div>
+                            <textarea>
+package tree.graphicalobject2;
+
+public class Text extends GraphicalObject {
+    String text;
+    String font;
+    String fontColor;
+    String background;
+
+    public Text(GraphicalObject parent,
+                String text, String font, String fontColor, String background) {
+        super(parent);
+        this.text = text;
+        this.font = font;
+        this.fontColor = fontColor;
+        this.background = background;
+    }
+}
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div id="section-annexes-graphicalobject2-inputtext">
+                        <h4>InputText</h4>
+                        <div>
+                            <textarea>
+public class InputText extends GraphicalObject {
+    String text;
+    String font;
+    String fontColor;
+    String background;
+
+    public InputText(GraphicalObject parent,
+                     String text, String font, String fontColor, String background) {
+        super(parent);
+        this.text = text;
+        this.font = font;
+        this.fontColor = fontColor;
+        this.background = background;
+    }
+}
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div id="section-annexes-graphicalobject2-button">
+                        <h4>Button</h4>
+                        <div>
+                            <textarea>
+public class Button extends GraphicalObject {
+    String text;
+    String font;
+    String fontColor;
+    String background;
+
+    public Button(GraphicalObject parent, String text, String font, String fontColor, String background) {
+        super(parent);
+        this.text = text;
+        this.font = font;
+        this.fontColor = fontColor;
+        this.background = background;
+    }
+}
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div id=section-annexes-graphicalobject2-demographicalobject>
+                        <h4>DemoGraphicalObject</h4>
+                        <div>
+                            <textarea>
+public class DemoGraphicalObject2 {
+    public static void main(String[] args) {
+        // window est la racine de l'arbre, il n'a donc pas de parent
+        Container window = new Container(null);
+
+        Container header = new Container(window);
+        window.children.add(header);
+
+        Container main = new Container(window);
+        window.children.add(main);
+
+        Container footer = new Container(window);
+        window.children.add(footer);
+
+        Text text = new Text(main, "super cours",
+                "arial", "bleu", "bleu clair");
+        main.children.add(text);
+
+        InputText saisie = new InputText(main, "commentaire",
+                "new roman", "orange", "noir");
+        main.children.add(saisie);
+
+        Button ok = new Button(main, "OK",
+                "courrier", "red", "noir");
+        main.children.add(ok);
+    }
+}
+                            </textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-annexes-socialnetwork" data-tc=2>
+                    <h3>social network</h3>
+                    <div>
+                        <p>
+                            Nous présentons ici une implémentation java style pédagogique
+                            du diagramme de classes<br>
+                            <a href="images/social-network-class-diagram.jpg">
+                                <img src="images/social-network-class-diagram.jpg" alt="">
+                            </a><br>
+                            et du diagramme d'objets<br>
+                            <a href="images/3-file-system-2-generalisation-exemple-1-object-diagram.jpg">
+                                <img src="images/3-file-system-2-generalisation-exemple-1-object-diagram.jpg" alt="">
+                            </a>
+                        </p>
+                    </div>
+
+                    <div id="section-annexes-socialnetwork-person">
+                        <h4>Person</h4>
+                        <div>
+                            <textarea>
+import java.util.HashSet;
+
+public class Person {
+    String firstname;
+    String lastname;
+    String email;
+    String phone;
+    HashSet<Person> friends = new HashSet<>();
+
+    public Person(String firstname, String lastname, String email, String phone) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+    }
+}
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div id="section-annexes-socialnetwork-demo">
+                        <h4>DemoN2NSelf</h4>
+                        <div>
+                            <textarea>
+public class DemoN2NSelf {
+    public static void main(String[] args) {
+        Person gudule = new Person("Gudule", "Bruxelles", "gudule@bxl.be", "1");
+
+        Person oscar = new Person("Oscar", "Wilde", "oscar@wilde.ir", "2");
+        oscar.friends.add(gudule);
+        gudule.friends.add(oscar);
+
+        Person yvette = new Person("Yvette", "Horner", "yvette@horner.fr", "3");
+        yvette.friends.add(oscar);
+        oscar.friends.add(yvette);
+
+        Person raoult = new Person("Raoult", "de Godewarsvelde", "raoult.deg.fr", "4");
+        raoult.friends.add(gudule);
+        gudule.friends.add(raoult);
+        raoult.friends.add(oscar);
+        oscar.friends.add(raoult);
+        raoult.friends.add(yvette);
+        yvette.friends.add(raoult);
+
+        // nous voyons que nous pouvons factoriser le code
+        // en ajoutant une méthode "makeFriend(Person friend)
+    }
+}
+                            </textarea>
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+
+            <section id="section-reference" data-tc=1>
+                <h2>Références</h2>
+                <ul>
+                    <li>
+                        cours de Laurent Audibert <a href="https://laurent-audibert.developpez.com/Cours-UML/?page=diagramme-classes" target=_blanck>
+                            UML 2, De l'apprentissage à la pratique, 3. Chapitre 3 Diagramme de classes
+                        </a>
+                    </li>
+                    <li>
+                        cours avec vidéos <a href="https://www.edx.org/course/uml-class-diagrams-for-software-engineering">
+                            UML Class Diagrams for Software Engineering
+                        </a>
+                    </li>
+                    <li>
+                        quick reference <a href="https://www.uml-diagrams.org/class-reference.html" target=_blanck>
+                            UML Class Diagrams Reference
+                        </a>
+                    </li>
+                    <li>
+                        quick reference en français <a href="http://uml.free.fr/cours/i-p14.html" target=_blanck>
+                            DIAGRAMME DE CLASSES
+                        </a>
+                    </li>
+                    <li>
+                        cours en français <a href="https://lipn.univ-paris13.fr/~gerard/uml-s2/uml-cours01.html" target=_blank>
+                            UML Cours 1 : Diagrammes de classes : associations
+                        </a>
+                    </li>
+                    <li>
+                        cours UML <a href="http://projet.eu.org/pedago/sin/term/3-UML.pdf" target=_blank>
+                            Langage UML - section 4.2.2. Diagrammes de classes 
+                        </a>
+                    </li>
+                    <li>
+                        explication rapide par Lucidchart <a href="https://www.lucidchart.com/pages/fr/diagramme-de-classes-uml" target=_blank>
+                            Qu'est-ce qu'un diagramme de classes UML ?
+                        </a>
+                    </li>
+                    <li>
+                        pour l'utilisation de visual paradigm
+                        <a href="https://www.visual-paradigm.com/support/documents/vpuserguide/94/2576/7190_drawingclass.html" target=_blank>
+                            How to draw Class Diagram?
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+       </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2021-01-07
+        </footer>
+    </sec>
+    <script src='../../../js/script.js'></script>
+</body>
+</html>

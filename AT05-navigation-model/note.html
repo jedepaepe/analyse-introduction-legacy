@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Analyse</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+    <link rel="stylesheet" href="../../../css/codemirror.css">
+    <script src="../../../js/codemirror.js"></script>
+    <script src="../../../js/sql.js"></script>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Leçon T01 - Modèle de DB</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td=1>
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Modélisation de la DB
+                </p>
+                <p>
+                    Après cette leçon, l'étudiant saura
+                    <ul>
+                        <li>Réaliser un diagramme relationnel à partir d'un diagramme de classes du domaine</li>
+                        <li>Détailler le diagramme relationnel</li>
+                        <li>Ecrire le script de création de database correspondant au diagramme relationnel</li>
+                    </ul>
+                </p>
+                <p>
+                    Durée estimée : 3 heures.
+                </p>
+                <p>
+                    Type d'enseignement : ex-cathédra & démo & discussions.
+                </p>
+                <p>
+                    <a href="ddc-db.vpp">
+                        Le projet Visual Paradigm exemple est disponible ici.
+                    </a>
+                </p>
+            </section>
+
+            <section id="section-introduction" data-tc=1>
+                <h2>Introduction</h2>
+                <div id="section-introduction-dbms" data-tc=2>
+                    <h3>DBMS</h3>
+                    <p>
+                        Le modèle de base de données sert à décrite et documenter une base de données.
+                    </p>
+                    <p>
+                        Les bases de données servent à stoker les données utilisées par les applications.
+                    </p>
+                    <p>
+                        Nous appelerons SGBD (Système de Gestion de Base de Données,
+                        DBMS DataBase Management System) les logiciels qui gèrent les bases de données.
+                    </p>
+                </div>
+                <div id="section-introduction-rdbms" data-tc=2>
+                    <h3>RDBMS</h3>
+                    <p>
+                        Nous nous limiterons aux bases de données relationnelles,
+                        et plus exactement les databases supportant le langage SQL,
+                        dont les principales sont:
+                    </p>
+                    <ul>
+                        <li>Oracle</li>
+                        <li>MS SQL Server</li>
+                        <li>DB2</li>
+                        <li>Sybase</li>
+                        <li>PostgreSQL</li>
+                        <li>mySQL</li>
+                    </ul>
+                    <p>
+                        Ces logiciels sont des SGDBR (Système de Gestion de Base de Données Relationnelles,
+                        RDBMS Relational DataBase Management System).
+                        Ces logiciels sont généralement installés sur des serveurs.
+                    </p>
+                    <p>
+                        Il y a aussi des logiciels 
+                        qui servent à gerer de petites databases installés localement,
+                        sur un PC ou un mobile, comme:
+                    </p>
+                    <ul>
+                        <li>SQLite</li>
+                        <li>JavaDB</li>
+                        <li>MS Access</li>
+                    </ul>
+                </div>
+                <div id="section-introduction-model">
+                    <h3>Modèle</h3>
+                    <p>
+                        Le modèle de DB permet de décrire la structure d'une database.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-domain-class" data-tc=1>
+                <h2>Domain Class</h2>
+                <p>
+                    L'analyse fonctionnel produit entre autre un diagramme de classes du domaine,
+                    par exemple:
+                </p>
+                <figure>
+                    <img src="domain-model-class-diagram.jpg" alt="Diagramme des classes du domaine 'demande de congés'">
+                    <figcaption>Diagramme des classes du domaine 'demande de congés'</figcaption>
+                </figure>
+                <p>
+                    En première approche, chaque classe du diagram de classes du domaine
+                    sera une table de notre base de données.
+                </p>
+            </section>
+
+            <section id="section-relational" data-tc=1>
+                <h2>Relational Model</h2>
+                <div id="section-relational-intro">
+                    <p>
+                        Le modèle relationnel permet d'avoir une vision précise et résumée
+                        de la structure de la base de données,
+                        par exemple:
+                    </p>
+                    <figure>
+                        <img src="relational-diagram.jpg" alt="Diagramme relationnel du domaine 'demande de congés'">
+                        <figcaption>Diagramme relationnel du domaine 'demande de congés'</figcaption>
+                    </figure>
+                </div>
+                <div id="section-relational-how" data-tc=2>
+                    <h3>class => relational</h3>
+                    <p>
+                        La procédure pour obtenir ce diagramme consiste en:
+                    </p>
+                    <ol>
+                        <li>utiliser une convention de nommage pour les noms de table et de colonne, ici le "snake_case"</li>
+                        <li>créer une table par classe</li>
+                        <li>créer une colonne par attribut
+                            <ul>
+                                <li>précisons le type, les plus courant sont "integer", "varchar", "date", "double"</li>
+                                <li>ajoutons la propriété "NOT NULL" si la colonne ne peut pas contenir de cellule sans valeur</li>
+                                <li>ajoutons la propriété "UNIQUE" si chaque valeur est unique (pas de double)</li>
+                                <li>
+                                    ajoutons la propriété "INDEXED" si la colonne doit être indexé,
+                                    nous indexerons les colonnes pour sur lesquelles des recherches doivent être effectuées,
+                                    l'indexation accélère la sélection mais ralenti l'insertion.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            ajouter une colonne nom, appelé "id" (convention),
+                            qui sert d'idenficateur technique
+                            nous lui ajoutons les propriétés:
+                            <ul>
+                                <li>integer(11) : c'est un entier (d'autres solutions sont possibles pour des cas particuliersà</li>
+                                <li>PRIMARY KEY : c'est la clef primaire</li>
+                                <li>NOT NULL : l'identifiant ne peut pas être null</li>
+                            </ul>
+                        </li>
+                        <li>
+                            créons les relations entre les tables,
+                            celles-ci correspondent aux relations entre les classes
+                            <ul>
+                                <li>
+                                    Les relations peuvent être "one-to-one"
+                                </li>
+                                <li>
+                                    "one-to-many"
+                                </li>
+                                <li>
+                                    "many-to-many" que nous verrons plus tard
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>les relations sont physiquement des cléfs étrangères (foreign keys) d'une table vers l'autre</li>
+                                <li>
+                                    par convention, le nom de la colonne "foreign key" sera $nom-de-la-table-référencée_id,
+                                    par exemple worker_id est la "foreign key"
+                                    qui référence la table "worker" via sa primary key "id".
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <p>
+                        Ensuite, il y a les exceptions, comme "Manager".
+                    </p>
+                </div>
+
+                <div id="section-exemple" data-tc=2>
+                    <h3>Exemple</h3>
+                    <p>
+                        TODO
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-code" data-tc=1>
+                <h2>Code</h2>
+                <div>
+                    <p>
+                        Une fois le modèle relationel réalisé,
+                        nous pouvons écrire ou même générer le code SQL qui crée la database.
+                    </p>
+                    <p>
+                        En effet, beaucoup d'outils permettent de générer le code SQL.
+                        Visual Paradigm le permet, mais malheureusement pas dans la version "community".
+                        "mysql workblench" le permet aussi.
+                    </p>
+                    <p>
+                        Le code correspondant à notre diagramme relationnel est le suivant
+                    </p>
+                    <textarea>
+    CREATE DATABASE ddc;
+    USE ddc;
+
+    CREATE TABLE worker (
+        id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        matricule VARCHAR(20) UNIQUE NOT NULL,
+        firstname VARCHAR(32) NOT NULL,
+        lastname VARCHAR(32) NOT NULL,
+        email VARCHAR(128) UNIQUE,
+        manager_id INT(10),
+        is_manager BOOLEAN DEFAULT 0
+    );
+
+    CREATE INDEX worker_matricule_index ON worker (matricule);
+    CREATE INDEX worker_firstname_index ON worker (firstname);
+    CREATE INDEX worker_lastname_index ON worker (lastname);
+    CREATE INDEX worker_email_index ON worker (email);
+
+    CREATE TABLE day_off (
+        id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        start DATE NOT NULL,
+        end DATE NOT NULL,
+        comment VARCHAR(512),
+        worker_id INTEGER(10),
+        day_off_category_id INTEGER(10)
+    );
+
+    CREATE INDEX day_off_start_index ON day_off (start);
+    CREATE INDEX day_off_end_index ON day_off (end);
+
+    CREATE TABLE day_off_category (
+        id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        name VARCHAR(64) NOT NULL
+    );
+
+    CREATE INDEX day_off_category_name ON day_off_category (name);
+
+    ALTER TABLE worker
+    ADD FOREIGN KEY (manager_id) REFERENCES worker(id);
+    
+    ALTER TABLE day_off
+    ADD FOREIGN KEY (worker_id) REFERENCES worker(id);
+
+    ALTER TABLE day_off
+    ADD FOREIGN KEY (day_off_category_id) REFERENCES day_off_category(id);
+                    </textarea>
+                    <p>
+                        Le code est normalement parfaitement compréhensible,
+                        grâce au diagramme relationnel correspondant.
+                    </p>
+                    <p>
+                        Notons que ce code est du code pour mysql,
+                        car certaines instructions du code sont du SQL particulier à mysql,
+                        par exemple "USE", "AUTO_INCREMENT".
+                    </p>
+                    <p>
+                        Si nous exécutons ce code dans un client mysql,
+                        il crée la DB et les tables,
+                        voici la trace de l'exécutions du script de création de base de données.
+                        Démarrons d'abord le client <i>mysql</i> en ligne de commande:
+                    </p>
+                    <pre>
+    mysql -uroot -p
+                    </pre>
+                    <p>
+                        ensuite, faisons un copy/paste du script:
+                    </p>
+                    <img src="create-db-script-execution.png" alt="execution du script dans le command-prompt">
+                    <p>
+                        Nous pouvons aussi exécuter le script en tapant la commande:
+                    </p>
+                    <pre>
+    mysql -uroot -p create-ddc-db.sql
+                    </pre>
+                    <p>
+                        où <i>create-ddc-db.sql</i> est le fichier contenant le script SQL.
+                    </p>
+                </div>
+            </section>
+
+        </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2019-10-29
+        </footer>
+    </sec>
+    <script>
+        var sdkj = {language: 'sql'};
+    </script>
+    <script src='../../../js/script.js'></script>
+</body>
+</html>

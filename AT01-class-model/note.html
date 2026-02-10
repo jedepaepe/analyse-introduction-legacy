@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Analyse</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+    <link rel="stylesheet" href="../../../css/codemirror.css">
+    <script src="../../../js/codemirror.js"></script>
+    <script src="../../../js/sql.js"></script>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    < id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Leçon T01 - Analyse Technique - Modèle de classes</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td=1>
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Savoir réaliser un modèle de classes d'implémentation
+                </p>
+                <p>
+                    Après cette leçon, l'étudiant saura
+                    <ul>
+                        <li>ce qu'est le modèle de classes d'implémentation</li>
+                        <li>utiliser les différents diagrammes du modèles de classes techniques</li>
+                    </ul>
+                </p>
+                <p>
+                    Durée estimée : 6 heures.
+                </p>
+                <p>
+                    Type d'enseignement : ex-cathédra & démo & discussions.
+                </p>
+                </p>
+            </section>
+
+            <section id="section-introduction" data-tc=1>
+                <h2>Introduction</h2>
+                <div data-c="introduction">
+                    <p>
+                        Le modèle de classes d'implémentation est la modélisation des classes qui seront codées.
+                        Il s'agit donc de décomposer l'application en différentes classes,
+                        de montrer leurs relations
+                        et comment elles interragissent 
+                        pour réaliser les fonctionnalités décrites dans les use cases.
+                    </p>
+                </div>
+                <div class=tips data-c=class-domain>
+                    <h5>domain model</h5>
+                    <p>
+                        Attention, <i>modèle de classes</i> est très différent du <i>modèle du domaine</i>,
+                        bien que ce dernier est aussi illustré par des classes.
+                    </p>
+                    <p>
+                        La <a href="https://sdkj.website/notes/analyse/AF03-domain-model/note.html">
+                            leçon 4 - modèle du domaine
+                        </a>
+                        décrit la domaine à l'aide d'un diagramme de classes.
+                        Mais l'objectif n'est pas de décrire les classes à programmer,
+                        mais bien de décrire le domaine,
+                        c'est-à-dire décrire les concepts utilisés par le métier.
+                    </p>
+                    <p>
+                        Par exemple,
+                        le diagramme de classes ci-dessous décrit les concepts manipulés par la demande de congés:
+                    </p>
+                    <blockquote>
+                        <figure>
+                            <a href="../E02-ddc/ddc-class-diagram.png">
+                                <img src="../E02-ddc/ddc-class-diagram.png" alt="diagramme des classes du domaine de la demande de congés">
+                            </a>
+                            <figcaption>diagramme des classes du domaine de la demande de congés</figcaption>
+                        </figure>
+                        <cite>
+                            <a href="../E02-ddc/note.html#section-functional-domain">Exercice 2 - demande de congés - section "Vue classe du domaine"</a>
+                        </cite>
+                    </blockquote>
+                </div>
+                <div data-c="decomposition">
+                    <p>
+                        Il y a de nombreuses manières de décomposer le système
+                        mais les bonnes pratiques ont mis en évidence
+                        deux techniques de décomposition
+                        qui seront appliquées en parallèle:
+                    </p>
+                    <ol>
+                        <li title=responsibility>
+                            la décomposition par responsabilités,
+                            par exemple l'architecture en couches (layers)
+                            <blockquote>
+                                <figure>
+                                    <a href="sapr_0101.png">
+                                        <img src="sapr_0101.png" alt="architecture en couches"
+                                    </a>
+                                </figure>
+                                <cite>
+                                    <a href="https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html">
+                                        O'Reilly - Software Architecture Patterns by Mark Richards - Chapter 1. Layered Architecture
+                                    </a>
+                                </cite>
+                            </blockquote>
+                            <p>
+                                Nous appliquerons ici une version moins stricte
+                                et un peu parallèle à cette architecture.
+                            </p>
+                        </li>
+                        <li title=domain>
+                            <p>
+                                la décomposition par sous-domaines,
+                                dont l'exemple le plus extrême est l'architecture en microservives:
+                            </p>
+                            <blockquote>
+                                <figure>
+                                    <a href="tutorialpoint-microservice-architecture.jpg">
+                                        <img src="tutorialpoint-microservice-architecture.jpg">
+                                    </a>
+                                </figure>
+                                <cite>
+                                    <a href="https://www.tutorialspoint.com/microservice_architecture/microservice_architecture_introduction.htm" target=_blank>
+                                        tutorialspoint - Microservice Architecture - Introduction
+                                    </a>
+                                </cite>
+                            </blockquote>
+                            <p>
+                                La décomposition consiste à créer des composants indépendants
+                                qui interragissent entre eux.
+                            </p>
+                            <p>
+                                Nous n'étudierons pas cette architecture ici.
+                            </p>
+                        </li>
+                        <li title=core>
+                            <p>
+                                la décomposition en un coeur et des plug-in,
+                                par exemple l'architecture microkernel:
+                            </p>
+                            <blockquote>
+                                <figure>
+                                    <a href="sapr_0301.png">
+                                        <img src="sapr_0301.png">
+                                    </a>
+                                </figure>
+                                <cite>
+                                    <a href="https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch03.html" target=_blank>
+                                        O'Reilly, Software Architecture Patterns by Mark Richards, Chapter 3. Microkernel Architecture
+                                    </a>
+                                </cite>
+                            </blockquote>
+                            <p>
+                                Nous appliquerons les principes de kernel/core (coeur)
+                                et plugin pour établir le design de notre application.
+                            </p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="section-responsibility" data-tc=1>
+                <h2>Responsabilités</h2>
+                <section title="section-responsibility-standard-bce" data-tc=2>
+                    <h3>BCE</h3>
+                    <div title=introduction>
+                        <p>
+                            Nous basons notre décomposition sur le modèle
+                            <a href="https://en.wikipedia.org/wiki/Entity-control-boundary">BCE</a>,
+                            Boundary, Control et Entity de Ivar Jacobson
+                            que nous simplifions et auquel nous ajoutons le concept de plugin.
+                        </p>
+                        <blockquote>
+                            <figure>
+                                <a href="http://www.cs.sjsu.edu/~pearce/modules/patterns/enterprise/ecb/ecb.htm"></a>
+                            </figure>
+                        </blockquote>
+                        <ul>
+                            <li>
+                                <p>
+                                    Le package <b>Boundary</b> est la frontière de l'application,
+                                    il a pour responsabilité de communiquer avec les acteurs.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Le package <b>Control</b> est le coeur de l'application,
+                                    il a pour responsabilité d'implémenter la logique de l'application.
+                                </p>
+                                <p>
+                                    Attention que <b>Control</b> est très différent du <b>Controller</b>
+                                    des patterns <b>MVC</b> ou <b>MVP</b>.
+                                    <b>Control</b> pourrait être appelé <b>Interactor</b>
+                                    ou <b>Orchestrator</b> ou <b>AppLogic</b>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Le package <b>Entity</b> contient les classes 
+                                    qui structurent les données manipulées par l'application.
+                                </p>
+                            </li>
+                        </ul>
+                        <p>
+                            Nous avons donc:
+                        </p>
+                        <figure>
+                            <a href="bce-basic-1-package-class-diagram.png">
+                                <img src="bce-basic-1-package-class-diagram.png">
+                            </a>
+                        </figure>
+                    </div>
+                    <div title="exemple-worker">
+                        <p>
+                            Prenons un exemple,
+                            imaginons une interface pour visualiser l'ensemble des travailleurs
+                            dans l'application DDC (demande de congés):
+                        </p>
+                        <figure>
+                            <a href="bce-basic-2-one-class.png">
+                                <img src="bce-basic-2-one-class.png">
+                            </a>
+                        </figure>
+                        <p>
+                            Nous avons:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>WorkerUI</b> est la classe du package <b>boundary</b>,
+                                elle représente l'interface utilisateur,
+                                une fenêtre par exemple,
+                                ou une page web.
+                            </li>
+                            <li>
+                                <b>WorkerControler</b> est la classe du package <b>control</b>,
+                                elle contient la logique de l'application.
+                            </li>
+                            <li>
+                                <b>Worker</b> est la classe du package <b>entity</b>,
+                                elle contient les données relatives au travailleur
+                                et aussi la logique métier associée au travailleur.
+                            </li>
+                        </ul>
+                        <div class=tips>
+                            <h5>stéréotypes</h5>
+                            <p>
+                                UML prévoit les stéréotypes boundary, control et entity
+                                et une représentation graphique particulière de ces classes:
+                            </p>
+                            <figure>
+                                <a href="bce-basic-3-stereotypes-class-diagram.png">
+                                    <img src="bce-basic-3-stereotypes-class-diagram.png">
+                                </a>
+                            </figure>
+                            <p>
+                                Notons que cette représentation ne sera pas utilisée dans le cours.
+                            </p>
+                        </div>
+                    </div>
+                    <div title="exemple-ddc">
+                        <h4>DDC</h4>
+                        <div>
+                            <p>
+                                Faisons maintenant une rapide analyse de l'application demande de congés,
+                                et appliquons les règles suivantes:
+                            </p>
+                            <ol>
+                                <li>
+                                    les classes du modèle du domaine sont toutes recopiées et placées dans le package <b>entity</b>
+                                </li>
+                                <li>
+                                    nous analysons la navigation dans l'application
+                                    et nous en déduisons les fenêtres de l'application
+                                    et nous créons une classe de type <b>boundary</b> par fenêtre
+                                </li>
+                                <li>
+                                    nous créons une classe de type <b>control</b>
+                                    par sous domaine:
+                                </li>
+                                <figure>
+                                    <a href="bce-basic-4-ddc-class-diagram.png">
+                                        <img src="bce-basic-4-ddc-class-diagram.png">
+                                    </a>
+                                </figure>
+                                <p>
+                                    nous avons
+                                </p>
+                                <ul>
+                                    <li>
+                                        <b>DayOffListUI</b>, la classe qui implémente la page qui liste les jours de congé
+                                    </li>
+                                    <li>
+                                        <b>DayOffFormUI</b>, la classe qui implémente la page utilisée pour créer ou modifier un jour de congé
+                                    </li>
+                                    <li>
+                                        <b>DayOffApprobationUI</b>, la classe qui implémente la page pour approuver un jour de congé
+                                    </li>
+                                    <li>
+                                        <b>WorkerListUI</b>, la classe qui implémente la page qui liste les travailleurs
+                                    </li>
+                                    <li>
+                                        <b>WorkerFormUI</b>, la classe qui implémente le formulaire pour créer ou modifier un travailleur
+                                    </li>
+                                    <li>
+                                        <b>DayOffControl</b>, la classe qui implémente la logique applicative du sous-domaine "day-off"
+                                    </li>
+                                    <li>
+                                        <b>WorkerControl</b>, la classe qui implémente la logique applicative du sous-domaine <b>worker</b>
+                                    </li>
+                                    <li>
+                                        <b>DayOffCategory</b>, la classe qui implémente la notion métier "catégorie de jours de congés"
+                                    </li>
+                                    <li>
+                                        <b>DayOff</b>, la classe qui implémente la notion métier "jours de congés"
+                                    </li>
+                                    <li>
+                                        <b>Worker</b>, la classe qui implémente la notion métier "travailleur"
+                                    </li>
+                                    <li>
+                                        <b>Manager</b>, la classe qui implémente la notion métier "manager"
+                                    </li>
+                                </ul>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="section-responsibility-bce-plugin" data-tc=2>
+                    <h3>BCE simplifié</h3>
+                    <div title=no-separation>
+                        <h4>bounday --- entity</h4>
+                        <div>
+                            <p>
+                                Nous simplifions le modèle BCE en supprimant la contrainte qui dit
+                                que les classes du package <b>boundary</b> ne peuvent pas interagir avec les classes du package <b>entity</b>,
+                                nous obtenons:
+                            </p>
+                            <figure>
+                                <a href="bce-simplified-1-no-separation-class-diagram.png">
+                                    <img src="bce-simplified-1-no-separation-class-diagram.png">
+                                </a>
+                            </figure>
+                            <div class=tips>
+                                <h5>note</h5>
+                                <p>
+                                    Nous enlevons cette contrainte,
+                                    car dans des applications simples,
+                                    elle n'est pas nécessaire
+                                    et parce qu'elle rend le modèle nettement plus complexe et difficile à apprendre.
+                                </p>
+                                <p>
+                                    Par contre,
+                                    cette contrainte est une bonne pratique
+                                    et elle devrait être appliqué pour tout projet de taille,
+                                    par exemple, la demande de congés est un projet
+                                    où cette contrainte devrait être appliquée.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div title=dao>
+                        <h4>dao</h4>
+                        <div>
+                            <p>
+                                Ensuite, nous ajoutons le package <b>dao</b>
+                                qui est responsable de communiquer avec la database,
+                                c'est-à-dire seul les classes du package <b>dao</b> accèdent à la database.
+                                Nous obtenons:
+                            </p>
+                            <figure>
+                                <a href="bce-simplified-2-dao-class-diagram.png">
+                                    <img src="bce-simplified-2-dao-class-diagram.png">
+                                </a>
+                            </figure>
+                            <p>
+                                Nous avons ajouté l'acteur <b>user</b>
+                                et l'élément <b>database</b> pour rendre le diagramme plus lisible,
+                                cependant ils ne devraient pas apparaître
+                                car il s'agit d'un diagramme de classes.
+                            </p>
+                        </div>
+                    </div>
+                    <div title=app>
+                        <h4>app</h4>
+                        <div>
+                            Finalement, nous ajoutons un package <b>app</b>
+                            qui a pour responsabilité de démarrer l'application.
+                        </div>
+                        <figure>
+                            <a href="bce-simplified-3-app-class-diagram.png">
+                                <img src="bce-simplified-3-app-class-diagram.png">
+                            </a>
+                        </figure>
+                    </div>
+                    <div title=exemple-worker>
+                        <h4>exemple worker</h4>
+                        <p>
+                            Illustrons par notre application "worker".
+                        </p>
+                        <figure>
+                            <a href="bce-simplified-4-worker-class-diagram.png">
+                                <img src="bce-simplified-4-worker-class-diagram.png">
+                            </a>
+                        </figure>
+                    </div>
+                    <div title=exemple-ddc>
+                        <h4>exemple ddc</h4>
+                        <p>
+                            Nous ajoutons les packages <b>dao</b> et <b>app</b> à notre modèle:
+                        </p>
+                        <figure>
+                            <a href="bce-basic-5-dayoff-class-diagram.png">
+                                <img src="bce-basic-5-dayoff-class-diagram.png">
+                            </a>
+                        </figure>
+                    </div>
+                    <div title=conclusions>
+                        <h5>conclusions</h5>
+                        <div>
+                            <p>
+                                Finalement, nous avons dégagé le coeur de notre application,
+                                composé des packages <b>control</b> et <b>entity</b>,
+                                ensemble ils implémentent la logique de l'application.
+                            </p>
+                            <p>
+                                A ce coeur, viennent se greffer des plugins,
+                                comme <b>boudary</b>, <b>dao</b> et <b>app</b>.
+                            </p>
+                            <p>
+                                Le coeur ne connaît rien des plugins,
+                                nous pouvons l'écrire sans savoir
+                                quelle interface utilisateur nous allons utiliser, 
+                                fenêtre, page web, mobile, console, ...
+                                Le coeur ne connaît rien de la database
+                                et il ne préoccupe pas de 
+                                comment l'application est démarrée.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-responsibility-control" data-tc=2>
+                    <h3>control</h3>
+                    <div title=recette>
+                        <h4>recette</h4>
+                        <p>
+                            Maintenant que nous avons établi notre design,
+                            nous allons chercher à définir les méthodes
+                            de chacune de nos classes.
+                        </p>
+                        <p>
+                            Nous commençons cette analyse par les classes de type <b>control</b>,
+                            car il existe une méthode permettant de déterminer les méthodes de ces classes
+                            sur base des <b>use cases</b>, soit:
+                        </p>
+                        <ol>
+                            <li>listons les use cases</li>
+                            <li>associons chaque use case à un control</li>
+                            <li>ajoutons une méthode à ce control dont:
+                                <ul>
+                                    <li>le nom est un verbe suivant éventuellement d'un nom</li>
+                                    <li>le nom décrit ce que fait la méthode</li>
+                                    <li>les arguments explicitent l'information que l'utilisateur doit transmettre au système dans ce use case</li>
+                                    <li>la valeur de retour explicite l'information que le système renvoie à l'utilisateur dans ce use case</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p>
+                            Bien sûr, ceci est une recette de base
+                            qui doit être adaptée suivant les situation,
+                            par exemple un use case peut faire intervenir plusieurs control.
+                        </p>
+                    </div>
+                    <div title=exemple-worker>
+                        <h4>worker</h4>
+                        <div>
+                            <p>
+                                Prenons l'exemple de l'application <b>worker</b>
+                                et imaginons que nous avons cinq use cases:
+                            </p>
+                            <figure>
+                                <a href="bce-simplified-6-worker-use-case-diagram.png">
+                                    <img src="bce-simplified-6-worker-use-case-diagram.png">
+                                </a>
+                            </figure>
+                            <p>
+                                Nous aurons qu'un seul control, <b>WorkerControl</b>
+                                et nous associons une méthode à chaque use case:
+                            </p>
+                            <table>
+                                <thead>
+                                    <tr><th>use case<th>méthode
+                                </thead>
+                                <tbody>
+                                    <tr><td>RH consulte la liste les travailleurs<td>fetchWorkers(): List&lt;Worker&gt;
+                                    <tr><td>RH consulte les détails d'un travailleur<td>getWorker(workerId: int): Worker;
+                                    <tr><td>RH crée un travailleur<td>createWorker(workerId: int): void
+                                    <tr><td>RH modifie un travailleur<td>updateWorker(workerId: int): void
+                                    <tr><td>RH supprime travailleur<td>deleteWorker(workerId: int): void
+                                </tbody>
+                            </table>
+                            <p>
+                                Ce qui donne le diagramme de classe suivant:
+                            </p>
+                            <figure>
+                                <a href="bce-simplified-6-worker-class-diagram.png">
+                                    <img src="bce-simplified-6-worker-class-diagram.png">
+                                </a>
+                            </figure>
+                            <p>
+                                Remarquons que nous avons ajouté l'attribut <b>id</b> à la classe <b>Worker</b>,
+                                car nous aurons besoin d'identifier de manière univoque un travail
+                                Cet <b>id</b> sera souvent le même que celui utiliser par la <b>database</b>.
+                            </p>
+                            <p>
+                                Finalement,
+                                le package <b>control</b> n'est qu'une projection des <b>use case</b>
+                                sur des classes et leurs méthodes.
+                            </p>
+                            <div class=tips>
+                                <h5>CRUD</h5>
+                                <p>
+                                    Notons que l'exemple ci-dessus est très classique
+                                    et correspond aux opérations de base effectuées sur une database.
+                                </p>
+                                <p>
+                                    Ces opérations sont appelées <b>CRUD</b>,
+                                    pour CREATE READ UPDATE DELETE.
+                                </p>
+                                <p>
+                                    Nous les retrouvons dans de nombreuses applications informatiques.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-responsibility-dao" data-tc=2>
+                    <h3>dao</h3>
+                    <div title="recette">
+                        <h4>recette</h4>
+                        <div>
+                            <p>
+                                Les classes de type <b>dao</b> sont des services rendus aux classes <b>control</b> et <b>entity</b>
+                                pour rentre les classes <b>entity</b> persistantes.
+                            </p>
+                            <p>
+                                La méthode consiste à:
+                            </p>
+                            <ol>
+                                <li>lister les requêtes SQL nécessaires pour chaque méthodes des classes <b>control</b></li>
+                                <li>regrouper les requêtes par table principale</li>
+                                <li>créer une classe <b>dao</b> par groupe de requêtes</li>
+                                <li>créer une méthode par requête</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div title="exemple-worker">
+                        <h4>exemple worker</h4>
+                        <div>
+                            <p>
+                                L'exemple worker est un peu trop simple,
+                                car il ne fait appel qu'à une seule table
+                                et dès lors nous n'aurons pas de regroupement.
+                            </p>
+                            <p>
+                                La correspondance entre les méthodes de la classe <b>WorkerControl</b>
+                                et les requêtes SQL sont
+                            </p>
+                            <figure>
+                                <pre>
+fetchWorkers(): List&lt;Worker&gt; =>
+SELECT * FROM worker
+
+getWorker(workerId: int): Worker =>
+SELECT * FROM worker WHERE id = 1
+
+createWorker(worker: Worker): void =>
+INSERT INTO worker (matricule, firstname, lastname, email, phone) VALUES ('MA1', 'Mathilde', 'Roi', 'ma@roi.be', '111')
+
+updateWorker(worker: Worker): void =>
+UPDATE worker SET matricule='PH1', firstname='Philippe', lastname='Roi', email='ph@roi.be', phone='222' WHERE id = 2
+
+deleteWorker(workerId): void =>
+SELECT FROM worker WHERE id = 3
+                                </pre>
+                            </figure>
+                            <p>
+                                Nous avons donc une seule classe, <b>WorkerDao</b>
+                                et elle a les méthodes suivantes:
+                            </p>
+                            <pre>
+fetch(): List&lt;Worker&gt;
+get(workerId: int)
+createWorker(worker: Worker)
+updateWorker(worker: Worker)
+deleteWorker(workerId)
+                            </pre>
+                            <p>
+                                Le diagramme de classe devient:
+                            </p>
+                            <figure>
+                                <a href="bce-simplified-7-worker-class-diagram.png">
+                                    <img src="bce-simplified-7-worker-class-diagram.png">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-responsibilty-boundary" data-tc=2>
+                    <h3>boundary</h3>
+                    <div title=introduction>
+                        <h4>recette</h4>
+                        <p>
+                            Pour déterminer les classes de type <b>boundary</b>,
+                            nous devons préciser les détails de la communication entre l'acteur et le système.
+                        </p>
+                        <p>
+                            S'il s'agit d'un <b>UI</b> (User Interface),
+                            nous devons faire le diagramme de navigation de l'application,
+                            qui mettra en évidence les différentes fenêtres
+                            et pour chaque fenêtre, nous créons une classe.
+                        </p>
+                    </div>
+                    <div title=exemple-worker>
+                        <h4>worker</h4>
+                        <div>
+                            <p>
+                                Dans l'exemple worker,
+                                nous détectons trois fenêtres:
+                            </p>
+                            <ul>
+                                <li><b>WorkerListUI</b> affiche la liste des travailleurs</li>
+                                <li><b>WorkerFromUI</b> est le formulaire pour créer ou modifier un utilisateur</li>
+                                <li><b>WorkerDetailUI</b> affiche tous les détails d'un utilisateur</li>
+                            </ul>
+                            <figure>
+                                <a href="bce-simplified-8-navigation-model-worker.png">
+                                    <img src="bce-simplified-8-navigation-model-worker.png">
+                                </a>
+                                <figcaption>Illustration de la navigation à l'aide d'un diagramme de classe</figcaption>
+                            </figure>
+                            <p>
+                                Le diagramme liste aussi toutes les opérations possibles
+                                à partir de chaque fenêtre:
+                            </p>
+                            <table>
+                                <thead>
+                                    <tr><th>fenêtre<th>transitions<th>description
+                                </thead>
+                                <tbody>
+                                    <tr><td>WorkerListUI<td>delete worker<td>supprime un travaileur
+                                    <tr><td>WorkerListUI<td>request create (worker)<td>change de fenêtre => WorkerFormUI
+                                    <tr><td>WorkerListUI<td>request update (worker)<td>change de fenêtre => WorkerFormUI
+                                    <tr><td>WorkerListUI<td>request details (worker)<td>change de fenêtre => WorkerDetailUI
+                                    <tr><td>WorkerFormUI<td>create worker<td>crée un travailleur
+                                    <tr><td>WorkerFormUI<td>update worker<td>met à jour un travailleur
+                                    <tr><td>WorkerFormUI<td>done<td>change de fenêtre => WorkerListUI ou WorkerDetailUI
+                                    <tr><td>WorkerDetailUI<td>request create (worker)<td>change de fenêtre => WorkerFormUI
+                                    <tr><td>WorkerDetailUI<td>request update (worker)<td>change de fenêtre => WorkerFormUI
+                                    <tr><td>WorkerDetailUI<td>ok<td>change de fenêtre => WorkerListUI
+                                </tbody>
+                            </table>
+                            <p>
+                                Nous pouvons maintenant mettre à jour notre diagramme de classes:
+                            </p>
+                            <figure>
+                                <a href="bce-simplified-8-worker-class-diagram.png">
+                                    <img src="bce-simplified-8-worker-class-diagram.png">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                    
+
+                </section>
+
+                <section id="section-responsibility-app" data-tc=2>
+                    <h3>app</h3>
+                    <div>
+                        <p>
+                            La classe <b>App</b> est responsable du démarrage de l'application,
+                            et plus généralement de la gestion de l'application.
+                        </p>
+                        <p>
+                            Le démarrage consite bien souvent en:
+                        </p>
+                        <ul>
+                            <li>instancier les classes <b>boundary</b>, <b>control</b> et <b>dao</b></li>
+                            <li>associer ces classes entre elles (comme sur le schéma)</li>
+                            <li>
+                                démarrer la boucle "infinie" de l'application en attente d'événements en provenance des acteurs
+                            </li>
+                        </ul>
+                        <p>
+                            La manière d'instancier les différentes classes dépendra des détails de l'implémentation de l'application
+                            et l'analyse qui suit est réalisée pour une application java de type console (en mode texte).
+                        </p>
+                        <figure>
+                            <a href="bce-simplified-9-worker-class-diagram.png">
+                                <img src="bce-simplified-9-worker-class-diagram.png">
+                            </a>
+                        </figure>
+                        <p>
+                            <p>App</p> pourrait avoir d'autres responsabilités, 
+                            par exemple contrôler si application fonctionne correctement,
+                            permettre des mises à jour de l'application,
+                            enregistrer des informations relatives aux performances de l'application,
+                            permettre l'arrêt à distance de l'application,
+                            bref, un ensemble de fonctionnalités techniques,
+                            qui ne relèvent pas du domaine métier.
+                        </p>
+                    </div>
+                </section>
+            </section>
+
+            <!--
+            <section id="section-exemple-contacts" data-tc=1 title=ex-contacts>
+                <h3>contatcs</h3>
+                <div>
+                    <p>
+                        Pour illustrer cette organisation,
+                        imaginons une application ultra simple,
+                        appelée <i>contacts-viewer</i>
+                        qui permet d'afficher une liste de contacts.
+                    </p>
+                </div>
+                <div title=business-model>
+                    <h4>business model</h4>
+                    <p>
+                        Il n'y pas de processus dans cette application.
+                    </p>
+                </div>
+                <div title=use-cases-model>
+                    <h4>use cases model</h4>
+                    <div>
+                        <p>
+                            Nous avons un seul use case:
+                        </p>
+                        <figure>
+                            <a href="af-2-use-case-model-diagram.png">
+                                <img src="af-2-use-case-model-diagram.png" alt="diagramme de use cases de contacts-viewer">
+                            </a>
+                            <figcaption>Diagramme de use cases</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div title=domain-model>
+                    <h4>domain model</h4>
+                    <div>
+                        <p>
+                            Le modèle du domaine est simple:
+                        </p>
+                        <figure>
+                            <a href="af-3-domain-model-class-diagram.png">
+                                <img src="af-3-domain-model-class-diagram.png" alt="diagramme de classe du modèle du domaine">
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+                <div title=class-model>
+                    <h4>class model</h4>
+                    <div>
+                        <p>
+                            Le modèle de classes d'implémentation sera:
+                        </p>
+                        <figure>
+                            <a href="at-1-class-model-class-diagram.png">
+                                <img src="at-1-class-model-class-diagram.png">
+                            </a>
+                            <figcaption>Diagramme de classes d'implémentation</figcaption>
+                        </figure>
+                        <div class=tip>
+                            <p>
+                                Bien sûr, cette application est tellement simple
+                                qu'un développeur averti n'a pas besoin de réaliser tous ces diagrammes
+                                ni de la notion de package
+                            </p>
+                        </div>
+                        <div class=tip>
+                            <p>
+                                Le terme <i>boundary</i> vient du fait
+                                que les classes de ce package sont à la frontière de l'application,
+                                ce sont les classes qui interfacent les acteurs.
+                            </p>
+                            <p>
+                                Souvent ce package sera appelé <i>ui</i>
+                                car beaucoup d'applications interfacent des personnes.
+                            </p>
+                            <p>
+                                Mais il y a des cas 
+                                où ce ne sont pas des personnes,
+                                par exemple l'application banconctact
+                                qui interface un <i>système bancaire</i>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-controler" data-tc=1>
+                <h2>Controler</h2>
+                <div>
+                    <p>
+                        Le <i>Controler</i> est la classe centrale de l'application.
+                    </p>
+                    <p>
+                        Il n'a pas besoin d'avoir un état (pas d'attribut),
+                        par contre il a des méthodes.
+                    </p>
+                    <p>
+                        Pour trouver les méthodes du <i>Controler</i>,
+                        nous reprenons les use cases
+                        et nous créons au moins une méthode par use case.
+                    </p>
+                </div>
+                <section id="section-controler-contacts" data-tc=2>
+                    <h3>contact-viewer</h3>
+                    <div>
+                        <p>
+                            Reprenons notre application <i>contact-viewer</i>
+                            comme exemple.
+                        </p>
+                        <p>
+                            Nous avons un seul use case <i>User consults contacts</i>
+                            à partir duquel nous déduisons une méthode
+                            <i>fetchContacts(): ArrayList&lt;Contact&gt;</i>
+                        </p>
+                        <p>
+                            Le diagramme de classe devient alors:
+                        </p>
+                        <figure>
+                            <a href="at-1-class-model-class-diagram-2.png">
+                                <img src="at-1-class-model-class-diagram-2.png">
+                            </a>
+                        </figure>
+                        <p>
+                            Très souvent, il sera nécessaire de retourner
+                            plus d'information que la liste des contacts,
+                            il faudra retourner des informations
+                            qui indique si l'opération a été réussie ou pas.
+                        </p>
+                    </div>
+                </section>
+                <section id="section-controler-dayoff" data-tc=2>
+                    <h3>ddc</h3>
+                    <div>
+                        <p>
+                            Dans le cas de la demande de congés,
+                            le travail est plus conséquent car
+                            nous avons beaucoup de use cases.
+                        </p>
+                        <p>
+                            Nous pouvons commencer par essayer d'identifier
+                            une <i>méthode</i> par <i>use case</i>:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>worker demande conge</b> utilisera la méthode
+                                <b>create(dayOff: DayOff)</b>
+                            </li>
+                            <li>
+                                <b>worker annule conge</b> utilisera la méthode
+                                <b>cancel(dayOffId: int)</b>
+                            </li>
+                            <li>
+                                <b>manager approuve conge</b> utilisera <b>approveManager(dayOffId: int, approbation: boolean)</b>
+                            </li>
+                            <li>
+                                <b>rh approuve conge</b> utilisera <b>approveRH(dayOffId: int, approbation: boolean)</b>
+                            </li>
+                            <li>
+                                <b>rh ajoute un congé</b> utilisera <b>add(dayOff: DayOff)</b>
+                            </li>
+                            <li>
+                                <b>rh modifie un congé</b> utilisera <b>modify(dayOffId: int, dayOff: DayOff)</b>
+                            </li>
+                            <li>
+                                <b>worker consult son calendrier</b> utilisera <b>fetchDayOff(workerId: int): List&lt;Contact&gt;</b>
+                            </li>
+                            <li>
+                                <b>worker vérifie son solde</b> utilisera <b>getDayOffBalance(workerId: int): DayOffBalance</b>
+                            </li>
+                            <li>
+                                <b>manager consulte le calendrier collaborateurs</b> utilisera <b>fetchDayOffCollaborators(managerId: int): List&lt;Contact&gt;</b>
+                            </li>
+                            <li>
+                                <b>vérifie solde travailleur</b> utilisera <b>getDayOffBalance(workerId: int)</b>, déjà défini
+                            </li>
+                        </ul>
+                        <figure>
+                            <a href="ex-1-at-1-class-model-class-diagram.png">
+                                <img src="ex-1-at-1-class-model-class-diagram.png">
+                            </a>
+                        </figure>
+                        <p>
+                            Il est bien sur d'autres organisation possible.
+                            Ici nous pourrions par exemple avoir deux controleurs:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>DayOffControler</b> qui reprend toutes les méthodes
+                                sauf <b>getDayOffBalance</b>
+                            </li>
+                            <li>
+                                <b>DayOffBalanceControler</b> qui a une seule méthode
+                                <b>get(workerId: int): DayOffBalance</b>
+                            </li>
+                        </ul>
+                        <p>
+                            Nous avons divisé les controlleurs par type d'objets,
+                            DayOff ou DayOffBalance. 
+                        </p>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-package" data-tc=1 style="display:none">
+                <h2>Package</h2>
+                <div data-c=introduction>
+                    <p>
+                        La décomposition par package est la plus facile à comprendre.
+                    </p>
+                    <p>
+                        L'idée est de détecter des ensembles peu couplés
+                        et d'en faire chaque fois un package.
+                    </p>
+                </div>
+                <div data-c=ex-ddc>
+                    <p>
+                        Prenons l'exemple de la demande de congés.
+                    </p>
+                    <p>
+                        Nous pouvons détecter deux packages:
+                    </p>
+                    <ol>
+                        <li>
+                            <i>front-office</i> le coeur de la demande congés
+                            qui contient l'implémentation des use cases opérationnels
+                            ou <i>front office</i> même si ce terme est plus d'application pour les applications commerciales.
+                        </li>
+                        <li>
+                            <p>
+                                <i>back-office</i> qui contient l'implémentation
+                                de use cases nécessaires au bon fonctionnement de l'application,
+                                par exemple "créer un travailleur", "lister les travailleur",
+                                "créer un type de congé", "modifier les type de congés",
+                                typiquement des opérations <i>CRUD</i> sur des classes du modèle.
+                            </p>
+                        </li>
+                    </ol>
+                    <figure>
+                        <a href="diagram-1-package-simple-ex-ddc-class-diagram-1.png">
+                            <img src="diagram-1-package-simple-ex-ddc-class-diagram-1.png" alt="package FE - BE">
+                        </a>
+                        <figcaption>
+                            Illustration des packages FE et BE à partir d'un diagramme de classes.
+                        </figcaption>
+                    </figure>
+                    <div class=tips>
+                        <h5>FO & BO</h5>
+                        <p>
+                            <i>Front Office</i> et <i>Back Office</i> sont des termes couramment utilisés
+                            pour différencier les fonctionnalités primaires des fonctionnalités de supports
+                        </p>
+                        <p>
+                            Ces notions viennent du monde du commerce
+                            et elles sont plus faciles à comprendre dans le cadre du monde du commerce.
+                        </p>
+                        <p>
+                            Imaginons un magasin de chaussures,
+                            le <i>Front Office</i> sera la partie physique du magasin accessible aux clients,
+                            le <i>Back Office</i> sera la partie cachée du magasin,
+                            typiquement le stock de réserve, mais aussi le nétoyage, le réapprovisionnement,...
+                            bref tout ce qui est nécessaire pour que le <i>FO</i> fonctionne correctement.
+                        </p>
+                        <p>
+                            Nous retrouvons très souvent cette différence dans les applications,
+                            même non commerciales.
+                        </p>
+                        <p>
+                            Le <i>Front Office</i> sera la partie de l'application
+                            qui interface les utilisateurs principaux de l'application,
+                            ceux qui utilisent les fonctionnalités principales de l'application.
+                        </p>
+                        <p>
+                            Le <i>Back Office</i> sera la partie
+                            qui interface les administrateurs de l'application,
+                            ceux qui effectuent les opérations nécessaires pour son bon fonctionnement.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        -->
+            <section id="section-annexes" data-tc=1>
+                <h2>Annexes</h2>
+                <section id="section-annexes-mvc" data-tc=2>
+                    <h3>MVC</h3>
+                    <div>
+                        <p>
+                            Le <b>MVC</b> (Model View Controller) est pattern pour le design de nos classes.
+                        </p>
+                        <p>
+                            Il y a en fait plusieurs versions du MVC,
+                            depuis sa création dans les années 1970 et aujourd'hui.
+                        </p>
+                        <p>
+                            En 1970, il s'agit d'un pattern pour réaliser des composants de l'interface utilisateur,
+                            un bouton, une liste box, une zone de texte ...
+                        </p>
+                        <p>
+                            Aujourd'hui, le <b>MVC</b> est façon d'organiser l'interface utilisateur.
+                        </p>
+                        <blockquote>
+                            <figure>
+                                <a href="MVC-Design-Pattern.png">
+                                    <img src="MVC-Design-Pattern.png">
+                                </a>
+                                <a href="https://www.geeksforgeeks.org/mvc-design-pattern/" target=_blank>
+                                    geeksforgeeks - MVC Design Pattern
+                                </a>
+                            </figure>
+                        </blockquote>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-reference" data-tc=1>
+                <h2>Références</h2>
+                <div>
+                    <ul>
+                        <li>
+                            BCE <a href="https://www.ivarjacobson.com/publications/books/object-oriented-software-engineering-1992" target=_blank>
+                            Ivar Jacobson, Object-Oriented Software Engineering, a use case driven approach</a>,
+                            Ivar Jacobson est l'inventeur du modèle BCE.
+                        </li>
+                        <li>
+                            BCE <a href="https://www.youtube.com/watch?v=WpkDN78P884&feature=emb_logo" target=_blank>
+                                Ruby Midwest 2011 - Keynote: Architecture the Lost Years by Robert Martin
+                            </a>,
+                            Robert Martin décrit le modèle BCE avec style et précision.
+                            Notons que Robert considère que les <b>Boundary</b> sont des interfaces
+                            alors que la plupart des autres auteurs les considèrent comme des classes.
+                            Dans le cours, nous avons simplifié le modèle.
+                        </li>
+                        <li>
+                            BCE <a href="http://www.michael-richardson.com/processes/rup_classic/core.base_rup/guidances/guidelines/analysis_class_7E97273E.html" target=_blank>
+                                Guideline: Analysis Class by Michael Richardson, Rational Unified Process.
+                            </a>
+                        </li>
+                        <li>
+                            BCE <a href="http://www.cs.sjsu.edu/~pearce/modules/patterns/enterprise/ecb/ecb.htm" target=_blank>
+                                The Entity-Control-Boundary Pattern de San José State University
+                            </a>
+                            donne une description peu précise.
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            MVC <a href="https://www.tutorialspoint.com/design_pattern/mvc_pattern.htm" target=_blank>
+                                tutorialspoint - Design Patterns - MVC Pattern
+                            </a>
+                            illustre le concept avec du code,
+                            mais il n'y a pas de commande
+                            et souvent le pattern <b>observable</b> est utilisé pour mettre à jour la vue.
+                        </li>
+                        <li>
+                            MVC <a href="https://openclassrooms.com/fr/courses/26832-apprenez-a-programmer-en-java/25552-structurez-mieux-votre-code-avec-le-pattern-mvc" target=_blank>
+                                openclassrooms - Structurez mieux votre code avec le pattern MVC
+                            </a>
+                            avec un super petit example de code utilisant la librairie <b>swing</b> de Java (un peu désuette, mais simple.
+                        </li>
+                        <li>
+                            MVC <a href="https://baptiste-wicht.developpez.com/tutoriels/conception/mvc/" target=_blank>
+                                Baptiste Wicht - Implémentation du pattern MVC
+                            </a>
+                            avec un super example un peu plus complexe que openclassrooms, mais plus riche.
+                        </li>
+                        <li>
+                            MVC <a href="https://www.geeksforgeeks.org/mvc-design-pattern/" target=_blank>
+                                geeksforgeeks -MVC Design Pattern
+                            </a>
+                            l'example est utile mais sur-simplifié.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+        </article>
+
+        <footer>
+            &copy; 2020 - Jean-Michel Depaepe - dernière mise à jour 2020-04-25
+        </footer>
+    </sec>
+    <script>
+        var sdkj = {language: 'sql'};
+    </script>
+    <script src='../../../js/script.js'></script>
+</body>
+</html>

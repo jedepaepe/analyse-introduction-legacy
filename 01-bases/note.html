@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Analyse</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Leçon 1 - Introduction</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td=1>
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Comprendre la place de l'analyse dans les projets informatiques
+                </p>
+                <p>
+                    Après cette leçon, l'étudiant connaitra
+                    <ul>
+                        <li>le modèle waterfall pour le développement logiciel</li>
+                        <li>le modèle UP pour le développement logiciel</li>
+                        <li>en quoi consiste l'analyse fonctionnelle</li>
+                        <li>en quoi consiste l'analyse technique</li>
+                    </ul>
+                </p>
+                <p>
+                    Durée estimée : 3 heures.
+                </p>
+                <p>
+                    Type d'enseignement : ex-cathédra & discussions.
+                </p>
+            </section>
+
+            <section id="section-introduction" data-tc="1">
+                <h2>Introduction</h2>
+                <p>
+                    L'analyse est une des activités pratiqués
+                    lors de la création de logiciel.
+                    Elle consiste à produire des modèles du logiciel
+                    qui le documenter,
+                    de partager la connaissance
+                    et servir de support pour des discussions sur le logiciel
+                    en vue de l'améliorer ou de mieux l'utiliser.
+                </p>
+                <p>
+                    L'analyse répond aux questions suivantes:
+                    <ul>
+                        <li>Que doit faire le logiciel? (quelles sont les fonctionnalités du logiciel?)</li>
+                        <li>Comment doit-il le faire? (comment ces fonctionnalités seront-elles implémentées)</li>
+                    </ul>
+                    <p>
+                        L'analyse est donc habituellement divisée en deux parties distinctes:
+                    </p>
+                    <ul>
+                        <li><strong>l'analyse fonctionnelle</strong> qui répond à la question "quoi?"</li>
+                        <li><strong>l'analyse technique</strong> qui répond à la question "comment?"</li>
+                    </ul>
+                    Notons que l'analyse technique est aussi appelée "Design".
+                </p>
+            </section>
+
+            <section id="section-application" data-tc=1>
+                <h2>Application</h2>
+                <p>
+                    Pour bien comprendre l'analyse,
+                    il est nécessaire de bien comprendre
+                    quand intervient l'analyse
+                    dans le cycle de vie d'une application.
+                </p>
+                <figure>
+                    <a href="images/application-live-cycle.jpg">
+                    <img src="images/application-live-cycle.jpg" alt=""></a>
+                    <figcaption>ALC Application Live Cycle</figcaption>
+                </figure>
+                <p>
+                    Bien que l'analyse intervient dans toutes les étapes,
+                    elle a son sommet d'activité au début de l'étape
+                    <b>construction de l'application</b>.
+                </p>
+                <p>
+                    L'effort associé à chaque étape est très différent,
+                    ainsi si la première étape, <i>une idée</i>, nécessite un effort de <b>1</b><br>
+                    l'étape suivante, <i>vérifier la faisabilité</i>, nécessitera un effort de <b>10</b><br>
+                    la troisième étape, <i>préparer le projet</i>, coutera un effort de <b>100</b><br>
+                    et <i>construire l'application</i> demandera un effort <b>1000</b>.<br>
+                    L'étape <i>mettre en service</i> a un coût très variable mais normalement inférieur à <i>contruire l'application</i><br>
+                    et la <i>maintenance de l'application</i> coûte en général 20% du coût de projet par an, soit environ <b>200</b> par an.
+                </p>
+                <p>
+                    Mettons notre loupe sur cette étape 
+                    et utilisons le modèle waterfall pour la décomposer:
+                </p>
+                <figure>
+                    <a href="images/waterfall-model.jpg">
+                        <img src="images/waterfall-model.jpg" alt="">
+                    </a>
+                    <figcaption>Processus de construction de l'application
+                        celon le modèle waterfall.
+                    </figcaption>
+                </figure>
+                <p>
+                    L'analyse apparaît dans les deux premières étapes
+                    et nous pouvons considérer qu'elle prend environ 1/5 de l'effort
+                    pour construire l'application.
+                </p>
+            </section>
+
+            <section id="section-analysis" data-tc=1>
+                <h2>Analyse</h2>
+                <div>
+                    <p>
+                        Etudions maintenant l'analyse
+                        et modélisons le processus,
+                        certe ce ne sera pas la vérité de tous les projets
+                        mais cela nous permettre de mieux comprendre
+                        et de communiquer.
+                    </p>
+                    <figure>
+                        <a href="images/analyse-processus.jpg">
+                        <img src="images/analyse-processus.jpg" alt=""></a>
+                        <figcaption>
+                            processus d'analyse 
+                            inspiré par la méthode "Unified Process"
+                        </figcaption>
+                    </figure>
+                    <p>
+                        Chaque étape consiste à réaliser un modèle de notre application,
+                        suivant un angle de vue différent.
+                    </p>
+                    <p>
+                        Chaque modèle nécessite des outils différents,
+                        des diagrammes différents ou des descriptions textuelles 
+                        ou des notations.
+                    </p>
+                    <p>
+                        Bien entendu, c'est complexe.
+                    </p>
+                    <p>
+                        Mais le problème est en soi complexe.
+                    </p>
+                    <p>
+                        Pensez au nombre de modèles différents 
+                        que l'on peut faire d'une maison.
+                    </p>
+                    <ul>
+                        <li>liste des fonctions apportées par la maison (dormir au chaud, faire la cuisine, ...)</li>
+                        <li>plan de structure</li>
+                        <li>plan du cablage</li>
+                        <li>plan du système de chauffage</li>
+                        <li>plan des sanitaires</li>
+                        <li>plan d'aménagement intérieur</li>
+                    </ul>
+                    <p>
+                        Et une maison reste bien plus simple qu'un système informatique.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-outils" data-tc=1>
+                <h2>Outils</h2>
+                <p>
+                    Nous outiliserons le logiciel Visual Paradigm
+                    pour réaliser nos diagrammes
+                    car il est d'usage libre pour des activités non commerciales.
+                </p>
+                <p>
+                    Voici une sélection d'outils:
+                </p>
+                <ul>
+                    <li>
+                        <a href="https://www.sparxsystems.eu/">
+                            Sparx Enterprise Architect
+                        </a>
+                        est sans doute l'outil le plus utilisé en entreprise.
+                    </li>
+                    <li>
+                        <a href="http://visual-paradigm.com/">
+                            Visual Paradigm
+                        </a>
+                        est un outil très complet
+                        et a une édition "community".
+                        C'est l'outil utilisé à ce cours.
+                    </li>
+                    <li>
+                        <a href="https://plantuml.com/fr/">
+                            plantuml
+                        </a>
+                        est un outil simple, mais limité.
+                        C'est essentiellement un outil de dessin,
+                        Il a l'avantage d'être scripté
+                        et d'avoir <a href="https://www.planttext.com/">une version online</a>.
+                    </li>
+                    <li>
+                        <a href="https://app.diagrams.net/">draw.io</a>
+                        est un outil online pour réaliser des schémas,
+                        très utilisé de nos jours.
+                    </li>
+                    <li>
+                        <a href="https://products.office.com/fr-be/visio/microsoft-visio-plans-and-pricing-compare-visio-options?market=be&ef_id=Cj0KCQjwyur0BRDcARIsAEt86IAm7mrDKKMHGPyCTiFBuS5d7Lim_T9h_QM21YICm78S-8P4nTcXbiwaAlLMEALw_wcB:G:s&ef_id=Cj0KCQjwyur0BRDcARIsAEt86IAm7mrDKKMHGPyCTiFBuS5d7Lim_T9h_QM21YICm78S-8P4nTcXbiwaAlLMEALw_wcB:G:s&OCID=AID2000748_SEM_0xnzJWMu&MarinID=s0xnzJWMu|281255703743|%2Bvisio|b|c||57290200256|aud-312771920629:kwd-19991440493&lnkd=Google_O365SMB_App&gclid=Cj0KCQjwyur0BRDcARIsAEt86IAm7mrDKKMHGPyCTiFBuS5d7Lim_T9h_QM21YICm78S-8P4nTcXbiwaAlLMEALw_wcB">
+                            Microsoft Visio
+                        </a>
+                        est un outil pour réaliser des schémas
+                        qui est utilisé par beaucoup d'entreprises.
+                    </li>
+                </ul>
+                <p>
+                    Pour une liste plus complète, nous pouvons consulter:
+                </p>
+                <ul>
+                    <li>
+                        <a href="https://en.wikipedia.org/wiki/List_of_Unified_Modeling_Language_tools" target=_blank>
+                            List of Unified Modeling Language tools
+                        </a>
+                    </li>
+                    <li>
+                        Emmanuel Renaux,
+                        <a href="https://manurnx.wp.imt.fr/2017/01/23/choix-d-un-outil-de-modelisation-uml/" target=_blank>
+                            Choix d’un outil de modélisation UML
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="section-methods" data-tc=1>
+                <h2>Méthodes</h2>
+                <p>
+                    Il existe différente méthode pour le développement logiciel
+                    et chacune propose une approche différente de l'analyse.
+                </p>
+                <p>
+                    Nous verrons ici les méthodes UP (Unified Process) et SCRUM.
+                </p>
+                <section id="section-methods-up" data-tc=2>
+                    <h3>UP</h3>
+                    <p>
+                        Le processus unifié a été mis au point par Ivar Jacobson, Graady Booch et James Rumbaugh,
+                        qui sont aussi les penseurs à la base de UML (Unified Modelling Language).
+                    </p>
+                    <p>
+                        UP est décrit en détail dans le livre "Le Processus unifié de développement logiciel"
+                        et l'objectif ici est de vous inviter à lire le livre
+                        et de le comparer avec la présentation ici.
+                    </p>
+                    <p>
+                        UP divise le projet en 4 phase (Création (Inception), Elaboration, Construction, Transition)
+                    </p>
+                    <blockquote>
+                        <figure>
+                            <a href="images/Processus_unifié_-_enchainements_d'activités_au_cours_du_cycle_de_vie.png">
+                            <img src="images/Processus_unifié_-_enchainements_d'activités_au_cours_du_cycle_de_vie.png" alt=""></a>
+                            <figcaption>
+
+                            </figcaption>
+                        </figure>
+                        <cite>Ref: <a href="https://fr.wikipedia.org/wiki/Processus_unifi%C3%A9" target=_blank>wikipedia</a> </cite>
+                    </blockquote>
+                    <p>
+                        Comparer à l'approche présenté ici, voir <a href="http://127.0.0.1:5501/notes/analyse/01-bases/images/application-live-cycle.jpg">Application Live Cycle</a>,
+                        UP décrit les étapes "préparer le projet" (Création), construire l'application (Elaboration, Construction) et
+                        mettre en service (Transition).
+                    </p>
+                    <p>
+                        UP décrit les différentes tâches effectuées pendant chaque étape.
+                    </p>
+                    <ul>
+                        <li>
+                            <b>Exigence</b> est la description des besoins, c'est l'un des rôle l'analyse l'analyse fonctionnelle,
+                            par exemple un modèle de use cases remplit parfaitement cette tâche.
+                        </li>
+                        <li>
+                            <b>Analyse</b> : l'analyse fonctionnelle et l'analyse technique
+                        </li>
+                        <li>
+                            <b>Conception</b> : c'est l'implémentation, la conception de l'application, le codage, ...
+                        </li>
+                        <li>
+                            <b>Transition</b> : c'est la mise en service
+                        </li>
+                    </ul>
+                    <p>
+                        UP décrit avec précision les différentes étapes de l'analyse et
+                        les modèles utilisés:
+                    </p>
+                    <ul>
+                        <li>
+                            modèle du domaine (nous étudions le modèle du domaine dans le cours)
+                        </li>
+                        <li>modèle des cas d'utilisation pour décrire les besoins (étudié)</li>
+                        <li>modèle d'analyse pour analyser les cas d'utilisation (non vu ici, certes intéressant mais très peu utilisé)</li>
+                        <li>modèle de conception (vu ici, mais décomposé en modèle des classes d'implémentation, modèle des composants et modèle de déploiement</li>
+                    </ul>
+                    <p>
+                        Chaque modèle utilise différents diagrammes et concepts
+                    </p>
+                    <ul>
+                        <li>
+                            <i>modèle du domaine</i>: diagrammes de classes, d'objets et d'états;
+                        </li>
+                        <li>
+                            <i>modèle des cas d'utilisation</i>: cas d'utilisation;
+                        </li>
+                        <li>
+                            <i>modèle d'analyse</i>: diagrammes de collaboration, diagrammes de séquences, diagramme de classes;
+                        </li>
+                        <li>
+                            <i>modèle de conception</i>: diagrammes de classes, de composants et de déploiement, de collaboration, de séquences, d'états, d'activités;
+                        </li>
+                    </ul>
+                </section>
+                <section id="section-methods-scrum" data-tc=2>
+                    <h3>SCRUM</h3>
+                    <p>
+                        SCRUM est une méthode agile.
+                        Comme toutes les méthodes agiles,
+                        elle favorise la communication sur la documentation.
+                    </p>
+                    <p>
+                        SCRUM ne donne pas beaucoup de directive sur l'analyse,
+                        les seuls concepts liés à l'analyse sont les user stories et le backlog.
+                    </p>
+                    <p>
+                        En résumé, nous pouvons dire que SCRUM ne fournit implicitement un seul modèle d'analyse,
+                        que nous pourrions nommé "user story model".
+                        Le "user story model" correspond au "use cases model" de la méthode UP.
+                    </p>
+                    <p>
+                        Certains auteurs, Jef Patton par exemple, propose aussi un processus pour créer les user stories,
+                        appelé story mapping. Nous pourrions donc parler de "story mapping model".
+                    </p>
+                    <blockquote>
+                        <figure>
+                            <a href="images/userstorymap.png">
+                                <img src="images/userstorymap.png" alt="">
+                            </a>
+                        </figure>
+                        <figcaption>Exemple de story mapping</figcaption>
+                        <cite>
+                            <a href="https://marcabraham.com/2012/07/27/jeff-pattons-story-mapping/" target=_blank>
+                                Jeff Patton's story mapping
+                            </a>
+                        </cite>
+                    </blockquote>
+                    <p>
+                        SCRUM n'impose aucun autre modèle.
+                        C'est la responsabilité de l'équipe de décider quels modèles sont utiles
+                        et beaucoup d'équipes se contentent de réaliser des diagrammes
+                        à la demande, c'est-à-dire lorsqu'une question se pose.
+                    </p>
+                </section>
+            </section>
+
+            <section id="section-references" data-tc=1>
+                <h2>Références</h2>
+                <p>
+                    Les références du cours sont:
+                </p>
+                <ul>
+                    <li>
+                        Applying UML and Pattern, édition 3 de Craig Larman.
+                        C'est sans doute le livre de référence pour de l'Unified Process, précis, clair, avec deux exemples complets.
+                        Ce livre est d'une qualité hors norme, seul défaut, 960 pages.
+                        Il existe une traduction française
+                        mais elle est indisponible
+                        et je n'ai pas trouvé de copie circulant sur le net (Eyrolles UML et les Design Patterns 2edition), parfois disponible en occasion.
+                    </li>
+                    <li>
+                        UML2 Modéliser une Application Web, Eyrolles, est un très bon livre concret.
+                    </li>
+                    <li>
+                        <a href="https://laurent-audibert.developpez.com/Cours-UML/" target=_blank>
+                            UML2 De l'apprentissage à la pratique
+                        </a>, l'excellent cours de Laurent Audibert,
+                        très précis sur les questions de syntaxes.
+                    </li>
+                    <li>
+                        <a href="https://www.eyrolles.com/Informatique/Livre/uml-2-5-par-la-pratique-9782212675658/" target=_blank>
+                            Uml 2.5 par la pratique de Pascal Roques aux éditions Eyrolles.
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.omg.org/spec/UML/About-UML/" target=_blank>
+                            Unified Modeling Language, spécifications, très complexe.
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.uml-diagrams.org/">
+                            The Unified Modeling Language
+                        </a>, un site qui donne beaucoup d'exemples.
+                    </li>
+                    <li>
+                        <a href="http://www.umlchannel.com/en/">
+                            un site intéressant, lié à Enterprise Architect,
+                            l'outil de modélisation le plus utilisé en entreprise.
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://c4model.com/" target=_blank>
+                            The C4 model for visualising the software architecture
+                        </a>
+                    </li>
+                </ul>
+                <p>
+                    Nombre d'articles ont été écrits sur le modèle en waterfall et aussi le modèle en V qui est très semblable (identique?),
+                    par exemple:
+                </p>
+                <ul>
+                    <li><a href="http://www.geek-directeur-technique.com/2009/02/04/le-cycle-en-v" target=_blank>Le cycle en V (DE GEEK À DIRECTEUR TECHNIQUE)</a></li>
+                    <li><a href="https://chefdequipe.fr/methodes/le-cycle-en-v/" target=_blank>Le cycle en V (chef d'équipe)</a></li>
+                    <li><a href="https://fr.wikipedia.org/wiki/Cycle_en_V" target=_blank>Le cycle en V - wikipedia</a></li>
+                    <li><a href="https://fr.wikipedia.org/wiki/Cycle_en_V" target=_blank>Le cycle en V - supinfo</a></li>
+                </ul>
+            </section>
+        </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2021-02-06
+        </footer>
+    </sec>
+    <script src='../../../js/script.js'></script>
+</body>
+
+</html>

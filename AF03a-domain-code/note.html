@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Analyse</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+    <link rel="stylesheet" href="../../../css/codemirror.css">
+    <script src="../../../js/codemirror.js"></script>
+    <script src="../../../js/sql.js"></script>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Leçon AF03a - Domain Class Code</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td=1>
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Faire le lien entre class et code
+                </p>
+                <p>
+                    Après cette leçon, l'étudiant saura
+                    <ul>
+                        <li>Coder en java les classes d'un diagramme du domaine</li>
+                    </ul>
+                </p>
+                <p>
+                    Durée estimée : 2 heures.
+                </p>
+                <p>
+                    Type d'enseignement : démo & discussions.
+                </p>
+            </section>
+
+            <section id="section-introduction" data-tc=1>
+                <h2>Introduction</h2>
+                <div id="section-introduction-introduction">
+                    <p>
+                        Le diagramme de classes du domaine décrit les classes du domaine,
+                        leurs propriétés et les relations entre les classes.
+                    </p>
+                    <blockquote>
+                            <figure>
+                                <a href="17-class-diagram-example-order-system.png">
+                                    <img src="17-class-diagram-example-order-system.png" alt="exemple de diagramme de classes du domaine">
+                                </a>
+                            </figure>
+                            <cite>
+                                <a href="https://www.visual-paradigm.com/guide/uml-unified-modeling-language/uml-class-diagram-tutorial/" target=_blank>
+                                    Visual Paradigm UML Class Diagram Tutorial
+                                </a>
+                            </cite>
+                    </blockquote>
+                    <blockquote>
+                        <figure>
+                            <a href="class-diagram-example-hasp-licensing-domain.png">
+                                <img src="class-diagram-example-hasp-licensing-domain.png" alt="exemple de diagramme de classes du domaine">
+                            </a>
+                            <cite>
+                                <a href="https://www.uml-diagrams.org/software-licensing-domain-diagram-example.html" target=_blank>
+                                    Sentinel HASP Licensing Domain UML Class Diagram Example
+                                </a>
+                            </cite>
+                        </figure>
+                    </blockquote>
+                </div>
+                <div id="section-introduction-code">
+                    <p>
+                        En général, chaque classe du diagramme sera codée comme une classe,
+                        cette classe sera dite <strong>entity class</strong> (classe entité),
+                        elle contiendra peut de méthodes
+                        et servira principalement à structurer les données.
+                    </p>
+                    <div id="tip">
+                        <p>
+                            <i>Entity class</i>, <i>View class</i>, <i>Controller class</i>,
+                            <i>Boundardy class</i>, <i>DAO class</i>, ...        
+                        </p>
+                        <p>
+                            Nous "classons" les classes par types de classe:
+                        </p>
+                        <ul>
+                            <li><i>Entity</i> sont les classes qui modélisent le domaine</li>
+                            <li><i>View</i> classes offrent une vue à l'utilisateur sur le système, 
+                            typiquement une fenêtre, une page web</li>
+                            <li><i>Boundary</i> classes servent à interfacer les acteurs,
+                                les <i>View</i> sont un cas particulier des Boundary</li>
+                            <li>
+                                <i>Controller</i> classes servent à récupérer les commands de l'utilisateur,
+                                ou d'autres acteurs et d'orchestrer le calcul pour fournir la réponse 
+                            </li>
+                            <li>
+                                <i>DAO</i> classes (Data Access Object) interfacent les bases de données.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-exemple-ddc" data-tc=1>
+                <h2>Demande de congés</h2>
+                <div>
+                    <p>Prenons l'exemple de la demande de congés.</p>
+                </div>
+                <section id="section-exemple-ddc-class" data-tc=2>
+                    <h3>class</h3>
+                    <p>
+                        Le diagramme de classe est:
+                    </p>
+                    <figure>
+                        <a href="demande-de-conges-class-diagram.jpg">
+                            <img src="demande-de-conges-class-diagram.jpg" alt="diagramme de classes de la demande de congés">
+                        </a>
+                    </figure>
+                    <p>
+                        Bien sûr, il y a d'autres possibilités.
+                        Chaque modèle relève de choix.
+                        Par exemple, nous ne modélisons pas ici les règles du calcul du nombre de jours de congés.
+                    </p>
+                </section>
+                <section id="section-exemple-ddc-object" data-tc=2>
+                    <h3>object</h3>
+                    <p>
+                        Illustrons le diagramme de classes à l'aide d'un diagramme d'objets:
+                    </p>
+                    <figure>
+                        <a href="demande-de-conges-object-diagram.jpg">
+                            <img src="demande-de-conges-object-diagram.jpg" alt="diagramme d'objets de la demande de congés">
+                        </a>
+                    </figure>
+                    <p>
+                        Le diagramme objet est une instanciation du diagramme de classes.
+                        Il est toujours un exemple.
+                        Nous pouvons en imaginer une infinité.
+                    </p>
+                    <div class=tips>
+                        <p>
+                            Notons que l'héritage n'est pas "instancié",
+                            nous ne retrouvons pas les liens d'héritage dans les diagrammes d'objets.
+                        </p>
+                    </div>
+                    <div class="tips">
+                        <p>
+                            Si nous avons du mal à imaginer les objets dans la mémoire de l'ordinatateur,
+                            nous pouvons imagier des fiches papiers.
+                        </p>
+                        <p>
+                            Chaque fiche papier est l'équivalent d'un objet.
+                        </p>
+                        <p>
+                            Elle a un identifiant de fiche, c'est sa référence.
+                        </p>
+                        <p>
+                            Elle a un type, c'est le type de fiche, l'équivalent de la classe.
+                        </p>
+                        <p>
+                            Elle a des lignes, c'est l'équivalent des attributs.
+                        </p>
+                        <p>
+                            Voici une représentation du diagramme objet précédent,
+                            sous forme de fiches
+                            collées dans des cellules d'une feuille excel:
+                        </p>
+                        <figure>
+                            <a href="demande-de-conges-fiches.png">
+                                <img src="demande-de-conges-fiches.png" alt="fiches pour la demande de congés">
+                            </a>
+                        </figure>
+                        <p>
+                            Les fiches ont été classées par lignes,
+                            pour faciliter notre lecteur.
+                            Cependant, si nous voulons imaginer la mémoire de l'ordinateur,
+                            les fiches seront plus probablement classées par ordre de création:
+                        </p>
+                        <a href="demande-de-conges-fiches-created-order.png">
+                            <img src="demande-de-conges-fiches-created-order.png" alt="fiches pour la demande de congés en ordre de création">
+                        </a>
+                    </div>
+                </section>
+                <section id="section-exemple-ddc-code" data-tc=2>
+                    <h3>code</h3>
+                    <p>
+                        Nous illustrons la transcription en code avec le langage java.
+                    </p>
+                    <div id="section-exemple-ddc-code-worker" data-tc=3 data-toc-text="worker">
+                        <p>
+                            L'implémentation de la classe <i>Worker</i> est:
+                        </p>
+                        <textarea>
+    import java.util.ArrayList;
+
+    /**
+    * modélise un travailleur
+    */
+    public class Worker {
+        // attributs
+        String matricule;
+        String firstname;
+        String lastname;
+        String email;
+
+        // lien avec le manager
+        Manager manager;
+
+        // lien "liste des congés"
+        ArrayList<DayOff> dayOffs = new ArrayList<DayOff>();
+        // mieux que DayOff[] dayOffs = new DayOff[100];
+    }
+                        </textarea>
+                        <p>
+                            La traduction entre la classe du diagramme UML et la classe java est directe.
+                        </p>
+                        <p>
+                            Notons que les liens ont été remplacés par des variables.
+                        </p>
+                        <p>
+                            Notons que nous avons ici simplifié un maximum le code java,
+                            et qu'en conséquence, nous n'avons pas appliqué une série de bonnes pratique,
+                            comme l'encapsulation, la définition de constructeurs et l'utilisation de package.
+                        </p>
+                    </div>
+                    <div id="section-exemple-ddc-code-manager" data-tc=3 data-toc-text="manager">
+                        <p>L'implémentation de la classe <i>Manager</i> pourrait être la suivante:</p>
+                        <textarea>
+    import java.util.ArrayList;
+
+    /**
+    * modélise le manager
+    */
+    public class Manager extends Worker {
+        // liste des travailleurs sous la responsabilité du manager
+        ArrayList<Worker> workers = new ArrayList<Worker>();
+        // mieux que Worker[] workers = new Worker[100];
+    }
+                        </textarea>
+                        <p>
+                            L'héritage est déclaré par le code <i>extends Worker</i>.
+                        </p>
+                        <p>
+                            La classe n'a qu'un attribut,
+                            la liste des travailleurs 
+                            qui est la transcription du lien entre <i>Manager</i> et <i>Worker</i>.
+                        </p>
+                    </div>
+                    <div id="section-exemple-ddc-code-dayoff" data-tc=3 data-toc-text="dayoff">
+                        <p>
+                            L'implémentation du congé <i>DayOff</i> est:
+                        </p>
+                        <textarea>
+    import java.util.Date;
+
+    /**
+    * modélise un congé
+    */
+    public class DayOff {
+        // attributs
+        Date start;
+        Date end;
+        String comment;
+
+        // lien avec le travailleur qui a pris congé
+        Worker worker;
+
+        // lien avec la catégorie de congé
+        DayOffCategory category;    
+    }
+                        </textarea>
+                        <p>
+                            Notons que le lien avec le travailleur a été traduit
+                            par l'attribut <i>Worker worker</i>
+                            et le lien avec la catégorie de congé a été traduite
+                            par l'attribut <i>DayOffCategory category</i>.
+                        </p>
+                        <p>
+                            Notons finalement qu'il manque un attribut <i>state</i>,
+                            qui est l'état du congé.
+                        </p>
+                    </div>
+                    <div id="section-exemple-ddc-code-dayoffcategory" data-tc=3 data-toc-text="dayoffcategory">
+                        <p>
+                            La classe <i>DayOffCategory</i> sera implémentée comme suit:
+                        </p>
+                        <textarea>
+    /**
+    * Modèle pour les catégories de congés
+    */
+    public class DayOffCategory {
+        // attribut
+        String name;
+        
+        // lien avec les congés
+        ArrayList<DayOff> dayOffs = new ArrayList<DayOff>();
+        // mieux que DayOff[] dayOffs = new DayOff[100];
+    }                               
+                        </textarea>
+                        <div class=tips>
+                            <p>
+                                Evidemment la liste <i>dayOffs</i> est probablement inutile.
+                                Ce genre de liste étant en général géré par la database.
+                            </p>
+                            <p>
+                                En fait, nous abordons ici la question de la navigation.
+                                Il faut répondre à la question suivante:
+                                <i>Soit une instance de DayOffCategory</i>,
+                                est-il nécessaire de récupérer tous les congés liés à cette instance?
+                                La réponse sera en général <i>non</i>.
+                            </p>
+                            <p>
+                                Lors de l'analyse fonctionnelle,
+                                nous ne nous posons pas cette question de la navigation.
+                            </p>
+                            <p>
+                                Ici, nous avons sauté les étapes,
+                                pour illustrer le lien entre diagramme de classes et le code.
+                            </p>
+                            <p>
+                                Pour écrire le code, nous avons appliqué une approche systématique,
+                                <i>impleméntons la navigation dans les deux sens</i>.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="section-exemple-ddc-code-app" data-tc=3 data-toc-text="app">
+                        <p>
+                            Finalement, nous implémentons une classe <i>App</i>
+                            qui a pour seule méthode <i>static main(...)</i>
+                            et dont le rôle est d'instancier l'ensemble des objets
+                            telles qu'illustrer dans le diagramme d'objets.
+                        </p>
+                        <textarea>
+    import java.util.Date;
+    
+    /**
+        * Point d'entrée de l'application
+        */
+    public class App {
+    
+        public static void main(String[] args) {
+            // instanciation de la catégorie "Congé Annuel"
+            DayOffCategory congeAnnuel = new DayOffCategory();
+            congeAnnuel.name = "Congé Annuel";
+    
+            // instanciation de la catégorie "Congé Formation"
+            DayOffCategory congeFormation = new DayOffCategory();
+            congeFormation.name = "Congé Formation";
+    
+            // instanciation du manager "Mathilde"
+            Manager mathilde = new Manager();
+            mathilde.matricule = "T74";
+            mathilde.firstname = "Mathilde";
+            mathilde.lastname = "Le Roi";
+            mathilde.email = "ma@roi.be";
+    
+            // instanciation du manager "Albert"
+            Manager albert = new Manager();
+            albert.matricule = "T23";
+            albert.firstname = "Albert";
+            albert.lastname = "Le Roi";
+            albert.email = "al.roi.be";
+            // lien avec le manager
+            albert.manager = mathilde;
+            mathilde.workers.add(albert);
+    
+            // instanciation du travailleur "Philippe"
+            Worker philippe = new Worker();
+            philippe.matricule = "T67";
+            philippe.firstname = "Philippe";
+            philippe.lastname = "Le Roi";
+            philippe.email = "phil@roi.be";
+            // lien avec le manager
+            philippe.manager = mathilde;
+            mathilde.workers.add(philippe);
+    
+            // instanciation du travailleur "Astrid"
+            Worker astrid = new Worker();
+            astrid.matricule = "T66";
+            astrid.firstname = "Astrid";
+            astrid.lastname = "Le Roi";
+            astrid.email = "as@roi.be";
+            // lien avec le manager
+            astrid.manager = albert;
+            albert.workers.add(astrid);
+    
+            // instanciation du travailleur "Laurent"
+            Worker laurent = new Worker();
+            laurent.matricule = "T81";
+            laurent.firstname = "Laurent";
+            laurent.lastname = "Le Roi";
+            // lien avec le manager
+            laurent.manager = albert;
+            albert.workers.add(laurent);
+    
+            // instanciation du congé de Mathilde en avril
+            DayOff mathildeAvril = new DayOff();
+            mathildeAvril.start = new Date(2020, 4, 1);
+            mathildeAvril.end = new Date(2020, 4, 28);
+            mathildeAvril.comment = "repos bien mérité";
+            // lien avec le travailleur
+            mathilde.dayOffs.add(mathildeAvril);
+            mathildeAvril.worker = mathilde;
+            // lien avec la catégorie de congés
+            mathildeAvril.category = congeAnnuel;
+            congeAnnuel.dayOffs.add(mathildeAvril);
+    
+            // instanciation du congé de Philippe en avril
+            DayOff philippeAvril = new DayOff();
+            philippeAvril.start = new Date(2020, 4, 1);
+            philippeAvril.end = new Date(2020, 4, 28);
+            philippeAvril.comment = "repos bien mérité";
+            // lien avec le travailleur
+            philippe.dayOffs.add(philippeAvril);
+            philippeAvril.worker = philippe;
+            // lien avec la catégorie de congés
+            philippeAvril.category = congeAnnuel;
+            congeAnnuel.dayOffs.add(philippeAvril);
+    
+            // instanciation du congé de Philippe en mai
+            DayOff philippeMai = new DayOff();
+            philippeMai.start = new Date(2020, 5, 10);
+            philippeMai.end = new Date(2020, 5, 14);
+            philippeMai.comment = "spécialisation conduite d'hélicoptère";
+            // lien avec le travailleur
+            philippeMai.worker = philippe;
+            philippe.dayOffs.add(philippeMai);
+            // lien avec la catégorie de congés
+            philippeMai.category = congeFormation;
+            congeFormation.dayOffs.add(philippeMai);
+        }
+    }
+                                
+                        </textarea>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-exemple-file-user" data-tc=1>
+                <h2>Partage de fichiers</h2>
+                <div id="section-exemple-file-user-introduction" data-tc=2>
+                    <h3>class</h3>
+                    <p>
+                        Cette exemple illustre la transcription du diagramme de classes du domaine
+                        du partage de fichiers suivant:
+                    </p>
+                    <figure>
+                        <a href="file-user-domain-class-diagram.jpg">
+                            <img src="file-user-domain-class-diagram.jpg" alt="diagramme de classes du domaine partage de fichiers">
+                        </a>
+                    </figure>
+                    <div></div>
+                    <div id="section-exemple-file-user-introduction-links">
+                        <p>
+                            Le point compliqué, c'est que les classes <i>File</i> et <i>User</i> ont deux liens:
+                        </p>
+                        <ul>
+                            <li>le lien <i>owner</i> qui indique quel est l'utilisateur qui est le propriétaire du fichier;</li>
+                            <li>le lien <i>guests</i> qui indiquent quels sont les utilisateurs qui peuvent accéder au fichier.</li>
+                        </ul>
+                    </div>
+                    <div id="section-exemple-file-user-introduction-remarque">
+                        <p>
+                                Bien sûr, cette représentation est un choix.
+                                Nous pouvons imaginer des solutions avec des groupes d'utilisateurs,
+                                avec plusieurs owner du fichiers ...
+                                Chacune de ces solutions donnera un diagramme de classe différent.
+                        </p>            
+                    </div>
+                </div>
+                <div id="section-exemple-file-user-object" data-tc=2>
+                    <h3>object</h3>
+                    <div>
+                        <p>
+                            Il est utile de réaliser un diagramme d'objets pour vérifier 
+                            que le diagramme de classes est exact,
+                            qu'il représente bien la réalité.
+                        </p>
+                        <figure>
+                            <a href="file-user-domain-object-diagram.jpg">
+                                <img src="file-user-domain-object-diagram.jpg" alt="diagramme objet pour illustrer le domaine partage de fichier">
+                            </a>
+                        </figure>
+                        <p>
+                            Le diagramme d'objets peut être compris comme une instanciation du diagramme de classes.
+                        </p>
+                    </div>
+                </div>
+                <div id="section-exemple-file-user-code" data-tc=2>
+                    <h3>code</h3>
+                    <div>
+                        <p>
+                            Nous implémentons le diagramme objets en java.
+                        </p>
+                    </div>
+                    <div id="section-exemple-file-user-code-file" data-tc=3 data-toc-text=file>
+                        <p>
+                            Commençons par la classe <i>File</i>
+                        </p>
+                        <textarea>
+    import java.util.ArrayList;
+    import java.util.Date;
+
+    /**
+    * Modèle pour le fichier
+    */
+    public class File {
+        // attributs de la classe
+        String name;
+        long size;
+        Date modified;
+
+        // lien avec le owner
+        User owner;
+
+        // liste des utilisateurs qui sont guest du fichier
+        ArrayList<User> guests = new ArrayList<User>();
+        // mieux que: Utilisateur[] guests = new Utilisateur[100];
+    }
+                        </textarea>
+                        <p>
+                            Le lien avec la classe <i>File</i> du diagramme de classe est direct.
+                        </p>
+                        <p>
+                            Notons:
+                        </p>
+                        <ul>
+                            <li><i>User owner</i> est l'attribut permettant de retrouver le propriétaire du fichier;</li>
+                            <li>
+                                <i>guest</i> est l'attribut permettant de retourver les "invités",
+                                les personnes avec qui le propriétaire a partagé le fichier.
+                            </li>
+                        </ul>
+                        <p>
+                            ces attributs ne sont pas représentés explicitement dans le diagramme de classes,
+                            ils sont représentés par le lien entre les classes <i>File</i> et <i>User</i>.
+                        </p>
+                    </div>
+                    <div id="section-exemple-file-user-code-user" data-tc=3 data-toc-text=user>
+                        <p>
+                            La classe <i>User</i> est implémentée comme suit:
+                        </p>
+                        <textarea>
+    import java.util.ArrayList;
+    import java.util.Date;
+
+    /**
+    * Modèle pour l'utilisateur
+    */
+    public class User {
+        // les attributs de la classe
+        String firstname;
+        String lastname;
+        String username;
+        String password;
+        String email;
+        Date created;
+
+        // liste des fichiers dont je suis le owner
+        ArrayList<File> ownedFiles = new ArrayList<File>();
+        // équivalent en mieux que Fichier[] fichiersDontJeSuisLeOwner = new Fichier[100];
+
+        // liste de fichiers dont je suis guest
+        ArrayList<File> guestFiles = new ArrayList<File>();
+        // équivalent en mieux que Fichier[] fichiersDontJeSuisGuest = new Fichier[100];
+    }
+                        </textarea>
+                        <p>
+                            Nous avons ici deux listes:
+                        </p>
+                        <ul>
+                            <li><i>ownedFiles</i> qui liste les fichiers dont l'utilisateur est le propriétaire;</li>
+                            <li><i>guestFiles</i><, la liste des fichers partagés avec cet utilisateur/li>
+                        </ul>
+                    </div>
+                    <div id="section-exemple-file-user-code-app" data-tc=3 data-toc-text="app">
+                        <p>
+                            Nous implémentons maintenant une classe
+                            avec une seule méthode <i>static main(...)</i>,
+                            pour pouvoir exécuter le code (voir cours java).
+                        </p>
+                        <p>
+                            Dans la méthode <i>static main(...)</i>,
+                            nous instancions les objets représentés dans le diagramme d'objet:
+                        </p>
+                        <ul>
+                            <li>depaepe: User</li>
+                            <li>younnes: User</li>
+                            <li>noteClassDiagramDocx: File</li>
+                        </ul>
+                        <p>
+                            Notons que le code de <i>App</i> est un code purement pédagogique,
+                            qui ne ressemble en rien au code de l'application final.
+                            Il ressemble plutôt à du code pour tester les classes <i>File</i> et <i>User</i>.
+                        </p>
+                        <textarea>
+    import java.util.Date;
+
+    /**
+        * Petite application démo
+        * qui instancie 2 utilisateurs et un fichier
+        */
+    public class App {
+        /**
+            * point d'entrée du programme
+            */
+        public static void main(String[] args) {
+            // instancie un utilisateur
+            User depaepe = new User();
+            depaepe.lastname = "Depaepe";
+            depaepe.firstname = "Jean-Michel";
+            depaepe.username = "jedepaepe";
+            depaepe.password = "il fait beau";
+            depaepe.created = new Date(2020, 3, 1);
+    
+            // instancie un second utilisateur
+            User younnes = new User();
+            younnes.firstname = "Younnes";
+            // ...
+    
+            // instancie un fichier
+            File noteClassDiagramDocx = new File();
+            noteClassDiagramDocx.name = "note-class-diagram.docx";
+            noteClassDiagramDocx.modified = new Date();
+            noteClassDiagramDocx.size = 100_000_000;
+    
+            // crée le lien owner
+            depaepe.ownedFiles.add(noteClassDiagramDocx);
+            noteClassDiagramDocx.owner = depaepe;
+    
+            // crée le lien guest
+            younnes.guestFiles.add(noteClassDiagramDocx);
+            noteClassDiagramDocx.guests.add(younnes);
+        }
+    }                                
+                        </textarea>
+                        <div>
+                            <p>
+                                Bien sûr, ce code est du code pédagogique,
+                                purement inutile,
+                                la classe <i>App</i> ne ressemblant à aucun code réaliste,
+                                en tous les cas, espérons le.
+                                Au mieux, cela ressemble à du code de test.
+                                Si nous ne voyons pas du code réaliste,
+                                c'est parce que cela ajoute de la complexité.
+                                Cependant, nous pouvons imaginer un code
+                                utilisant la classe scanner <i>Scanner</i> 
+                                pour créer chaque instance, mais ...
+                                c'est beaucoup plus de code.
+                                En général, les instances de classes du domaine seront chargées à partir d'une base de données.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+       </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2019-10-29
+        </footer>
+    </sec>
+    <script>
+        var sdkj = {language: 'sql'};
+    </script>
+    <script src='../../../js/script.js'></script>
+</body>
+</html>

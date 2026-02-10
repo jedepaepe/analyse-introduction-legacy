@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>E3 - contacts-viewer</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+    <link rel="stylesheet" href="../../../css/codemirror.css">
+    <script src="../../../js/codemirror.js"></script>
+    <script src="../../../js/clike.js"></script>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Exercice 3 - contact-viewers</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-tc=1>
+                <h2>Objectifs de la leçon</h2>
+                <ul>
+                    <li>Comprendre les éléments principaux de l'analyse à l'aide d'un exemple très simple</li>
+                </ul>
+                <p>
+                    Durée estimée : 3h
+                </p>
+                <p>
+                    Type d'enseignement : exercice, apprentissage personnel, support des autres étudiants et du professeur.
+                </p>
+            </section>
+
+            <section id="section-statement" data-tc="1">
+                <h2>Enoncé</h2>
+                <p>
+                    Imaginons une application dont le seul objectif est d'afficher une liste de contacts.
+                </p>
+                <p>
+                    Le projet visual paradigm réalisé pour ce projet est disponible
+                    <a href="contacts-viewer.vpp" download>
+                        ici, contacts-viewer.vpp
+                    </a>
+                </p>
+            </section>
+
+            <section id="section-functional" data-tc=1 data-toc-text="Fonctionnel">
+                <h2>Analyse fonctionnelle</h2>
+                <div>
+                    <p>
+                        Notre analyse fonctionnelle comportera deux vues,
+                        car nous n'avons pas de "business process model"
+                        puisqu'il n'y a pas de processus métiers.
+                    </p>
+                    <ul>
+                        <li>
+                            la vue "use case" qui liste les use cases;
+                        </li>
+                        <li>
+                            la vue "domaine" qui liste les entités du domaine et leur relation.
+                        </li>
+                    </ul>    
+                </div>
+                
+                <section id="section-functional-business" data-tc=2 data-toc-text="process">
+                    <h3>Business process</h3>
+                    <p>
+                        Il n'y pas de processus métier, donc pas de modèle.
+                    </p>
+                </section>
+
+                <section id="section-functional-use-cases" data-tc=2 data-toc-text="use cases">
+                    <h3>Use cases</h3>
+                    <div>
+                        <p>
+                            Nous avons un seul use case:
+                        </p>
+                        <figure>
+                            <a href="af-2-use-case-model-diagram.png">
+                                <img src="af-2-use-case-model-diagram.png">
+                            </a>
+                        </figure>
+                    </div>
+                </section>
+
+                <section id="section-functional-domain" data-tc=2 data-toc-text="domaine">
+                    <h3>Vue "classes du domaines"</h3>
+                    <div>
+                        Nous modélisons les entités du domaine à l'aide d'un diagramme de classes.
+                    </div>
+                    <figure>
+                        <a href="af-3-domain-model-class-diagram.png">
+                            <img src="af-3-domain-model-class-diagram.png" alt="diagramme des classes du domaine">
+                        </a>
+                    </figure>
+                </section>
+            </section>
+
+            <section id="section-technical" data-tc=1 data-toc-text="Technique">
+                <h2>Analyse technique</h2>
+                <section id="section-technical-class-model" data-tc=2 data-toc-text="class">
+                    <h3>Modèle de classes</h3>
+                    <div>
+                        <p>
+                            Le modèle de classes ou modèle de classes d'implémentation permet d'explorer,
+                            d'analyser, de modéliser et de documenter les classes
+                            qui seront ou sont implémenées.
+                        </p>
+                    </div>
+                    <div title=class-diagram>
+                        <h4>Diagramme des classes d'implémentation</h4>
+                        <div>
+                            <p>
+                                Le diagramme des classes d'implémentation est le principal diagramme
+                                du modèle,
+                                il illustre les relations statiques entre les classes.
+                            </p>
+                            <p>
+                                Nous appliquons ici le principe de séparation des responsabilités
+                                pour établir un premier diagramme de classes:
+                            </p>
+                            <figure>
+                                <a href="at-1-class-model-class-diagram.png">
+                                    <img src="at-1-class-model-class-diagram.png">
+                                </a>
+                            </figure>
+                            <p>
+                                Nous avons:
+                            </p>
+                            <ul>
+                                <li>
+                                    <b>ContactUI</b> est la classe qui interface l'utilisateur,
+                                    elle contient tout le code spécifique à l'interface utilisateur
+                                    rend le reste de l'application indépendante de cette interface.
+                                </li>
+                                <li>
+                                    <b>ContactController</b> est la classe qui orchestre l'application,
+                                    elle reçoit des commandes à partir de <b>ContactUI</b>
+                                    qu'elle dispatche à <b>ContactDAO</b>.
+                                    Elle présente aussi une API qui est représentative
+                                    du use case de l'application.
+                                </li>
+                                <li>
+                                    <b>ContactDAO</b> est la classe qui assure la persistance des données.
+                                    Dans notre application, elle est chargé de lire les contacts dans la base de données.
+                                </li>
+                                <li>
+                                    <b>Contact</b> modélise un contact.
+                                </li>
+                            </ul>
+                            <p>
+                                Si nous catégorisons nos classes, nous obtenons:
+                            </p>
+                            <table>
+                                <thead>
+                                    <tr><th>classe</th><th>type</th><th>package</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>ContactUI</td><td>service</td><td>boundary</td></tr>
+                                    <tr><td>ContactController</td><td>service</td><td>controller</td></tr>
+                                    <tr><td>ContactDAO</td><td>service</td><td>model</td></tr>
+                                    <tr><td>Contact</td><td>entity</td><td>model</td></tr>
+                                </tbody>
+                            </table>
+                            <p>
+                                Les classes de type <b>service</b> sont des classes qui offrent des services,
+                                elles ont généralement beaucoup de méthode et peu de code.
+                            </p>
+                            <p>
+                                Les classes de type <b>entity</b> sont des classes qui contienent les données de l'applicatoin,
+                                elles ont généralement peu de méthode et peu de code.
+                            </p>
+                        </div>
+                    </div>
+                    <div title=sequence-diagram>
+                        <h4>Diagramme de séquences</h4>
+                        <div>
+                            <p>
+                                Le diagramme de séquences illustrent comment les classes collabore entre elles.
+                            </p>
+                            <figure>
+                                <a href="at-1-class-model-sequence-diagram-consult.png">
+                                    <img src="at-1-class-model-sequence-diagram-consult.png">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-implementation" data-tc=1>
+                <h2>Implémentation</h2>
+                <div title=introduction>
+                    <p>
+                        Voyons comment implémenter notre application <b>contacts-viewer</b>.
+                    </p>
+                </div>
+
+                <section id="section-annex-console" data-tc=2 data-toc-text="code">
+                    <h3>Implémentation console</h3>
+                    <div title="introduction">
+                        <p>
+                            Implémentons les classes telles que décrites
+                            dans le diagrammes de classe d'implémentation
+                            pour une application simplifiée,
+                            de type console,
+                            en java,
+                            mais ne respectant pas certaines bonnes pratiques,
+                            par exemple l'encapsulation,
+                            le but étant principalement d'illustrer avec pédagogie.
+                        </p>
+                        <p>
+                            Voici un exemple d'exécution de l'application:
+                        </p>
+                        <figure>
+                            <a href="implementation-exemple-execution.png">
+                                <img src="implementation-exemple-execution.png">
+                            </a>
+                        </figure>
+                        <p>
+                            Le scénario ci-dessus est:
+                        </p>
+                        <ul>
+                            <li>L'application affiche le menu</li>
+                            <li>L'utilisateur tape <b>C</b> au clavier pour lancer la commande "consulter"</li>
+                            <li>L'application affiche la liste des contacts et le menu</li>
+                            <li>L'utilisateur tape <b>Q</b> pour quitter l'application</li>
+                            <li>L'application affiche une message d'adieu</li>
+                        </ul>
+                    </div>
+                    <div title="package model">
+                        <h4>model</h4>
+                        <p>
+                            Le package model contient deux classes:
+                        </p>
+                        <ul>
+                            <li><b>Contact</b> qui vient du modèle du domaine</li>
+                            <li><b>ContactDAO</b> qui sert à lire les contacts à partir de la base de données</li>
+                        </ul>
+                        <div title="classe Contact">
+                            <h5>Contact</h5>
+                            <div>
+                                <p>
+                                    Le code de la classe <b>Contact</b> est
+                                </p>
+                                <figure>
+                                    <textarea>
+// le package UML se traduit en un package Java
+package website.sdkj.contactsviewer.model;
+
+/**
+ * classe qui modélise un contact
+ */
+public class Contact {
+	// attributs de la classe Contact
+	public String firstname;
+	public String lastname;
+	public String email;
+	public String phone;
+
+	/**
+	 * constructeur
+	 * @param fn est le prénom
+	 * @param ln est le nom de famille
+	 * @param e est l'email
+	 * @param p est le numéro de téléphone
+	 */
+	public Contact(String fn, String ln, String e, String p) {
+		firstname = fn;
+		lastname = ln;
+		email = e;
+		phone = p;
+	}
+}
+                                    </textarea>
+                                </figure>
+                                <p>
+                                    Notez que ce code ne respecte pas certaines bonnes pratiques
+                                    pour des raisons pédagogiques:
+                                </p>
+                                <ul>
+                                    <li>l'encapsulation des attributs</li>
+                                    <li>l'utilisation de noms explicites pour les arguments du constructeur</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div title="classe ContactDAO">
+                            <h5>ContactDAO</h5>
+                            <div>
+                                <p>
+                                    La classe <b>ContactDAO</b> a pour responsabilité 
+                                    de lire les contacts dans la base de données.
+                                </p>
+                                <figure>
+                                    <textarea>
+// package UML model => package Java
+package website.sdkj.contactsviewer.model;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * ContactDAO a pour responsabilité d'accéder la base de données
+ */
+public class ContactDAO {
+
+	/**
+	 * lit les contacts dans la DB et les retourne sous forme d'une liste
+	 * @return une liste de contacts
+	 * @throws ClassNotFoundException
+	 */
+	public List<Contact> fetch() throws ClassNotFoundException, SQLException {
+		Class.forName("org.mariadb.jdbc.Driver");
+		try (
+			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost/contactdb", "root", "root");
+		) {
+			List<Contact> contacts = new ArrayList<Contact>();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet =
+				statement.executeQuery("SELECT firstname, lastname, email, phone FROM contact");
+			while (resultSet.next()) {
+				String firstname = resultSet.getString("firstname");
+				String lastname = resultSet.getString("lastname");
+				String email = resultSet.getString("email");
+				String phone = resultSet.getString("phone");
+				Contact contact = new Contact(firstname, lastname, email, phone);
+				contacts.add(contact);
+			}
+			return contacts;
+		}
+	}
+}
+                                    </textarea>
+                                </figure>
+                                <p>
+                                    Notons que cette classe mériterait bien des améliorations:
+                                </p>
+                                <ul>
+                                    <li>
+                                        être configurable à la création,
+                                        en particulier la connexion string "jdbc:mariadb://localhost/contactdb"
+                                        devrait être injecté à la création de la classe
+                                    </li>
+                                    <li>
+                                        les noms d'utilisateur et de mot de passe
+                                        ne devraient pas être dans le code
+                                    </li>
+                                    <li>
+                                        la lecture de la table devrait être paginée.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div title="package controler">
+                        <h4>controler</h4>
+                        <div>
+                            <p>
+                                Le package controler ne contient qu'une seule classe,
+                                <b>ContactController</b>.
+                                Elle a pour rôle d'orchestrer l'application
+                                et de découpler les classes "boundary" du "model".
+                            </p>
+                            <figure>
+                                <textarea>
+// package UML controler :
+package website.sdkj.contactsviewer.controler;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import website.sdkj.contactsviewer.model.Contact;
+import website.sdkj.contactsviewer.model.ContactDAO;
+
+/**
+ * ContactController a pour rôle d'orchestrer l'application
+ */
+public class ContactControler {
+	// référence sur le Database Access Object
+	// instanciée à la construction de ContactController
+	ContactDAO contactDao = new ContactDAO();
+
+	/**
+	 * @return la liste des contacts
+	 */
+	public List<Contact> fetchContacts() {
+		try {
+			return contactDao.fetch();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			return new ArrayList<Contact>();
+		}
+	}
+}
+                                </textarea>
+                            </figure>
+                            <p>
+                                Dans l'exemple ci-dessus,
+                                la classe <b>ContactController</b> a pour seule valeur ajoutée
+                                le traitement des erreurs:
+                                elle capture les erreurs levées par <b>ContactDAO</b>
+                                et les affiche sur la console.
+                            </p>
+                            <p>
+                                Ce code devrait amélioré en:
+                            </p>
+                            <ul>
+                                <li>
+                                    Enregistrant les erreurs dans un journal (fichier log)
+                                </li>
+                                <li>
+                                    En retourne plus d'information à l'interface utilisateur,
+                                    en particulier des informations concernant les erreurs.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div title="package boundary">
+                        <h4>boundary</h4>
+                        <div>
+                            <p>
+                                Le package boundary, qui pourrait aussi s'appeler ui (User Interface)
+                                s'occupe des détails de l'interface utilisateur.
+                            </p>
+                            <figure>
+                                <textarea>
+package website.sdkj.contactsviewer.boundary;
+
+import java.util.List;
+import java.util.Scanner;
+
+import website.sdkj.contactsviewer.controler.ContactControler;
+import website.sdkj.contactsviewer.model.Contact;
+
+public class ContactUI {
+	// référence sur le controlleur - construite sur le new ContactUI();
+	ContactControler contactControler;
+	// référence sur un Scanner connecté au clavier du PC
+	Scanner scanner;
+
+	/**
+	 * Constructeur
+	 * @param controler est une référence vers un objet de type ContactControler
+	 * @param scan est une référence vers un objet de type Scanner
+	 */
+	public ContactUI(ContactControler controler, Scanner scan) {
+		contactControler = controler;
+		scanner = scan;
+	}
+
+	/**
+	 * exécute l'interface utilisateur
+	 */
+	public void run() {
+		boolean doNext = true;
+		while (doNext) {
+			System.out.println("\n------------------------------");
+			System.out.println("Tapez C pour afficher la liste des contacts");
+			System.out.println("Tapez Q pour quitter l'application");
+			System.out.print("Votre choix: ");
+			String cmd = scanner.nextLine();
+			if (cmd.equals("C")) {
+				showContacts();
+			} else if (cmd.equals("Q")) {
+				doNext = false;
+			} else {
+				System.out.println("Votre choix n'est pas correct, veuillez recommencer");
+			}
+		}
+		System.out.println("\nbye bye, see you soon");
+	}
+
+	/**
+	 * Affiche les contacts
+	 */
+	private void showContacts() {
+		List<Contact> contacts = contactControler.fetchContacts();
+
+		System.out.println("\n--- Liste de contacts ---");
+		for(Contact c : contacts) {
+			System.out.println(c.firstname + " " + c.lastname + " " + c.email + " " + c.phone);
+		}
+		System.out.println("-------------------------\n");
+	}
+}
+                                </textarea>
+                            </figure>
+                        </div>
+                    </div>
+                    <div title="startup">
+                        <h4>Démarrage</h4>
+                        <div>
+                            <p>
+                                Finalement, l'application doit être démarrée.
+                            </p>
+                            <p>
+                                Ce rôle est déléguée à une classe purement statique,
+                                <b>App</b>
+                                qui est le point d'entrée du programme.
+                            </p>
+                            <p>
+                                Son rôle principal est de câbler l'application
+                                et de l'initialiser:
+                            </p>
+                            <figure>
+                                <textarea>
+package website.sdkj.contactsviewer;
+
+import java.util.Scanner;
+
+import website.sdkj.contactsviewer.boundary.ContactUI;
+import website.sdkj.contactsviewer.controler.ContactControler;
+import website.sdkj.contactsviewer.model.ContactDAO;
+
+/**
+ * App est le classe qui configure l'application
+ * et qui est le point d'entrée de l'application
+ */
+public class App {
+
+	/**
+	 * point d'entrée de l'application
+	 */
+	public static void main(String[] args) {
+		// instancie le DAO
+		ContactDAO contactDAO = new ContactDAO();
+		// instancie le controler
+		ContactControler contactControler = new ContactControler(contactDAO);
+		// instancie un scanner
+		Scanner keyboard = new Scanner(System.in);
+		// instancie le boundary
+		ContactUI contactUI = new ContactUI(contactControler, keyboard);
+		// démarre l'application (gérée par l'interface utilisateur)
+		contactUI.run();
+	}
+}
+                                </textarea>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-annex-db" data-tc=2 data-toc-text="db">
+                    <h3>DB</h3>
+                    <div>
+                        <p>
+                            La database de notre <b>contact-viewers</b> est simple,
+                            elle contient une seule table <b>contact</b>.
+                        </p>
+                        <p>
+                            Appelons cette base de données <b>contactdb</b>
+                            et créons-la.
+                        </p>
+                        <pre>
+CREATE DATABASE contactdb;
+USE contactdb;
+CREATE TABLE contact (
+    id int(10) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    firstname VARCHAR(32) NOT NULL,
+    lastname VARCHAR(32) NOT NULL,
+    email VARCHAR(128) NOT NULL,
+    phone VARCHAR(20)
+);
+                        </pre>
+                        <p>
+                            Ensuite insérons quelques enregistrements
+                            afin de pouvoir faire des tests.
+                        </p>
+                        <pre>
+INSERT INTO contact VALUES
+    (null, 'Mathilde', 'Le Roi', 'ma@roi.be', '111'),
+    (null, 'Philippe', 'Le Roi', 'ph@roi.be', '222'),
+    (null, 'Paola', 'Le Roi', 'pa@roi.be', '333'),
+    (null, 'Albert', 'Le Roi', 'al@roi.be', '444');
+                        </pre>
+                    </div>
+                </section>
+            </section>
+
+        </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2019-10-29
+        </footer>
+    </sec>
+    <script src='../../../js/script.js'></script>
+</body>
+</html>

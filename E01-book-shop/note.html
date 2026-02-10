@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>E1 - Bookshop</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+    <link rel="stylesheet" href="../../../css/codemirror.css">
+    <script src="../../../js/codemirror.js"></script>
+    <script src="../../../js/clike.js"></script>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Exercice 1 - bookshop</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-tc=1>
+                <h2>Objectifs de la leçon</h2>
+                <ul>
+                    <li>Savoir réaliser l'analyse d'une simple boutique en ligne</li>
+                    <li>Apprendre à analyser par l'exemple</li>
+                </ul>
+                <p>
+                    Durée estimée : 1 heure à 20 heures suivant l'implication et le niveau initial.
+                </p>
+                <p>
+                    Type d'enseignement : exercice, apprentissage personnel, support des autres étudiants et du professeurs.
+                </p>
+            </section>
+
+            <section id="section-statement" data-tc="1">
+                <h2>Enoncé</h2>
+                <div>
+                    <p>
+                        L'énoncé est extrait du cours UML de l'EPFC, PANI_02_use_cases, page 49 "Site web marchand type Amazon":
+                    </p>
+                    <div class=tips>
+                        <p>
+                            Le système à analyser est celui du site web d'un magasin en ligne qui vend des livres.
+                        </p>
+                        <p>
+                            Un client peut consulter un catalogue de produits, mettre temporairement des articles dans un panier virtuel, et finalement passer à l’achat des articles contenus dans son panier (pas obligatoirement !). A tout moment, il peut visualiser le contenu de son panier et le modifier en y adaptant les quantités ou en y supprimant des produits.
+                        </p>
+                        <p>
+                            Le client peut parcourir le catalogue en faisant une recherche textuelle (les données suivantes sont indicées : auteur, titre, maison d’édition, numéro ISBN, date de parution). Il a également accès à une liste des nouveautés. S’il sélectionne un auteur, il peut accéder à la liste de tous les ouvrages de cet auteur.
+                        </p>
+                        <p>
+                            A partir de la visualisation de son panier, le client peut passer à l’achat. Pour cela, il doit se faire connaitre c'est-à-dire soit s'inscrire, soit s'authentifier s'il est déjà connu. S’il est déjà inscrit mais qu’il a oublié sont mot de passe, il peut demander qu’un nouveau mot de passe lui soit envoyé par e-mail.
+                        </p>
+                        <p>
+                            L’achat peut se faire par virement bancaire ou par carte de crédit. Dans le cas d'une carte de crédit, le site utilise les services de Ogone (entreprise spécialisée dans le paiement sur Internet) pour gérer cet aspect de la transaction. Une fois le paiement effectué, la livraison des produits est déclenchée immédiatement. Dans le cas du virement, la livraison des produits sera déclenchée ultérieurement et manuellement par un administrateur du site lors de la réception du paiement.
+                        </p>
+                        <p>
+                            Par ailleurs, l’administrateur est en charge de mettre à jour le catalogue. Pour pouvoir effectuer ses tâches, cet administrateur doit évidemment s'authentifier.
+                        </p>    
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-functional" data-tc=1 data-toc-text="Fonctionnel">
+                <h2>Analyse fonctionnelle</h2>
+                <div>
+                    <p>
+                        Notre analyse fonctionnelle comportera trois vue:
+                    </p>
+                    <ul>
+                        <li>
+                            la vue "business process" qui décrit les processus d'achat-livraison;
+                        </li>
+                        <li>
+                            la vue "use case" qui liste les use cases;
+                        </li>
+                        <li>
+                            la vue "domaine" qui liste les entités du domaine et leur relation.
+                        </li>
+                    </ul>    
+                </div>
+                
+                <section id="subsection-functional-business" data-tc=2 data-toc-text="process">
+                    <h3>Business process</h3>
+                    <div>
+                        <p>
+                            Nous documentons deux processus business, l'achat par virement et l'achat avec une carte de crédit.
+                            Il est important de modéliser ces processus car
+                            d'une part ils font appel à des activités qui se déroulent endehors de l'application
+                            et d'autre part ils font appel à plusieurs use cases différents de l'application.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Achat par virement</h4>
+                        <figure>
+                            <img src="achat-virement.jpg" alt="processus d'achat - livraison lors d'un paiement par virement">
+                        </figure>
+                        <div>
+                            <p>
+                                Notons qu'on devra par la suite détaillé ce processus pour répondre aux questions:
+                            </p>
+                            <ul>
+                                <li>que se passe-t-il si le virement n'est pas reçu?</li>
+                                <li>si le montant du virement est inférieur au montant de l'achat?</li>
+                                <li>si le montant du virement est supérieur au montant de l'achat?</li>
+                                <li>si la livraison ne peut pas être effectuée dans un délai raisonnable?</li>
+                                <li>si la référence du virement ne correspond à aucun achat?</li>
+                            </ul>
+                            <p>
+                                Il sera aussi indispensable de détailler le processus de livraison,
+                                mais l'énoncé ne nous le permet pas.
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Achat via carte de crédit</h4>
+                        <figure>
+                            <img src="achat-carte.jpg" alt="process d'achat - livraison lors d'un paiement par carte de crédit">
+                        </figure>
+                    </div>
+                </section>
+
+                <section id="subsection-functional-use-cases" data-tc=2 data-toc-text="use cases">
+                    <h3>Use cases</h3>
+                    <div>
+                        <p>
+                            Nous essayons d'être parfaitement fidèle avec l'énoncé de l'exercice.
+                        </p>    
+                    </div>
+                    <figure>
+                        <img src="use-case-diagram.jpg" alt="diagramme des use cases">
+                    </figure>
+                    <div>
+                        <p>
+                            Ceci est une ébauche de la vue "use case", la vue "reine" de l'analyse fonctionnelle.
+                            Ebauche car nous ne faisons que lister les use cases
+                            alors que le travail complet consiste à documenter les use cases par des scénarios,
+                            soit textuels, soit via des diagrammes de séquences, soit via des diagrammes d'activités,
+                            soit via des wireframes accompagnés d'élément de navigation.    
+                        </p>
+                    </div>
+                    <p>
+                        Notons que nous avons utilisé la notion de <strong>package</strong> pour regrouper les use cases du même domaine.
+                        En UML, les <strong>packages</strong> sont des sortes de "dossier" dans lesquels ont peut mettre tout ce que l'on veut.
+                        C'est pratique pour organiser, classifier l'analyse et en particulier la vue "use cases",
+                        en particulier si vous avez plus de 10 use cases.
+                    </p>
+                    <div>
+                        <p>
+                            Notons finalement que l'approche ici s'écarte de ce qui est généralement proposé dans la litérature,
+                            car nous plaçons le niveau de granularité du use case très bas,
+                            en gros une transaction complète entre l'actor principal et le système.
+                            Cette approche est en phase avec les méthodes agile modernes, comme "eXtreme programming"
+                            ou "Scrum", qui utilise des "user stories", un concept très proche du use case.
+                            Mais cette approche est contraire à ce qui est généralement préconisé en UML,
+                            où il est conseillé de faire des uses de plus niveaux, par exemple "gérer panier.
+                            Il est clair que je suis totalement contre cette approche car:
+                        </p>
+                        <ul>
+                            <li>elle n'est pas systèmatique car elle ne répond pas à la question "quel est le niveau de granularité des use cases?"
+                                et dès lors il est difficile d'avoir des use cases qui sont tous au même niveau de granularité;
+                            </li>
+                            <li>elle est moins pratique pour organiser le projet;</li>
+                            <li>comme déjà dit, elle n'est pas en phase avec les méthodes modernes, itérative;</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="subsection-functional-domain" data-tc=2 data-toc-text="domaine">
+                    <h3>Vue "classes du domaines"</h3>
+                    <div>
+                        Nous modélisons les entités du domaine à l'aide d'un diagramme de classes.
+                    </div>
+                    <figure>
+                        <img src="domain-class-diagram.jpg" alt="diagramme des classes du domaine">
+                    </figure>
+                </section>
+            </section>
+
+        </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2019-10-29
+        </footer>
+    </sec>
+    <script src='../../../js/script.js'></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Analyse</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+    <link rel="stylesheet" href="../../../css/codemirror.css">
+    <script src="../../../js/codemirror.js"></script>
+    <script src="../../../js/sql.js"></script>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Leçon T00 - Analyse Technique</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td=1>
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Comprendre l'analyse technique
+                </p>
+                <p>
+                    Après cette leçon, l'étudiant saura
+                    <ul>
+                        <li>Ce qu'est l'analyse technique</li>
+                        <li>Quelles sont les différentes vues de l'analyse technique</li>
+                    </ul>
+                </p>
+                <p>
+                    Durée estimée : 1 heure.
+                </p>
+                <p>
+                    Type d'enseignement : ex-cathédra & démo & discussions.
+                </p>
+                </p>
+            </section>
+
+            <section id="section-introduction" data-tc=1>
+                <h2>Introduction</h2>
+                <div>
+                    <p>
+                        Pour rappel, l'analyse est décomposée en deux phases:
+                    </p>
+                    <ul>
+                        <li>l'analyse fonctionnelle qui répond à la question de ce qu'il faut faire</li>
+                        <li>l'analyse technique qui répond à la question de comment il faut le faire</li>
+                    </ul>
+                    <p>
+                        L'analyse technique vient donc de manière naturelle après l'analyse fonctionnelle,
+                        car comment définir le <i>comment réaliser quelque chose</i>
+                        si nous ne connaissons pas le <i>ce que nous devons réaliser</i>.
+                    </p>
+                    <p>
+                        En pratique, les deux analyses sont bien souvent menées de front,
+                        avec une petite avance pour l'analyse fonctionnelle,
+                        et de nombreux aller-retour entre les deux phases sont effectués.
+                    </p>
+                    <p>
+                        L'analyse technique comprend de nombreuses vues,
+                        dépendant de vos besoins,
+                        vous utiliserez l'une ou l'autre de ces vues:
+                    </p>
+                    <ol>
+                        <li>
+                            <a href="AT01-class-model">class model</a> est le modèle de classe,
+                            il documente les classes <b>d'implémentation</b>
+                            et il utilise les diagrammes UML <i>de classes, d'objets, de séquences, de collaboration, d'activités et d'états</i>.
+                        </li>
+                        <li>
+                            <a href="AT02-component-model">compoment model</a> est le modèle des composants,
+                            il documente les composants utilisés dans l'application
+                            et il utilise le <b>diagramme UML de composants</b>.
+                        </li>
+                        <li>
+                            <a href="AT03-deployment-model">deployment model</a> est le modèle de déploiement,
+                            il documente comment les composants sont déployés
+                            et utilise le <b>diagramme UML de déploiement</b>.
+                        </li>
+                        <li>
+                            <a href="AT04-database-model">database model</a> est le modèle de base de données,
+                            il documente la structure de la base de données
+                            et il utilise des diagrammes <b>ERD</b> ou <b>relationnel</b>.
+                        </li>
+                        <li>
+                            <a href="AT05-navigation-model">navigation model</a> est le modèle de navigation,
+                            il documente la navigation d'écrans en écrans
+                            et il utilise un simple diagramme de lien entre écrans,
+                            par exemple le <b>diagramme UML d'activités</b>.
+                        </li>
+                        <li>
+                            <a href="AT06-ui-model">UI model</a> est le modèle d'interface utilisateur,
+                            il documente les interfaces utilisatures,
+                            donc, en général, les écrans,
+                            et il comprendra essentiellement <i>des wireframes, des maquettes</i>.
+                        </li>
+                        <li>
+                            <a href="AT07-interface-model">interface model</a> est le modèle d'interface,
+                            il documente les autres interfaces,
+                            les interfaces avec d'autres ordinateurs
+                            ou avec des équipements électroniques,
+                            il utilisera entre autres des <b>diagrammes UML de séquences</b>.
+                        </li>
+                    </ol>
+                </div>
+            </section>
+        </article>
+
+        <footer>
+            &copy; 2020 - Jean-Michel Depaepe - dernière mise à jour 2020-04-25
+        </footer>
+    </sec>
+    <script>
+        var sdkj = {language: 'sql'};
+    </script>
+    <script src='../../../js/script.js'></script>
+</body>
+</html>

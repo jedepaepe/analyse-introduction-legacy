@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>E2 - DDC</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+    <link rel="stylesheet" href="../../../css/codemirror.css">
+    <script src="../../../js/codemirror.js"></script>
+    <script src="../../../js/clike.js"></script>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Exercice 2 - demande de congés</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-tc=1>
+                <h2>Objectifs de la leçon</h2>
+                <ul>
+                    <li>Savoir réaliser l'analyse d'une gestion de demande de congés</li>
+                    <li>Apprendre à analyser par l'exemple</li>
+                </ul>
+                <p>
+                    Durée estimée : entre 1h et 20h, suivant le degré d'implication et le niveau initial.
+                </p>
+                <p>
+                    Type d'enseignement : exercice, apprentissage personnel, support des autres étudiants et du professeur.
+                </p>
+            </section>
+
+            <section id="section-statement" data-tc="1">
+                <h2>Enoncé</h2>
+                <p>
+                    Imaginons une entreprise qui souhaite digitaliser son processus de demande de congés.
+                </p>
+                <p>
+                    Actuellement, les demandes de congés sont envoyées par mail ou par un formulaire papier.
+                </p>
+                <p>
+                    Cette manière de faire est inefficace et cause bien des tracas,
+                    comme des formulaires perdus, des emails non traités, peu de traçabilité, ...
+                </p>
+                <p>
+                    L'idée est de développer une application web qui centralisera toutes les étapes du processus.
+                </p>
+                <p>
+                    Le processus de demande de congés actuel n'est pas modifié:
+                    Le travailleur demande congé.
+                    Ensuite, son manager peut approuver ou refuser le congé suivant des besoins de son service.
+                    Ensuite, le service RH peut approuver ou refuser le congé en fonction des règles légales 
+                    et celles en vigueur dans l'entreprise.
+                </p>
+            </section>
+
+            <section id="section-functional" data-tc=1 data-toc-text="Fonctionnel">
+                <h2>Analyse fonctionnelle</h2>
+                <div>
+                    <p>
+                        Notre analyse fonctionnelle comportera trois vues:
+                    </p>
+                    <ul>
+                        <li>
+                            la vue "business process" qui décrit les processus d'achat-livraison;
+                        </li>
+                        <li>
+                            la vue "use case" qui liste les use cases;
+                        </li>
+                        <li>
+                            la vue "domaine" qui liste les entités du domaine et leur relation.
+                        </li>
+                    </ul>    
+                </div>
+                
+                <section id="section-functional-business" data-tc=2 data-toc-text="process">
+                    <h3>Modélisation des processus</h3>
+                    <div>
+                        <p>
+                            Nous utilisons un diagramme d'activités pour modéliser
+                            le processus de demande de congé:
+                        </p>
+                        <figure>
+                            <a href="images/ddc-business-process.png">
+                                <img src="images/ddc-business-process.png" alt="diagramme d'activités pour modéliser le processus">
+                            </a>
+                        </figure>
+                        <p>
+                            Les étapes sont:
+                        </p>
+                        <ul>
+                            <li>
+                                <i>demande conge</i>, le travailleur poste une demande de congé
+                            </li>
+                            <li>
+                                <i>vérifie la continuité du service</i>, le manageur vérifie si son service pourra continuer de fonctionner
+                                correctement en l'absence du travail,
+                                sur cette base, il refuse ou approuve la demande de congé
+                            </li>
+                            <li>
+                                <i>verifie solde des congés</i>, si la demande a été approuvée par le manager,
+                                le personnel des ressources huamines fait la vérification que le travail a bien le droit de prendre ce congé,
+                                sur base du solde des congés,
+                                sur cette base, il refuse ou approuve le congé
+                            </li>
+                        </ul>
+                        <p>
+                            Dans tous les cas, les approbations et les refus font l'objet d'une notification aux intéressés,
+                            à savoir le travailleur et le manager.
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            Nous notons quelques problèmes à ce processus:
+                        </p>
+                        <ul>
+                            <li>
+                                que se passe-t-il si le <i>travailleur</i> n'introduit pas de demande de congé ?
+                            </li>
+                            <li>
+                                que se passe-t-il si le <i>manager</i> ne prend pas position par rapport à un congé,
+                                dans un délai raisonnable ?
+                            </li>
+                        </ul>
+                        <p>
+                            Ces problèmes devront être résolu en cours de projet.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="section-functional-domain" data-tc=2 data-toc-text="domaine">
+                    <h3>Modélisation du domaine</h3>
+                    <div>
+                        Nous modélisons le domaine "demande de congé"
+                        par un diagramme de classes
+                        souvent appeler diagramme de classes du domaine
+                        ou diagramme de classes métier
+                        ou diagramme de classes business
+                        ou diagramme de classes entités:
+                    </div>
+                    <figure>
+                        <a href="images/ddc-class-diagram.png">
+                            <img src="images/ddc-class-diagram.png" alt="diagramme des classes du domaine">
+                        </a>
+                    </figure>
+                    <p>
+                        Nous avons les classes:
+                    </p>
+                    <ul>
+                        <li>
+                            <b>Worker</b> qui modélise un travailleur de l'entreprise
+                        </li>
+                        <li>
+                            <b>Manager</b> qui modélise un manager de l'entreprise.
+                            Manager hérite de Worker car un Manager est un Worker.
+                        </li>
+                        <li>
+                            <b>DayOff</b> modélise le congé.
+                            Nous avons décidé que la demande de congé
+                            était en fait un congé par encore consommé.
+                        </li>
+                        <li>
+                            <b>DayOffCategory</b> modélise les différentes sortes de congés.
+                        </li>
+                        <li>
+                            Finalement, nous avons la classe <b>DayOffState</b>
+                            qui modélise l'état du congé.
+                            Ces états seront à priori REQUEST, APPROVED_MANAGER, REFUSED_MANAGER, APPROVED, REFUSED_RH.
+                            Nous vérifierons cela dans les étapes suivantes du projet.
+                        </li>
+                    </ul>
+                    <p>
+                        Il faut bien comprendre que le diagramme ci-dessus sert à modéliser le domaine,
+                        pas l'application.
+                        Cependant et en général, ces classes seront implémentées dans l'application,
+                        soit telles quelles, soit avec quelques modifications.
+                    </p>
+                    <div id="section-functional-domain-object">
+                        <h4>Diagramme d'objets</h4>
+                        <div>
+                            <p>
+                                Nous pouvons vérifier notre diagramme de classes
+                                en réalisant un diagramme d'objets.
+                            </p>
+                            <p>
+                                Le diagramme d'objets est une instance du diagramme de classes,
+                                c'est-à-dire une réalisation particulière, un exemple, soit:
+                            </p>
+                            <a href="images/ddc-object-diagram.jpg">
+                                <img src="images/ddc-object-diagram.jpg" alt="">
+                            </a>
+                            <p>
+                                Nous avons ici une hiérarchie de travailleurs et managers:
+                            </p>
+                            <ul>
+                                <li>
+                                    <b>mathilde</b> qui est le manager de tous les autres;
+                                </li>
+                                <li>
+                                    <b>albert</b> qui est le manager de <b>astrid</b> et <b>laurent</b>;
+                                </li>
+                                <li>
+                                    <b>astrid</b> et <b>laurent</b> qui sont des worker ayant <b>albert</b> comme manager;
+                                </li>
+                                <li>
+                                    <b>philipe</b> qui est un worker et a <b>mathilde</b> pour manager;
+                                </li>
+                                <li>
+                                    <b>avril-m</b> est une demande de congé de <b>mathilde</b>
+                                    et sa catégorie est <b>conge-annuel</b>
+                                </li>
+                                <li>
+                                    <b>avril-p</b> est une demande de congé de <b>philippe</b>
+                                    aussi de catégorie <b>conge-annuel</b>
+                                </li>
+                                <li>
+                                    <b>may</b> est une demande de congé de <b>philippe</b>
+                                    de catégorie <b>conge-education</b>
+                                </li>
+                            </ul>
+                            <p>
+                                Notons que les noms donnés aux objets sont purement illustratifs.
+                                L'idéal est de trouver des cas réels.
+                            </p>
+                            <p>
+                                Nous trouverons en annexe
+                                l'implémentation java des classes du diagramme de classes du domaine
+                                ainsi que l'instanciation correspondant au diagramme d'objets.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-functional-use-cases" data-tc=2 data-toc-text="use cases">
+                    <h3>Use cases</h3>
+                    <div>
+                        <p>
+                            Nous divisons les use cases en deux packages (groupes):
+                        </p>
+                        <ul>
+                            <li><i>operations</i> qui rassemble les use cases importantes effectuées sur les congés</li>
+                            <li><i>helper</i> qui rassemble les use cases de confort, nécessaire pour aider les acteurs à réaliser les <i>operations</i></li>
+                        </ul>
+                    </div>
+                    <div id="section-functional-use-cases-operations">
+                        <h4>Operations</h4>
+                        <div id="section-functional-use-cases-operations-introduction">
+                            <p>
+                                Ce package rassemble tous les use cases qui modifient l'état du congé:
+                            </p>
+                            <figure>
+                                <a href="images/ddc-use-cases-operations.png">
+                                    <img src="images/ddc-use-cases-operations.png" alt="use cases absolument nécessaires pour gérer les congés">
+                                </a>
+                            </figure>
+                        </div>
+
+                        <div id="section-functional-use-cases-operations-request" class=card>
+                            <h4>Demande congé</h4>
+                            <div>
+                                <h5>Description</h5>
+                                <p>
+                                    En tant que travailleur,
+                                    je veux pouvoir demander un congé,
+                                    ainsi je peux planifier mes vacances, mon temps libre.
+                                </p>
+                            </div>
+                            <div>
+                                <h5>Acteurs</h5>
+                                <ul>
+                                    <li>Travailleur: acteur principal</li>
+                                    <li>Manager: acteur secondaire (il veut être informé)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Préconditions</h4>
+                                <p>
+                                    Le travalleur doit être authentifié.
+                                </p>
+                            </div>
+
+                            <div id="section-functional-use-cases-operations-request-happy-flow" class=card>
+                                <h5>Scénario happy flow</h5>
+                                <ol>
+                                    <li>
+                                        <p>Le travailleur introduit les informations relatives à la demande de congé.</p>
+                                        <p>La demande de congés contient les informations suivantes</p>
+                                        <ul>
+                                            <li>son matricule</li>
+                                            <li>son nom</li>
+                                            <li>son prénom</li>
+                                            <li>la date de début de congé</li>
+                                            <li>la date de fin de congé</li>
+                                            <li>le type de congé (en chosissant dans une liste proposée par l'application)</li>
+                                            <li>optionnellement, il peut contenir un commentaire</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        L'application envoie une notification au travailleur
+                                        contenant l'information relative à la demande de congé (cf ci-dessus).
+                                    </li>
+                                    <li>
+                                        L'application envoie une notification au manager du trailleur 
+                                        contenant l'information relative à la demande congé (cf ci-dessus).
+                                    </li>
+                                </ol>
+                                <div>
+                                    <h6>Post conditions</h6>
+                                    <ul>
+                                        <li>Le congé a été enregistrée dans la base de données</li>
+                                        <li>L'état du congé est mis à "REQUESTED"</li>
+                                        <li>Une email de confirmation a été envoyé au travailleur</li>
+                                        <li>Un email d'information a été envoyé au manager</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="section-functional-use-cases-operations-request-boss" class=card>
+                                <h5>Scénario "boss"</h5>
+                                <p>
+                                    Un cas particulier concerne le patron,
+                                    celui qui n'a pas de chef,
+                                    celui qui est au sommet de la hiérarchie de l'entreprise.
+                                </p>
+                                <p>
+                                    Dans ce cas, il n'y a pas d'acteur secondaire (<i>Manager</i>),
+                                    aucun mail d'information n'est envoyé
+                                    et le congé passe directement à l'état approbation par les ressources humaine:
+                                </p>
+                                <ol>
+                                    <li>Le boss (<i>Travailleur</i>) introduit les informations relatives à la demande de congé (voir scénario précédent)</li>
+                                    <li>L'application envoie une notification de confirmation au boss</li>
+                                </ol>
+                                <div>
+                                    <h6>Post conditions</h6>
+                                    <ul>
+                                        <li>Le congé est enregistré dans la base de données</li>
+                                        <li>L'état du congé est mis à "APPROVED_MANAGER</li>
+                                        <li>Un email de confirmation a été envoyé au boss</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="section-functional-use-cases-operations-cancel" class="card">
+                            <h4>Annule congé</h4>
+                            <div>
+                                <h5>Description</h5>
+                                <p>
+                                    En tant que travailleur,
+                                    je veux pouvoir annuler une demande de congé,
+                                    ainsi je peux adapter mes demandes de congés aux circonstances.
+                                </p>
+                            </div>
+                            <div>
+                                <h5>Acteurs</h5>
+                                <ul>
+                                    <li>Le <i>Travailleur</i> est l'acteur principal</li>
+                                    <li>Le <i>Manager</i> est l'acteur secondaire, il veut être informé de l'annulation du congé</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Préconditions</h5>
+                                <p>
+                                    Le <i>Travailleur</i> doit être authentifié.
+                                </p>
+                            </div>
+                            <div id="section-functional-use-cases-operations-cancel-happy-flow" class=card>
+                                <h5>Scénario happy flow</h5>
+                                <ol>
+                                    <li>Le <i>travailleur</i> sélectionne le congé qu'il souhaite annulé</li>
+                                    <li>Il annule le congé</li>
+                                    <li>
+                                        L'application envoie une notification de confirmation au <i>travailleur</i>
+                                        indiquant que l'annulation du congé a bien été prise en compte
+                                        et contenant les informations relatives au congé annulé.
+                                    </li>
+                                    <li>
+                                        L'application envoie une notification au <i>manager</i>
+                                        indiquant l'annulation du congé 
+                                        et contenant les informations relatives au congé annulé.
+                                    </li>
+                                </ol>
+                                <div>
+                                    <h6>Post conditions</h6>
+                                    <ul>
+                                        <li>Le congé est mis à jour dans la base de données</li>
+                                        <li>L'état du congé est mis à "CANCELLED"</li>
+                                        <li>Un email de confirmation a été envoyé au travailleur</li>
+                                        <li>Un email d'information est envoyé au manager pour l'informer de l'annulation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="section-functional-use-cases-operations-approve-manager" class=card>
+                            <h4>Approuve congé - manager</h4>
+                            <div>
+                                <h5>Description</h5>
+                                <p>
+                                    En tant que <i>manager</i> je veux pouvoir approuver                                    un congé demandé par un des <i>travailleurs</i> sous ma responsabilité,
+                                    ainsi je peux assurer le contentement de mes travailleurs
+                                </p>
+                                <p>
+                                    Et en tant que <i>manager</i> je veux pouvoir refuser
+                                    un congé demandé par un des <i>travailleurs</i> sous ma responsabilité,
+                                    ainsi je peux assurer la continuité de mon service.
+                                </p>
+                            </div>
+                            <div>
+                                <h5>Acteurs</h5>
+                                <ul>
+                                    <li>Le <i>manager</i> est l'acteur principal</li>
+                                    <li>Le <i>travailleur</i> est l'acteur secondaire, il veut être informé de la décision du <i>manager</i></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Préconditions</h5>
+                                <p>
+                                    Le <i>Manager</i> doit être authentifié.
+                                </p>
+                            </div>
+                            <div id="section-functional-use-cases-operations-approve-manager-happy-flow"  class=card>
+                                <h5>Scénario approbation happy flow</h5>
+                                <ol>
+                                    <li>
+                                        Le <i>manager</i> sélectionne le congé
+                                    </li>
+                                    <li>
+                                        Le <i>manager</i> soit approuve le congé, soit il refuse.
+                                    </li>
+                                    <li>
+                                        S'il refuse, le manager doit indiquer la raison du refus.
+                                    </li>
+                                    <li>
+                                        L'application envoie une notification au <i>manager</i>
+                                        avec toutes les informations concernant le congé.
+                                    </li>
+                                    <li>
+                                        L'application envoie un mail d'information au <i>travailleur</i>
+                                        avec toutes les informations concernant le congé.
+                                    </li>
+                                </ol>
+                                <div>
+                                    <h6>Postconditions</h6>
+                                    <ul>
+                                        <li>L'état du congé est mis à "APPROVED_MANAGER" ou "REFUSED_MANAGER"</li>
+                                        <li>Le congé est mis à jour dans la base de données</li>
+                                        <li>Un email de confirmation est envoyé au <i>manager</i></li>
+                                        <li>un email d'information est envoyé au <i>travailleur</i></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="section-functional-use-cases-operations-approve-manager-timeout" class=card>
+                                <h5>Scénario pas d'actions</h5>
+                                <p>
+                                    Le <i>manager</i> ne prend pas d'action dans un temps raisonnable (TODO: quel est le temps raisonnable)?
+                                </p>
+                                <p>
+                                    TODO: est-ce un scénario ou un autre use case?
+                                </p>
+                                <ol>
+                                    <li>L'application détecte qu'une demande de congé n'a pas été traitée par le <i>manager</i> endéans un délai raisonnable</li>
+                                    <li>(TBC) L'application envoie un rappel au <i>manager</i></li>
+                                    <li>(TBC) L'application envoie un rappel au <i>travailleur</i></li>
+                                    <li>(TBC) L'application envoie une notification au manager du <i>manager</i></li>
+                                    <li>(TBC) L'application envoie une notification au <i>rh</i></li>
+                                    <li>(TBC) L'application force l'approbation ou le refus</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div id="section-functional-use-cases-operations-approve-rh" class=card>
+                            <h4>Approuve congé - rh</h4>
+                            <div>
+                                <h5>Description</h5>
+                                <p>
+                                    En tant que <i>rh</i>, je veux pouvoir approuver un congé en accord avec les règles
+                                    ainsi le <i>travailleur</i> a le congé dont il a droit
+                                </p>
+                                <p>
+                                    et en tant que <i>rh</i>, je veux pouvoir refuser un congé en accord avec les règles
+                                    ainsi le <i>travailleur</i> ne peut pas prendre plus de congé que ce qu'il a droit.
+                                </p>
+                            </div>
+                            <div>
+                                <h5>Acteurs</h5>
+                                <ul>
+                                    <li>L'employé de <i>rh</i> est l'acteur principal</li>
+                                    <li>Le <i>travaileur</i> est un acteur secondaire</li>
+                                    <li>Le <i>manageur</i> est un acteur secondaire</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Préconditions</h5>
+                                <ul>
+                                    <li>L'employé <i>rh</i> est authentifié</li>
+                                    <li>La demande de congé a été approuvée par le <i>manager</i> (état "MANAGER_APPROVED")</li>
+                                </ul>
+                            </div>
+                            <div id="section-functional-use-cases-operations-approve-rh-happy-flow" class=card>
+                                <h5>Scénario happy flow</h5>
+                                <ol>
+                                    <li><i>rh</i> sélectionne une demande de congé à vérifier</li>
+                                    <li><i>rh</i> approuve ou refuse la demande de congé</li>
+                                    <li>
+                                        l'application envoie une notification d'approbation ou de refus au <i>travailleur</i>
+                                        avec toutes les informations sur le congé
+                                    </li>
+                                    <li>
+                                        l'application envoie une notification d'approbation ou de refus au <i>manager</i>
+                                        avec toutes les informations sur le congé
+                                    </li>
+                                </ol>
+                                <h6>Postconditions</h6>
+                                <ul>
+                                    <li>L'état du congé est modifié en "APPROVED" ou "REFUSED_RH"</li>
+                                    <li>Le congé est mis à jour dans la base de données</li>
+                                    <li>Un email d'information a été envoyé au <i>travailleur</i></li>
+                                    <li>Un email d'information a été envoyé au <i>manager</i></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="section-functional-use-cases-operations-add" class=card>
+                            <h4>Ajoute un congé</h4>
+                            <div>
+                                <h5>Description</h5>
+                                <p>
+                                    En que <i>rh</i>, je veux pouvoir introduire un nouveau congé,
+                                    ainsi je peux résoudre des situations où le processus s'est mal passé,
+                                    par exemple, le <i>travailleur</i> n'a pas introduit de demande de congé.
+                                </p>
+                            </div>
+                            <div>
+                                <h5>Acteurs</h5>
+                                <ul>
+                                    <li>L'employé du <i>rh</i> est l'acteur principal</li>
+                                    <li>Le <i>travailleur</i> est un acteur secondaire, il veut être informé</li>
+                                    <li>Le <i>manager</i> est un acteur secondaire, il veut être informé</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Préconditions</h5>
+                                <ul>
+                                    <li>L'employé <i>rh</i> doit être authentifié</li>
+                                </ul>
+                            </div>
+                            <div id="section-functional-use-cases-operations-approve-rh-happy-flow" class=card>
+                                <h5>Happy flox</h5>
+                                <p>
+                                    Ce scénario est identique <a href="#section-functional-use-cases-operations-request-happy-flow">au scénario de la demande de congé</a>,
+                                    à quelques détails près.
+                                </p>
+                                <ol>
+                                    <li>
+                                        Le <i>rh</i> introduit un nouveau congé, 
+                                        il précise les même informations que 
+                                        <a href="#section-functional-use-cases-operations-request-happy-flow">dans le scénario de la demande de congé</a>
+                                        et il ajoute l'état du congé, soit:
+                                        "REQUESTED" ou "APPROVED_MANAGER" ou "APPROVED" ou "CONSUMED".
+                                    </li>
+                                    <li>
+                                        L'application notifie le <i>travailleur</i> en lui indiquant qu'un congé a été créé par le service des ressources humaines,
+                                        avec toute l'information décrivant le congé.
+                                    </li>
+                                    <li>
+                                        L'application notifie le <i>manager</i>, de façon identique.
+                                    </li>
+                                </ol>
+                                <h6>Postconditions</h6>
+                                <ul>
+                                    <li>Le congé est enregistré dans la base de données</li>
+                                    <li>Un mail de notification est envoyé au <i>travailleur</i></li>
+                                    <li>Un mail de notification est envoyé au <i>manager</i></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="section-functional-use-cases-operations-modify" class=card>
+                            <h4>Modifie un congé</h4>
+                            <div>
+                                <h5>Description</h5>
+                                <p>
+                                    En tant qu'employé <i>rh</i>,
+                                    je veux pouvoir modifier un congé,
+                                    ainsi je peux mettre un jour un congé
+                                    qui ne réprésente plus la situation réel,
+                                    déboquer des situations,
+                                    aider les <i>travailleurs</i> et <i>manager</i>
+                                </p>
+                            </div>
+                            <div>
+                                <h5>Acteurs</h5>
+                                <ul>
+                                    <li>L'employé du <i>rh</i> est l'acteur principal</li>
+                                    <li>Le <i>travailleur</i> est un acteur secondaire, il veut être informé</li>
+                                    <li>Le <i>manager</i> est un acteur secondaire, il veut être informé</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Préconditions</h5>
+                                <ul>
+                                    <li>L'employé <i>rh</i> doit être authentifié</li>
+                                </ul>
+                            </div>
+                            <div id="section-functional-use-cases-operations-modify-happy-flow">
+                                <h5>Happy flow</h5>
+                                <ol>
+                                    <li>Le <i>rh</i> sélectionne un congé</li>
+                                    <li>
+                                        <p>
+                                            Le <i>rh</i> modifie le congé,
+                                            il peut modifier les informations suivantes:
+                                        </p>
+                                        <ul>
+                                            <li>la date de début de congé</li>
+                                            <li>la date de fin de congé</li>
+                                            <li>le commentaire</li>
+                                            <li>
+                                                l'état du congé peut être modifié en
+                                                "REQUESTED", "APPROVED_MANAGER", "APPROVED", "REFUSED_MANAGER", "REFUSED_RH", "CANCELLED", "CONSUMED"
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        L'application notifie le <i>travailleur</i> que le congé a été modifié.
+                                    </li>
+                                    <li>
+                                        L'application notifie le <i>manager</i> que le congé a été modifié.
+                                    </li>
+                                </ol>
+                                <h6>Postconditions</h6>
+                                <ul>
+                                    <li>Le congé est mis à jour dans la base de données</li>
+                                    <li>Un mail de notification est envoyé au <i>travailleur</i></li>
+                                    <li>Un mail de notification est envoyé au <i>manager</i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="section-functional-use-cases-helper">
+                        <h4>Helper</h4>
+                        <div id="section-functional-use-cases-helper-introduction">
+                            <p>
+                                Ce package rassemble tous les use cases de confort:
+                            </p>
+                            <figure>
+                                <a href="images/ddc-use-cases-helper.png">
+                                    <img src="images/ddc-use-cases-helper.png" alt="diagramme de use cases de confort">
+                                </a>
+                            </figure>
+                        </div>
+
+                        <div id="section-functional-use-cases-helper-calendrier" class=card>
+                            <h5>Consulte son calendrier</h5>
+                            <div>
+                                <h6>Description</h6>
+                                <p>
+                                    En tant que travailleur,
+                                    je veux pouvoir consulter mon calendrier des congés
+                                    ainsi je peux avoir une vue d'ensemble de mes congés,
+                                    se rappeler quand j'ai congé.
+                                </p>
+                            </div>
+                            <div>
+                                <h6>Acteur principal</h6>
+                                <p>Le travailleur</p>
+                            </div>
+                            <div>
+                                <h6>Préconditions</h6>
+                                <p>
+                                    Le travailleur doit être authentifiée.
+                                </p>
+                            </div>
+                            <div>
+                                <h6>Scénario happy flow</h6>
+                                <ol>
+                                    <li>l'utilisateur sélectionne le calendrier</li>
+                                    <li>l'application affiche le calendrier avec les congés</li>
+                                    <li>l'utilisateur voit le détail de ses congés d'aujourd'hui, de demain et d'hier</li>
+                                </ol>
+                                <div>
+                                    <h6>Postconditions</h6>
+                                    <p>Aucune</p>
+                                </div>
+                                <div>
+                                    <h6>Remarques</h6>
+                                    <p>
+                                        La question de savoir comment se présente le calendrier sera étudiée dans l'analyse technique "ui model".
+                                    </p>
+                                    <p>
+                                        La question de savoir ce quelles actions sont possibles à partir du calendrier sera abordée dans l'analyse technique "navigation model".
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </section>
+
+            <section id="section-design" data-tc=1 data-toc-text="Technique">
+                <h2>Analyse Technique</h2>
+                <div title="introduction">
+                    <p>
+                        Nous étudions le design de l'application DDC.
+                        Celui-ci est abordé à travers différentes vues
+                        comme expliqué dans la section <a href="../AT00-analyse-technique/">analyse technique</a>.
+                    </p>
+                </div>
+
+                <section id="section-design-database" data-tc=2>
+                    <h3>database</h3>
+                    <div>
+                        <p>
+                            Le modèle de la base de données est directement calqué sur le diagramme des classes du domaine.
+                            Il est modélisé par un diagramme relationnel
+                            ou diagramme entités relations:
+                        </p>
+                        <figure>
+                            <a href="images/relational-diagram.png">
+                                <img src="images/relational-diagram.png" alt="relational diagramme">
+                            </a>
+                        </figure>
+                    </div>
+                </section>
+
+                <section id="section-design-navigation" data-tc=2>
+                    <h3>navigation</h3>
+                    <div title=introduction>
+                        <p>
+                            Nous analysons quelle sera la navigation
+                            des utilisateurs dans l'application.
+                            Pour plus de détail sur le modèle de navigation,
+                            nous pouvons consulter
+                            <a href="../AT05-navigation-model/">la leçon sur le modèle de navigation</a>.
+                        </p>
+                    </div>
+                    <div title=analyse>
+                        <p>
+                            Nous avons trois acteurs différents,
+                            le <b>worker</b>, le <b>manager</b> et le <b>RH</b>
+                            qui ont chacun des besoins différents,
+                            ils auront donc très probablement des interfaces utilisateurs différentes.
+                        </p>
+                        <p>
+                            Par ailleurs, nous établir la relation entre un utilisateur  et un rôle
+                            car en effet, un utilisateur peut très bien avoir l'ensemble des rôles (acteurs)
+                            ou bien, il peut être limité à un rôle précis.
+                            Listons donc les différentes possibilités:
+                        </p>
+                        <table>
+                            <thead>
+                                <tr><td>utilisateur<td>worker (acteur)<td>manager (acteur)<td>rh (acteur)
+                            </thead>
+                            <tbody>
+                                <tr><td>worker<td>X<td>-<td>-
+                                <tr><td>manager<td>X<td>Y<td>-
+                                <tr><td>rh<td>X<td>-<td>X
+                                <tr><td>rh manager<td>X<td>X<td>X
+                            </tbody>
+                        </table>
+                    </div>
+                    <div title=diagram>
+                        <p>
+                            Pour modéliser la navigation,
+                            nous choisissons le diagramme d'états
+                            parce qu'il permet de lister les actions réalisées dans chaque état.
+                        </p>
+                        <p>
+                            Nous modélisons les différents rôles par trois états de l'interface utilisateur:
+                        </p>
+                        <ul>
+                            <li>worker role</li>
+                            <li>manager role</li>
+                            <li>rh role</li>
+                        </ul>
+                        <p>
+                            Pour chaque rôle, nous imaginons les interfaces utilisateurs nécessaires,
+                            en nous aidant des use cases:
+                        </p>
+                        <table>
+                            <thead>
+                                <tr><th>role<th>page<th>description
+                            </th>
+                            <tbody>
+                                <tr><td>worker<td>WorkerCalendarUI<td>un calendrier avec les congés du travailleur
+                                <tr><td>worker<td>WorkerDayOffFormUI<td>un formulaire pour faire une demande de congé
+                                <tr><td>manager<td>ManagerCalendarUI<td>un calendrier avec les congés des collaborateurs dépendant du manager
+                                <tr><td>rh<td>DayOffListUI<td>la liste des congés
+                                <tr><td>rh<td>RHDayOffFormUI<td>un formulaire pour faire une demande de congé ou modifier une demande de congé
+                            </tbody>
+                        </table>
+                        <p>
+                            Nous créons l'état <b>running</b>
+                            qui contient tous les autres états
+                            pour factoriser la transition <b>stop application</b>.
+                        </p>
+                        <figure>
+                            <a href="images/at-5-navigation.png">
+                                <img src="images/at-5-navigation.png" alt="diagramme d'états pour modéliser la navigation du DDC">
+                            </a>
+                        </figure>
+                        <p>
+                            Pour trouver les transitions et les actions,
+                            nous vérifions 
+                            que chaque use case est bien implémenté par notre description de notre interface utilisateur.
+                        </p>
+                        <table>
+                            <thead>
+                                <tr><th>acteur<th>use case<th>page
+                            </thead>
+                            <tbody>
+                                <tr><td>worker<td>demande congé<td>WorkerDayOffFormUI
+                                <tr><td>worker<td>annule congé<td>WorkerCalendarUI
+                                <tr><td>worker<td>consulte son calendrier<td>WorkerCalendarUI
+                                <tr><td>worker<td>vérifie son solde<td>WorkerCalendarUI
+                                <tr><td>manager<td>approuve congé - manager<td>ManagerCalendarUI
+                                <tr><td>manager<td>consulte calendrier collaborateurs<td>ManagerCalendarUI
+                                <tr><td>rh<td>approuve congé - rh<td>DayOffListUI
+                                <tr><td>rh<td>ajoute un congé<td>RHDayOffFormUI
+                                <tr><td>rh<td>modifie un congé<td>RHDayOffFormUI
+                                <tr><td>rh<td>consulte la liste des congés<td>DayOffListUI
+                                <tr><td>rh<td>vérifie solde d'un travailleur<td>DayOffListUI
+                            </tbody>
+                        </table>
+                        <p>
+                            Cela semble assez correct 
+                            bien que certaines améliorations devront probablement être apportées à notre navigation,
+                            par exemple la vérification  du solde des congés est-il réalisable au sein de <b>DayOffListUI</b> 
+                            ou nécessite-t-il une nouvelle page <b>DayOffBalanceUI</b> par exemple.
+                            La réponse à ces questions pourra être faite plus tard si nous travaillons en mode <b>itératif</b>,
+                            par contre, il faudra lever un maximum d'incertitude si nous adoptons la méthode <b>waterfall</b>.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="section-design-context" data-tc=2>
+                    <h3>contexte</h3>
+                    <p>
+                        Le modèle de contexte représente l'application
+                        comme une boîte noire
+                        pour mieux décrire ses interactions avec le monde extérieur.
+                    </p>
+                    <a href="images/6-context-diagram.png">
+                    <img src="images/6-context-diagram.png" alt=""></a>
+                    <p>
+                        Le diagramme contient:
+                    </p>
+                    <ul>
+                        <li>
+                            <b>app-ddc</b> qui représente l'application,
+                            dans son ensemble
+                        </li>
+                        <li>
+                            <b>worker</b>, <b>manager</b>, <b>rh</b>
+                            qui sont les utilisateurs de l'application
+                        </li>
+                    </ul>
+                    <p>
+                        On peut considérer que le diagramme de contexte
+                        est version simplifiée du diagramme de use case,
+                        où l'on a supprimé les use cases.
+                    </p>
+                </section>
+
+                <section id="section-design-component" data-tc=2>
+                    <h3>component</h3>
+                    <p>
+                        Le modèle de composants
+                        consiste à diviser le système en composants.
+                    </p>
+                    <p>
+                        Un composant est une notion assez vague
+                        pour désigner un partie d'une application
+                        qui a une interface bien déterminée.
+                    </p>
+                    <p>
+                        Pour notre application ddc-app,
+                        nous avons:
+                    </p>
+                    <a href="images/2-component-model-diagram.png">
+                    <img src="images/2-component-model-diagram.png" alt=""></a>
+                    <p>
+                        où
+                    </p>
+                    <ul>
+                        <li>
+                            <b>ddc-browser</b> est le l'application développée pour être exécutée par le browser
+                        </li>
+                        <li>
+                            <b>ddc-android</b> est le l'application développée pour être exécutée par l'Androïd
+                        </li>
+                        <li>
+                            <b>ddc-web</b> est l'application développée pour être exécutée par le iPhone
+                        </li>
+                        <li>
+                            <b>ddc-app</b> est l'application développée pour être exécutée par le serveur
+                        </li>
+                    </ul>
+                    <p>
+                        Nous pouvons diviser ces composants en sous-composants
+                        pour décrire l'application en plus de détails
+                        mais cela dépasse le cadre de ces notes.
+                    </p>
+                </section>
+
+                <section id="section-design-deployment" data-tc=2>
+                    <h3>déploiement</h3>
+                    <p>
+                        Le diagramme de déploiement décrit quels artéfacts sont déployés sur quels nodes.
+                        Les artéfacts sont généralement des fichiers,
+                        les nodes des ordinateurs ou des machines virtuelles.
+                    </p>
+                    <p>
+                        Pour établir le diagramme de déploiement,
+                        il faut collecter les contraintes techniques:
+                    </p>
+                    <ul>
+                        <li>
+                            comment les utilisateurs vont-ils se connecter à l'application?
+                            avec leur PC, un smart phone, de la maison, de l'entreprise?
+                        </li>
+                        <li>
+                            quelle architecture choisissons-nous?
+                            client-serveur? application web classique? application web avec API?
+                            souvent l'architecture est imposée par les ... architecte IT
+                        </li>
+                        <li>
+                            quel web serveur? apache? IIS? tomcat? nginx? ...
+                        </li>
+                        <li>
+                            quel moteur de base de données (DB engine)? MS SQL Server, mysql, postgreSQL, mariadb, Oracle, MongoDB, ...
+                        </li>
+                        <li>
+                            déploiement on-premise ou dans le cloud
+                        </li>
+                    </ul>
+                    <p>
+                        Pour notre application,
+                        nous voulons que 
+                    </p>
+                    <ul>
+                        <li>
+                            les utilisateurs puissent utiliser leur PC, leur smartphone Androïd ou iPhone,
+                        </li>
+                        <li>
+                           l'application backend soit écrite java avec le framework sprint boot
+                        </li>
+                        <li>
+                            l'application backend soit déployé sur un serveur de l'entreprise
+                        </li>
+                        <li>
+                            les données soient sauvegarder dans le serveur MS SQL de l'entreprise
+                        </li>
+                    </ul>
+                    <p>
+                        Ce qui donne le diagramme de déploiement suivant:
+                    </p>
+                    <a href="images/3-deployment-model.png">
+                    <img src="images/3-deployment-model.png" alt=""></a>
+                    <p>
+                        où nous avons:
+                    </p>
+                    <ul>
+                        <li>
+                            <b>worker</b> est l'acteur "travailleur".
+                            La norme UML ne prévoit pas de montrer les acteurs sur les diagrammes de déploiement,
+                            mais je pense que cela les rend plus lisible.
+                            Le diagramme montre que le travailleur peut se utiliser
+                            l'application à partir d'un PC, d'un smartphone Androïd ou iPhone.
+                        </li>
+                        <li>
+                            <b>ddc-android.dex</b> est l'éxécutable
+                            à déployer sur les téléphones Androïd.
+                        </li>
+                        <li>
+                            <b>ddc-browser</b> est l'ensemble des ressources
+                            web exécutées par le browser (html, css, javascript, images, polices caractères, ...)
+                        </li>
+                        <li>
+                            <b>ddc-iphone.ipa</b> est l'exécutable
+                            à déployer sur les téléphones iPhone
+                        </li>
+                        <li>
+                            <b>ddc-app.jar</b> est l'application écrite java
+                            avec le framework sprint boot.
+                        </li>
+                        <li>
+                            <b>ddc-schema</b> est le schéma de la base de données.
+                        </li>
+                    </ul>
+                </section>
+            </section>
+
+            <section id="section-implementation" data-tc=1>
+                <h2>Implémentation</h2>
+                <section id="section-implementation-database" data-tc=2>
+                    <h3>database</h3>
+                    <div>
+                        <p>
+                            Dans le dialect mariadb/mysql,
+                            le code de création de la database est:
+                        </p>
+                        <figure>
+                            <pre>
+CREATE DATABASE dayoff;
+
+USE dayoff;
+
+CREATE TABLE day_off_status (
+    id INTEGER(10) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    name VARCHAR(64) NOT NULL UNIQUE
+);
+
+CREATE TABLE day_off_category (
+    id INTEGER(10) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    name VARCHAR(64) NOT NULL UNIQUE
+);
+
+CREATE TABLE role (
+    id INTEGER(10) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    name VARCHAR(16) NOT NULL UNIQUE
+);
+
+CREATE TABLE worker (
+    id INTEGER(10) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    matricule VARCHAR(10) NOT NULL UNIQUE,
+    firstname VARCHAR(32) NOT NULL,
+    lastname VARCHAR(32) NOT NULL,
+    email VARCHAR(128) UNIQUE,
+    manager_id INTEGER(10),
+    FOREIGN KEY (manager_id) REFERENCES worker(id)
+);
+
+CREATE TABLE worker_role (
+    worker_id INTEGER(10) NOT NULL,
+    role_id INTEGER(10) NOT NULL,
+    PRIMARY KEY (worker_id, role_id),
+    FOREIGN KEY (worker_id) REFERENCES worker(id),
+    FOREIGN KEY (role_id) REFERENCES role(id)
+);
+
+CREATE TABLE day_off (
+    id INTEGER(10) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    start DATE NOT NULL,
+    end DATE NOT NULL,
+    comment VARCHAR(512),
+    worker_id INTEGER(10) NOT NULL,
+    day_off_category_id INTEGER(10) NOT NULL,
+    day_off_status_id INTEGER(10) NOT NULL,
+    FOREIGN KEY (worker_id) REFERENCES worker(id),
+    FOREIGN KEY (day_off_category_id) REFERENCES day_off_category(id),
+    FOREIGN KEY (day_off_status_id) REFERENCES day_off_status(id)
+);
+                            </pre>
+                        </figure>
+                    </div>
+                    <div title="insertion">
+                        <p>
+                            Ensuite, nous devons insérer les données de configuration
+                            de la database.
+                        </p>
+                        <figure>
+                            <pre>
+INSERT INTO day_off_status VALUES
+    (1, 'REQUESTED'),
+    (2, 'APPROVED_MANAGER'),
+    (3, 'APPROVED_RH'),
+    (4, 'CONSUMED'),
+    (5, 'CANCELLED'),
+    (6, 'REFUSED_MANAGER'),
+    (7, 'REFUSED_RH');
+
+INSERT INTO day_off_category VALUES
+    (1, 'Jour fériés'),
+    (2, 'Vacances annuelles'),
+    (3, 'Congé d''adoption'),
+    (4, 'Congé de maternité'),
+    (5, 'Congé de paternité et congé de copaternité'),
+    (6, 'Crédit-temps interruption de carrière'),
+    (7, 'Congé de circonstance'),
+    (8, 'Congé politique'),
+    (9, 'Congé éducation payé');
+
+INSERT INTO role VALUES
+    (1, 'worker'),
+    (2, 'manager'),
+    (3, 'rh');
+                            </pre>
+                        </figure>
+                    </div>
+                    <div title="test-data">
+                        <p>
+                            Finalement, nous aurons besoin de données de tests:
+                        </p>
+                        <figure>
+                            <pre>
+INSERT INTO worker VALUES (1, 'Albert', 'de Belgique', 'albert@roi.be', '111', null);
+INSERT INTO worker_role VALUES (1, 1);
+INSERT INTO worker_role VALUES (1, 2);
+
+INSERT INTO worker VALUES (2, 'Paola', 'Ruffo di Calabria', 'paola@roi.be', '112', 1);
+INSERT INTO worker_role VALUES (2, 1);
+INSERT INTO worker_role VALUES (2, 2);
+INSERT INTO worker_role VALUES (2, 3);
+
+INSERT INTO worker VALUES (3, 'Philipe', 'de Belgique', 'philippe@roi.be', '113', 1);
+INSERT INTO worker_role VALUES (3, 1);
+INSERT INTO worker_role VALUES (3, 2);
+
+INSERT INTO worker VALUES (4, 'Mathilde', 'd''Udekem d''Acoz', 'mathile@roi.be', '114', 1);
+INSERT INTO worker_role VALUES (4, 1);
+INSERT INTO worker_role VALUES (4, 2);
+
+INSERT INTO worker VALUES (5, 'Elisabeth', 'de Belgique', 'elisabeth@roi.be', '115', 4);
+INSERT INTO worker_role VALUES (5, 1);
+INSERT INTO worker_role VALUES (5, 3);
+
+INSERT INTO worker VALUES (6, 'Gabriel', 'de Belgique', 'gabriel@roi.be', '116', 3);
+INSERT INTO worker_role VALUES (6, 1);
+INSERT INTO worker_role VALUES (6, 3);
+
+INSERT INTO worker VALUES (7, 'Emmanuel', 'de Belgique', 'emmanuel@roi.be', '117', 4);
+INSERT INTO worker_role VALUES (7, 1);
+
+INSERT INTO worker VALUES (8, 'Eléonore', 'de Belgique', 'eleonore@roi.be', '118', 3);
+INSERT INTO worker_role VALUES (8, 1);
+
+INSERT INTO day_off VALUES (1, '2020-05-20', '2020-05-24', 'voyage dans les Ardennes', 1, 2, 3);
+
+                            </pre>
+                        </figure>
+                    </div>
+                </section>
+
+                <section id="section-implementation-code" data-tc=2>
+                    <h2>code</h2>
+                    <div>
+                        <p>
+                            Pour illustrer le projet,
+                            nous avons écrit une partie du code
+                            dans le cadre d'une application console
+                            en Java.
+                        </p>
+                        <p>
+                            Cependant, le code est trop long pour être présenté ici,
+                            mais il est disponible au téléchargement
+                            <a href="dayoff-request.zip" download>dayoff-request.zip</a>.
+                        </p>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-annex" data-tc=1>
+                <h2>Annexes</h2>
+                <section id="section-annex-domain" data-tc=2>
+                    <h3>domaine</h3>
+                    <div>
+                        <p>
+                            Une implémentation java du 
+                            <a href="https://sdkj.website/notes/analyse/E02-ddc/note.html#section-functional-domain">
+                            diagramme de classe du domaine</a> est donnée ci-dessous.
+                        </p>
+                        <p>
+                            Insistons bien sur le fait que le diagramme des classes du domaine
+                            n'est pas fait pour être implémentés
+                            mais uniquement pour modéliser le domaine
+                            et que si nous donnons ici une implémentation,
+                            c'est uniquement à titre pédagogique,
+                            pour faire le lien entre les diagrammes de classes et le code.
+                        </p>
+                        <p>
+                            Finalement, remarquons que nous ne suivons pas les bonnes pratiques de java,
+                            à savoir mettre les champs (attributs) en privés
+                            et de créer des getters/setters,
+                            dans le but de simplifier nos exemples
+                            afin de nous concentrer sur la correspondance diagramme de classes/code.
+                        </p>
+                        <p>
+                            Nous avons aussi utilisé un constructeur obsolète de la classe <b>Date</b>,
+                            toujours par souci de simplicité et parce que le propos ici n'est pas d'apprendre java.
+                        </p>
+                        
+                        <div id="section-annex-domain-worker">
+                            <h4>class Worker</h4>
+                            <div>
+                                <textarea>
+import java.util.ArrayList;
+
+public class Worker {
+    String firstname;
+    String lastname;
+    String email;
+    String phone;
+    Manager manager;
+    ArrayList<DayOff> dayOffs = new ArrayList<>();
+
+    public Worker(String firstname, String lastname, String email, String phone) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+    }
+}
+                                </textarea>
+                                <p>
+                                    L'implémentation contient deux attributs supplémentaires:
+                                </p>
+                                <ul>
+                                    <li>
+                                        <b>Manager manager</b> qui est une référence vers le manager du travailleur,
+                                        c'est l'implémentation de l'association <span class="scode">Worker -*---0,1- Manager</span>
+                                    </li>
+                                    <li>
+                                        <b>ArrayList<DayOff> dayOffs</DayOff></b> qui est la liste des congés demandés par le travailleurs.
+                                    </li>
+                                    <li>
+                                        <b>Worker</b> est le constructeur, il facilite l'initialisation de l'objet.
+                                    </li>
+                                </ul>
+                                <p>
+                                    Remarquons que nous n'avons pas mis les champs en private
+                                    pour simplifier le propos.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div id="section-annex-domain-manager">
+                            <h4>Manager</h4>
+                            <div>
+                                <textarea>
+import java.util.ArrayList;
+
+public class Manager extends Worker {
+    ArrayList<Worker> subordinates = new ArrayList<>();
+
+    public Manager(String firstname, String lastname, String email, String phone) {
+        super(firstname, lastname, email, phone);
+    }
+}
+                                </textarea>
+                                <p>
+                                    <b>extends</b> veut dire hérite en java.
+                                </p>
+                                <p>
+                                    La classe Worker n'a qu'un champ propre,
+                                    <b>ArrayList workers</b> qui est la liste des travailleurs
+                                </p>
+                            </div>
+                        </div>
+
+                        <div id="section-anner-domain-dayoff">
+                            <h4>DayOff</h4>
+                            <div>
+                                <p>
+                                    DayOff est la classe représentant le congé:
+                                </p>
+                                <div>
+                                    <textarea>
+import java.util.Date;
+
+public class DayOff {
+    Worker worker;
+    Date start;
+    Date end;
+    String comment;
+    String refuseReason;
+    DayOffStatus status;
+    DayOffCategory category;
+
+    public DayOff(Worker worker, Date start, Date end,
+                String comment, String refuseReason,
+                DayOffStatus status, DayOffCategory category) {
+        this.worker = worker;
+        this.start = start;
+        this.end = end;
+        this.comment = comment;
+        this.refuseReason = refuseReason;
+        this.status = status;
+        this.category = category;
+    }    
+}
+
+                                    </textarea>
+                                    <ul>
+                                        <li>
+                                            <b>DayOffStatus status</b> est le status du congé
+                                        </li>
+                                        <li>
+                                            <b>DayOffCategory</b> est la catégorie du congé,
+                                            c'est l'implémentation de la laisions <span class="scode">DayOff -*---1- DayOffCategory</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="section-annex-domain-dayoffcategory">
+                            <h4>DayOffCategory</h4>
+                            <div>
+                                <textarea>
+import java.util.ArrayList;
+
+public class DayOffCategory {
+    String name;
+    ArrayList<DayOff> dayOffs = new ArrayList<>();
+
+    public DayOffCategory(String name) {
+        this.name = name;
+    }
+}
+                                </textarea>
+                                <p>
+                                    <b>dayOffs</b> est la liste des congés de la catégorie.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div id="section-annex-domain-dayoffstatus">
+                            <h4>DayOffStatus</h4>
+                            <div>
+                                <p>
+                                    Pour ce type de données,
+                                    nous n'utiliserons pas une classe mais un <b>enum</b>,
+                                    une énumération.
+                                </p>
+                                <div>
+                                    <textarea>
+package ddc.dayoff;
+
+public enum DayOffStatus {
+    REQUEST,
+    APPROVED_MANAGER,
+    APPROVED_RH,
+    REJECTED_MANAGER,
+    REJECTED_RH
+}
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="section-annex-domain-demodayoff">
+                            <h4>Démo</h4>
+                            <div>
+                                <p>
+                                    Créons une classe <b>DemoDayOff</b>
+                                    avec une méthode main
+                                    qui instancie tous les objets du diagramme d'objet
+                                </p>
+                                <a href="images/ddc-object-diagram.jpg">
+                                <img src="images/ddc-object-diagram.jpg" alt=""></a>
+                            </div>
+                            <textarea>
+import java.util.Date;
+
+public class DemoDayOff {
+public static void main(String[] args) {
+    Manager mathilde = new Manager("Mathilde", "Roi", "ma@roi.be", "01");
+
+    Manager albert = new Manager("Albert", "Roi", "al@roi.be", "02");
+    mathilde.subordinates.add(albert);
+
+    Worker astrid = new Worker("Astrid", "Roi", "as@roi.be", "03");
+    albert.subordinates.add(astrid);
+
+    Worker laurent = new Worker("Laurent", "Roi", "la@roi.be", "04");
+    albert.subordinates.add(laurent);
+
+    Worker philippe = new Worker("Philippe", "Roi", "ph@roi.be", "05");
+    mathilde.subordinates.add(philippe);
+
+    DayOffCategory congeAnnuel = new DayOffCategory("congé annuel");
+    DayOffCategory congeEducation = new DayOffCategory("congé éducation");
+
+    DayOff apprilM = new DayOff(mathilde,
+            new Date(2021, 4, 1),
+            new Date(2021, 4, 18),
+            null, null, DayOffStatus.APPROVED_MANAGER, congeAnnuel);
+    mathilde.dayOffs.add(apprilM);
+    congeAnnuel.dayOffs.add(apprilM);
+
+    DayOff apprilP = new DayOff(philippe,
+            new Date(2021, 4, 1),
+            new Date(2021, 4, 18),
+            null, null, DayOffStatus.APPROVED_MANAGER, congeAnnuel);
+    philippe.dayOffs.add(apprilP);
+    congeAnnuel.dayOffs.add(apprilP);
+
+    DayOff may = new DayOff(philippe,
+            new Date(2021, 5, 15),
+            new Date(2021, 5, 19),
+            "perfectionnement vol en hélicoptère", null,
+            DayOffStatus.REQUEST, congeEducation);
+    philippe.dayOffs.add(may);
+    congeEducation.dayOffs.add(may);
+
+}
+}
+                            </textarea>
+                        </div>
+                    </div>
+                </section>
+            </section>
+    </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2019-10-29
+        </footer>
+    </sec>
+    <script src='../../../js/script.js'></script>
+</body>
+</html>

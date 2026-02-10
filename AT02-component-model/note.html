@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>AT02-COMPONENTS</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+    <link rel="stylesheet" href="../../../css/codemirror.css">
+    <script src="../../../js/codemirror.js"></script>
+    <script src="../../../js/sql.js"></script>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Leçon T02 - Component Model</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td=1>
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Savoir réaliser un modèle de composants.
+                </p>
+                <p>
+                    Durée estimée : 3 heures.
+                </p>
+                <p>
+                    Type d'enseignement : ex-cathédra & démo & discussions.
+                </p>
+                </p>
+            </section>
+
+            <section id="section-introduction" data-tc=1>
+                <h2>Introduction</h2>
+                <div>
+                    <p>Le diagramme de composants sert à donner une représentation de haut niveau du système.</p>
+                    <p>
+                        En général, le diagramme de classes est trop détaillé
+                        et il ne permet pas de comprendre facilement ce que fait une application.
+                        Le diagramme de composants est alors une bonne solution,
+                        car chaque composant sera le regroupement de plusieurs classes,
+                        en fait souvent un package du diagramme de classes sera un composant.
+                    </p>
+                    <p>
+                        Notons que les composants ne sont pas nécessairement un ensemble de classes,
+                        ils peuvent aussi représenter une librairie, un exécutable.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-references" data-tc=1>
+                <h2>Références</h2>
+                <ul>
+                    <li>
+                        <a href="https://laurent-audibert.developpez.com/Cours-UML/?page=diagrammes-composants-deploiement" target=_blank>
+                            Laurent Audibert - Diagrammes de composants et diagrammes de déploiement
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.uml-diagrams.org/component-diagrams-reference.html" target=_blank>
+                            uml-diagrams.org : UML Component Diagrams Reference
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-component-diagram/" target=_blank>
+                            Visual Paradigm - What is Component Diagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.modernanalyst.com/Resources/Articles/tabid/115/ID/2013/End-to-End-UML-Component-Diagram-and-Deployment-Diagram.aspx" target=_blank>
+                            Modern analyst.com - End-to-End-UML-Component-Diagram-and-Deployment-Diagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.uml-diagrams.org/component-diagrams-reference.html" target=_blank>
+                            uml-diagrams.org - UML Component Diagrams Reference
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=KQUGFFN4M90" target=_blank>
+                            vidéo - Derek Banas - UML 2 Component Diagrams
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=LZ9d4KhOPQw&list=PLKY5eEvz9PTgLbZ5rXEjheJmu7a_Xz9EW&index=1" target=_blank>
+                            Enterprise Architect - 12 series - Component Diagrams
+                        </a>
+                    </li>
+                </ul>
+                <p>
+                    Et pour aller plus loin:
+                </p>
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=2dKZ-dWaCiU" target=_blank>
+                            ITkonekt 2019 | Robert C. Martin (Uncle Bob), Clean Architecture and Design
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=tMHO7_RLxgQ" target=_blank>
+                            vidéo - Victor Rentea - Evolving a Clean, Pragmatic Architecture – A Software Crafter’s Guide
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=EZ05e7EMOLM" target=_blank>
+                            vidéo - DevTernity 2017: Ian Cooper - TDD, Where Did It All Go Wrong
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=tpspO9K28PM" target=_blank>
+                            Four Distributed Systems Architectural Patterns by Tim Berglund
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=7kX3fs0pWwc" target=_blank>
+                            Developing microservices with aggregates - Chris Richardson
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=STKCRSUsyP0" target=_blank>
+                            GOTO 2017 • The Many Meanings of Event-Driven Architecture • Martin Fowler
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=UEg40Te8pnE" target=_blank>
+                            Introduction to Apache Kafka by James Ward
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=IR1NLfaq7PU&list=RDCMUCCBVCTuk6uJrN3iFV_3vurg&index=3" target=_blank>
+                            Building event-driven (Micro)Services with Apache Kafka by Guido Schmutz
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=arxm7llvDdg&list=RDCMUCCBVCTuk6uJrN3iFV_3vurg&index=14" target=_blank>
+                            The Evolution From Monolith to Microservices to Serverless and Beyond by Hugh Mckee
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://shop.oreilly.com/product/0636920033158.do" target=_blank>
+                            Building Microservices,
+                            Designing Fine-Grained Systems,
+                            By Sam Newman,
+                            O'Reilly Media,
+                            February 2015
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=9I9GdSQ1bbM" target=_blank>
+                            vidéo - GOTO 2019 • Monolith Decomposition Patterns • Sam Newman
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </article>
+
+        <footer>
+            &copy; 2020 - Jean-Michel Depaepe - dernière mise à jour 2020-04-25
+        </footer>
+    </sec>
+    <script>
+        var sdkj = {language: 'sql'};
+    </script>
+    <script src='../../../js/script.js'></script>
+</body>
+</html>

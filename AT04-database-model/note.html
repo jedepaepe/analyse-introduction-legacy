@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Analyse</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+    <link rel="stylesheet" href="../../../css/codemirror.css">
+    <script src="../../../js/codemirror.js"></script>
+    <script src="../../../js/sql.js"></script>
+</head>
+
+<body>
+    <a href="..">
+        <div class="home"></div>
+    </a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Leçon T01 - Modèle de DB</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td=1>
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Modélisation de la DB
+                </p>
+                <p>
+                    Après cette leçon, l'étudiant saura
+                    <ul>
+                        <li>Réaliser un diagramme relationnel à partir d'un diagramme de classes du domaine</li>
+                        <li>Détailler le diagramme relationnel</li>
+                        <li>Ecrire le script de création de database correspondant au diagramme relationnel</li>
+                    </ul>
+                </p>
+                <p>
+                    Durée estimée : 3 heures.
+                </p>
+                <p>
+                    Type d'enseignement : ex-cathédra & démo & discussions.
+                </p>
+                <p>
+                    <a href="ddc-db.vpp">
+                        Le projet Visual Paradigm exemple est disponible ici.
+                    </a>
+                </p>
+            </section>
+
+            <section id="section-introduction" data-tc=1>
+                <h2>Introduction</h2>
+                <div id="section-introduction-dbms" data-tc=2>
+                    <h3>DBMS</h3>
+                    <p>
+                        Le modèle de base de données sert à décrite et documenter une base de données.
+                    </p>
+                    <p>
+                        Les bases de données servent à stoker les données utilisées par les applications.
+                    </p>
+                    <p>
+                        Nous appelerons SGBD (Système de Gestion de Base de Données,
+                        DBMS DataBase Management System) les logiciels qui gèrent les bases de données.
+                    </p>
+                </div>
+                <div id="section-introduction-rdbms" data-tc=2>
+                    <h3>RDBMS</h3>
+                    <p>
+                        Nous nous limiterons aux bases de données relationnelles,
+                        et plus exactement les databases supportant le langage SQL,
+                        dont les principales sont:
+                    </p>
+                    <ul>
+                        <li>PostgreSQL</li>
+                        <li>mariaDB</li>
+                        <li>mySQL</li>
+                        <li>Oracle</li>
+                        <li>MS SQL Server</li>
+                        <li>DB2</li>
+                        <li>Sybase</li>
+                    </ul>
+                    <p>
+                        Ces logiciels sont des SGDBR (Système de Gestion de Base de Données Relationnelles,
+                        RDBMS Relational DataBase Management System).
+                        Ces logiciels sont généralement installés sur des serveurs.
+                    </p>
+                    <p>
+                        Il y a aussi des logiciels
+                        qui servent à gerer de petites databases installés localement,
+                        sur un PC ou un mobile, comme:
+                    </p>
+                    <ul>
+                        <li>SQLite</li>
+                        <li>JavaDB</li>
+                        <li>MS Access</li>
+                    </ul>
+                </div>
+                <div id="section-introduction-model">
+                    <h3>Modèle</h3>
+                    <p>
+                        Le modèle de DB permet de décrire la structure d'une database.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-domain-class" data-tc=1>
+                <h2>Domain Class</h2>
+                <p>
+                    L'analyse fonctionnel produit entre autre un diagramme de classes du domaine,
+                    par exemple:
+                </p>
+                <figure>
+                    <a href="domain-model-class-diagram.jpg"><img src="domain-model-class-diagram.jpg"
+                        alt="Diagramme des classes du domaine 'demande de congés'"></a>
+                    <figcaption>Diagramme des classes du domaine 'demande de congés'</figcaption>
+                </figure>
+                <p>
+                    En première approche, chaque classe du diagramme de classes du domaine
+                    sera une table de notre base de données.
+                </p>
+                <p>
+                    Dans une approche plus précise,
+                    chaque classe sera une table candidate de notre base de données.
+                    En effet, l'analyse du domaine étudie le ... domaine et
+                    le domaine est plus généralement plus large que l'application.
+                    Dès lors certaines classes pourraient être rejetées
+                    parce qu'elles n'ont pas d'intérêt pour notre application.
+                    Nous pouvons faire ce tri grâce aux use cases listés lors de l'analyse fonctionnelle:
+                    seules les classes qui participent aux use cases sont utilent à notre application
+                    et seront conservées.
+                </p>
+                <p>
+                    Par ailleurs, nous serons en général amenés à compléter
+                    ce premier choix de tables par des tables qui stockent des informations techniques,
+                    par exemple des paramètres de l'application.
+                </p>
+            </section>
+
+            <section id="section-relational" data-tc=1>
+                <h2>Relational Model</h2>
+                <div id="section-relational-intro">
+                    <p>
+                        Le modèle relationnel permet d'avoir une vision précise et résumée
+                        de la structure de la base de données,
+                        par exemple:
+                    </p>
+                    <figure>
+                        <a href="relational-diagram.jpg">
+                            <img src="relational-diagram.jpg" alt="Diagramme relationnel du domaine 'demande de congés'">
+                        </a>
+                        <figcaption>Diagramme relationnel du domaine 'demande de congés'</figcaption>
+                    </figure>
+                    <p>
+                        Le diagramme met en évidence:
+                    </p>
+                    <ul>
+                        <li>
+                            la table <b>worker</b> pour stocker les travailleurs
+                            avec ces colonnes:
+                            <ul>
+                                <li>
+                                    <b>id</b> est l'identifiant technique de l'enregistrement,
+                                    c'est la clef primaire de la table;
+                                </li>
+                                <li>
+                                    <b>matricule</b> est le numéro de matricule du travailleur,
+                                    il est unique et il y a un index sur le matricule;
+                                </li>
+                                <li>
+                                    <b>firstname</b> est le prénom du travailleur,
+                                    il y a un index sur firstname;
+                                </li>
+                                <li>
+                                    <b>lastname</b> est le nom de famille du travailleur,
+                                    il y a un index sur lastname;
+                                </li>
+                                <li>
+                                    <b>email</b> est l'adresse électronique du travailleur,
+                                    il est unique, il peut être null, il y a un index sur email;
+                                </li>
+                                <li>
+                                    <b>is_manager</b> indique si le worker est un manager ou pas;
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            la table <b>day_off</b> pour rendre persistantes les demandes de congés,
+                            avec les colonnes:
+                            <li>
+                                <b>id</b>, l'identifiant technique, clé primaire;
+                            </li>
+                            <li>
+                                <b>start</b> la date de début du congé, indexé;
+                            </li>
+                            <li>
+                                <b>end</b> la date de fin du congé, indexé;
+                            </li>
+                            <li>
+                                <b>comment</b>, un commentaire pour détailler le congé,
+                                il peut être nul.
+                            </li>
+                            <li>
+                                <b>worker_id</b> est la clef étrangère pour référencer le travailleur;
+                            </li>
+                            <li>
+                                <b>day_off_category_id</b> est la clef étrangère pour référencer la catégorie de congé
+                            </li>
+                        </li>
+                        <li>
+                            la table <b>day_off_category</b> pour la liste des catégories de congé
+                            <ul>
+                                <li>
+                                    <b>id</b> est l'identifiant technique;
+                                </li>
+                                <li>
+                                    <b>name</b> est le nom de la catégorie de congé,
+                                    par exemple "congé annuel", "congé de maternité", ...
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>
+                        Le diagramme précise aussi le type des colonnes.
+                        Nous avons utilisé ici les types <b>integer, varchar, tinynint et date</b>
+                    </p>
+                    <p>
+                        L'un des aspects le plus intéressant du diagramme relationnel,
+                        c'est qu'il montre explicitement les relatons entre les tables.
+                        Nous avons ici:
+                    </p>
+                    <ul>
+                        <li>
+                            une relation 1-N (un à plusieurs) entre les tables <b>worker</b>
+                            et <b>day_off</b> (indique qu'un travailleur prendre plusieurs congé
+                            alors qu'un congé n'est pris que par un seul travail)
+                        </li>
+                        <li>
+                            une relation N-1 (plusieurs à un) entre les tables <b>day_off</b>
+                            et <b>day_off_category</b> (indique qu'un congé est d'un seul type
+                            alors beaucoup de congés peuvent avoir le même type).
+                        </li>
+                    </ul>
+                    <p>
+                        Une seconde utilité des diagrammes relationnels
+                        c'est qu'ils peuvent facilement être convertis en code SQL
+                        et vis versa.
+                        D'ailleurs de nombreux outils le permettent,
+                        comme MySQLWorkbench, DBMain, ...
+                    </p>
+                </div>
+                <div id="section-relational-how" data-tc=2>
+                    <h3>class => relational</h3>
+                    <p>
+                        La procédure pour obtenir ce diagramme consiste en:
+                    </p>
+                    <ol>
+                        <li>utiliser une convention de nommage pour les noms de table et de colonne, ici le "snake_case"
+                        </li>
+                        <li>créer une table par classe</li>
+                        <li>créer une colonne par attribut
+                            <ul>
+                                <li>précisons le type, les plus courant sont "integer", "varchar", "date", "double"</li>
+                                <li>ajoutons la propriété "NOT NULL" si la colonne ne peut pas contenir de cellule sans
+                                    valeur</li>
+                                <li>ajoutons la propriété "UNIQUE" si chaque valeur est unique (pas de double)</li>
+                                <li>
+                                    ajoutons la propriété "INDEXED" si la colonne doit être indexé,
+                                    nous indexerons les colonnes pour sur lesquelles des recherches doivent être
+                                    effectuées,
+                                    l'indexation accélère la sélection mais ralenti l'insertion.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            ajouter une colonne nom, appelé "id" (convention),
+                            qui sert d'idenficateur technique
+                            nous lui ajoutons les propriétés:
+                            <ul>
+                                <li>integer(11) : c'est un entier (d'autres solutions sont possibles pour des cas
+                                    particuliersà</li>
+                                <li>PRIMARY KEY : c'est la clef primaire</li>
+                                <li>NOT NULL : l'identifiant ne peut pas être null</li>
+                            </ul>
+                        </li>
+                        <li>
+                            créons les relations entre les tables,
+                            celles-ci correspondent aux relations entre les classes
+                            <ul>
+                                <li>
+                                    Les relations peuvent être "one-to-one"
+                                </li>
+                                <li>
+                                    "one-to-many"
+                                </li>
+                                <li>
+                                    "many-to-many" que nous verrons plus tard
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>les relations sont physiquement des cléfs étrangères (foreign keys) d'une table vers
+                                    l'autre</li>
+                                <li>
+                                    par convention, le nom de la colonne "foreign key" sera
+                                    $nom-de-la-table-référencée_id,
+                                    par exemple worker_id est la "foreign key"
+                                    qui référence la table "worker" via sa primary key "id".
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <p>
+                        Ensuite, il y a les exceptions, comme "Manager".
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-patterns" data-tc=1>
+                <h2>Patterns</h2>
+                <p>
+                    Comment souvent, nous avons des patrons de conception
+                    qui se répètent de projet en projet.
+                    Cette section en présente quelques uns sous forme d'exemple.
+                </p>
+                <section id="section-patterns-inheritance" data-tc=2>
+                    <h3>Héritage</h3>
+                    <div title="introduction">
+                        <h4>Introduction</h4>
+                        <p>
+                            Prenons l'exemple d'une application
+                            qui a deux types d'utilisateurs:
+                        </p>
+                        <ul>
+                            <li>l'utilisateur de base</li>
+                            <li>l'administratreur</li>
+                        </ul>
+                        <p>
+                            Le diagramme de classes correspondant est:
+                        </p>
+                        <figure>
+                            <a href="af-3-domain-model-class-diagram.png">
+                                <img src="af-3-domain-model-class-diagram.png" alt="diagramme des classes du domaine">
+                            </a>
+                        </figure>
+                        <p>
+                            Nous avons deux classes:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>User</b> avec ses attributs pseudo, encryptedPassword et email
+                            </li>
+                            <li>
+                                <b>Administrator</b> avec son attribut expertiseLevel
+                                et qui hérite de User,
+                                c'est-à-dire qu'un <u>:Administrator</u> est un <u>:User</u>,
+                                mais qu'un <u>:User</u> n'est pas nécessairement un <u>:Administrator</u>.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div title="database-model">
+                        <h4>Modèlisation de la DB</h4>
+                        <p>
+                            Ce diagramme de classes peut être tranduit de trois manières différentes:
+                        </p>
+                        <ol>
+                            <li>par une seule table, <b>User</b></li>
+                            <li>par deux tables indépendantes, <b>User</b> et <b>Administrator</b></li>
+                            <li>par deux tables liées, toujours <b>User</b> et <b>Adminitrator</b></li>
+                        </ol>
+                    </div>
+
+                    <div title="one-table">
+                        <h4>Un table</h4>
+                        <p>
+                            La solution une table est:
+                        </p>
+                        <figure>
+                            <a href="at-4-database-model-1-table-relational-diagram.png">
+                                <img src="at-4-database-model-1-table-relational-diagram.png" alt="Diagramme relationnel pour la solution 1 table">
+                            </a>
+                        </figure>
+                        <p>
+                            Notons que :
+                        </p>
+                        <ul>
+                            <li>la table <b>user</b> reprend tous les attributs des classes <b>User</b> et <b>Administrator</b></li>
+                            <li>la colonne "id" a été ajoutée, l'identifiant technique</li>
+                            <li>la colonne "isAdministrator" a été ajouté pour indiquer si l'enregistrement est celui d'un administateur ou pas,
+                                cette colonne a été rendue obligatoire
+                            </li>
+                        </ul>
+                        <p>
+                            Le principal avantage est la simplicité,
+                            le principal incovénient est d'avoir des colonnes vides par construction,
+                            ici "expertiseLevel" sera vide pour tous les utilisateurs qui ne sont pas des administrateurs.
+                        </p>
+                    </div>
+
+                    <div title="two-independant-tables">
+                        <h4>Deux tables indépendantes</h4>
+                        <p>
+                            Ici nous créons deux tables <b>user</b> et <b>administrator</b>
+                            sans aucune relations
+                        </p>
+                        <figure>
+                            <a href="at-4-database-model-2-separated-tables-relational-diagram.png">
+                                <img src="at-4-database-model-2-separated-tables-relational-diagram.png" alt="Diagramme relationnel de la solution avec deux tables séparaées">
+                            </a>
+                        </figure>
+                        <p>
+                            Le principal avantage est la séparation
+                            les principaux incovénients est que si nous devons sélectionner tous les utilisateurs,
+                            il faut effectuer un <i>SELECT * FROM user UNION SELECT * FROM administrator</i>
+                            et que les mêmes colonnes sont répétées deux fois.
+                        </p>
+                    </div>
+
+                    <div title="two-linked-tables">
+                        <h4>Deux tables liées</h4>
+                        <p>
+                            Nous créons encore deux tables <b>user</b> et <b>administrator</b>
+                            mais elles sont liées par une relation <i>user 0,1-----1 administrator</i>
+                        </p>
+                        <figure>
+                            <a href="at-4-database-model-2-linked-tables-relational-diagram.png">
+                                <img src="at-4-database-model-2-linked-tables-relational-diagram.png" alt="Diagramme relationnel de la solution deux tables liées">
+                            </a>
+                        </figure>
+                        <p>
+                            Attention que la clef étrangère doit être dans <b>administrator</b>,
+                            c'est-à-dire du côté <b>1</b> de la relation
+                            et pas du côté <b>0,1</b>
+                            ce qui traduit la phrase <b>un administrateur est un user mais un user n'est pas nécessaire un administrateur</b>.
+                        </p>
+                        <p>
+                            Notons que la clef étrangère sert aussi de clef primaire.
+                        </p>
+                        <p>
+                            Le principal avantage de ce modèle est d'assurer la cohérence des noms de colonnes
+                            entre les utilisateurs et les administrateur,
+                            puisque <i>pseudo, encryptedPassword et email</i> sont présents uniquement dans <b>user</b>.
+                        </p>
+                        <p>
+                            Le principal inconvénient est que pour sélectionner les administrateurs,
+                            nous devons écrire
+                            <i>SELECT u.*, a.expertise_level FROM user u INNER JOIN administrator a ON u.id = a.id</i>
+                        </p>
+                    </div>
+
+                    <div title="three-linked-tables">
+                        <h4>Trois tables liés</h4>
+                        <div>
+                            <p>
+                                Une dernière solution est d'utiliser trois tables.
+                            </p>
+                            <p>
+                                C'est la solution la plus flexible
+                                mais aussi la plus complexe.
+                            </p>
+                            <figure>
+                                <a href="at-4-database-model-3-tables.jpg">
+                                    <img src="at-4-database-model-3-tables.jpg" alt="">
+                                </a>
+                            </figure>
+                            <p>
+                                Ici, nous avons une table <b>account</b>
+                                qui contient les colonnes communes
+                                à <b>user</b> et <b>admidnistrator</b>.
+                            </p>
+                            <p>
+                                Notons que l'exemple ici est pédagogique et un peu tiré par les cheveux.
+                            </p>
+                            <div>
+                                <p>
+                                    Voici un cas plus utile.
+                                </p>
+                                <p>
+                                    Imaginons que nous avons une application 
+                                    permettant de gérer des fichiers.
+                                </p>
+                                <p>
+                                    Nous avons des fichiers de différents types,
+                                    par exemple des fichiers textes, des fichiers d'images, audio, vidéos:
+                                </p>
+                                <figure>
+                                    <a href="at-4-database-model-3-table-file.jpg">
+                                        <img src="at-4-database-model-3-table-file.jpg" alt="">
+                                    </a>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-tree" data-tc=1>
+                <h2>Arbre</h2>
+                <div id="section-tree-one-node" data-tc=2>
+                    <h3>un noeud</h3>
+                    <p>
+                        L'arbre est une manière de struturer l'information
+                        que nous rencontrons dans de nombreux cas.
+                    </p>
+                    <p>
+                        Un exemple est l'arbre que forme le code HTML,
+                        par exemple:
+                    </p>
+                    <blockquote>
+                        <figure>
+                            <a href="tree.gif">
+                                <img src="tree.gif" alt="">
+                            </a>
+                        </figure>
+                        <cite>
+                            <a href="http://web.simmons.edu/~grabiner/comm244/weekfour/document-tree.html" target=_blank>
+                                The HTML Document Tree
+                            </a>
+                        </cite>
+                    </blockquote>
+                    <p>
+                        Un autre exemple, c'est l'organigramme d'une entreprise:
+                    </p>
+                    <blockquote>
+                        <figure>
+                            <a href="organigramme-en-pyramide.png">
+                                <img src="organigramme-en-pyramide.png" alt="">
+                            </a>
+                        </figure>
+                        <cite>
+                            <a href="https://www.manager-go.com/organisation-entreprise/organigramme.htm" target=_blank>
+                                Mise en place d'un organigramme en entreprise
+                            </a>
+                        </cite>
+                    </blockquote>
+                    <p>
+                        Modélisons l'organigramme avec un diagramme relationnel:
+                    </p>
+                    <figure>
+                        <a href="at-4-database-tree-one-node.jpg">
+                            <img src="at-4-database-tree-one-node.jpg" alt="">
+                        </a>
+                    </figure>
+                    <p>
+                        Ainsi, l'organigramme ci-dessus est enregistré dans la table "employee":
+                    </p>
+                    <figure>
+                        <a href="at-4-database-tree-one-node-records.png">
+                            <img src="at-4-database-tree-one-node-records.png" alt="">
+                        </a>
+                    </figure>
+                </div>
+                <section id="section-three-two-nodes" data-tc=2>
+                    <h3>deux noeuds</h3>
+                    <div>
+                        <p>
+                            Dans bien des cas, 
+                            nous avons deux types de noeuds,
+                            par exemple,
+                            le système de gestion de fichiers (fichiers, répertoires),
+                            l'HTML (tag et texte),
+                            ...
+                        </p>
+                        <p>
+                            Voici le diagramme relationnel pour le système de gestion de fichiers:
+                        </p>
+                        <figure>
+                            <a href="at-4-database-tree-two-nodes.jpg">
+                                <img src="at-4-database-tree-two-nodes.jpg" alt="">
+                            </a>
+                        </figure>
+                        <p>
+                            Nous avons trois tables,
+                            deux tables faciles à comprendre <b>directory</b> pour les répertoires et
+                            <b>file</b> pour les fichiers.
+                        </p>
+                        <p>
+                            La table <b>node</b> est une table contenant les noeuds,
+                            c'est-à-dire tous les <b>directory</b> et tous les <b>file</b>,
+                            c'est de l'héritage.
+                        </p>
+                        <p>
+                            Les liaisons 1 à 1 (node -1---1- directory et node -1---1- file) sont
+                            les liaisons d'héritage.
+                        </p>
+                        <p>
+                            La liaison 1 à n (node -n---1- directory) est la liaison
+                            qui indique qu'un <b>node</b> est dans un <b>directory</b>.
+                        </p>
+                        <p>
+                            Voici un exemple de fichiers et répertoires:
+                        </p>
+                        <blockquote>
+                            <figure>
+                                <a href="TT_tree_desktop.jpg">
+                                    <img src="TT_tree_desktop.jpg" alt="">
+                                </a>
+                            <cite>
+                                <a href="https://www.lemagit.fr/definition/Systeme-de-fichiers" target=_blank>
+                                    LeMagIT - Système de Fichiers
+                                </a>
+                            </cite>
+                        </blockquote>
+                        <p>
+                            Nous aurons donc les enregistrements suivants dans la base de données:
+                        </p>
+                        <figure>
+                            <a href="at-4-database-tree-two-nodes-records.png">
+                                <img src="at-4-database-tree-two-nodes-records.png" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-classic" data-tc=1 data-toc-text="Courants">
+                <h2>Cas courants</h2>
+                <div>
+                    <p>
+                        Nous revisitons quelques cas classiques rencontrés 
+                        lors de la réalisation des bases de données.
+                    </p>
+                </div>
+                <section id="section-classic-invoice" data-tc=2>
+                    <h3>facture</h3>
+                    <div>
+                        <p>
+                            Le cas de la facture est un grand classique.
+                        </p>
+                        <pre>
+    invoice -1---n- invoice_line -n---1- article
+                        </pre>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-code" data-tc=1>
+                <h2>Code</h2>
+                <div>
+                    <p>
+                        Une fois le modèle relationel réalisé,
+                        nous pouvons écrire ou même générer le code SQL qui crée la database.
+                    </p>
+                    <p>
+                        En effet, beaucoup d'outils permettent de générer le code SQL.
+                        Visual Paradigm le permet, mais malheureusement pas dans la version "community".
+                        "mysql workblench" le permet aussi.
+                    </p>
+                    <p>
+                        Le code correspondant à notre diagramme relationnel est le suivant
+                    </p>
+                    <textarea>
+    CREATE DATABASE ddc;
+    USE ddc;
+
+    CREATE TABLE worker (
+        id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        matricule VARCHAR(20) UNIQUE NOT NULL,
+        firstname VARCHAR(32) NOT NULL,
+        lastname VARCHAR(32) NOT NULL,
+        email VARCHAR(128) UNIQUE,
+        manager_id INT(10),
+        is_manager BOOLEAN DEFAULT 0
+    );
+
+    CREATE INDEX worker_matricule_index ON worker (matricule);
+    CREATE INDEX worker_firstname_index ON worker (firstname);
+    CREATE INDEX worker_lastname_index ON worker (lastname);
+    CREATE INDEX worker_email_index ON worker (email);
+
+    CREATE TABLE day_off (
+        id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        start DATE NOT NULL,
+        end DATE NOT NULL,
+        comment VARCHAR(512),
+        worker_id INTEGER(10),
+        day_off_category_id INTEGER(10)
+    );
+
+    CREATE INDEX day_off_start_index ON day_off (start);
+    CREATE INDEX day_off_end_index ON day_off (end);
+
+    CREATE TABLE day_off_category (
+        id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        name VARCHAR(64) NOT NULL
+    );
+
+    CREATE INDEX day_off_category_name ON day_off_category (name);
+
+    ALTER TABLE worker
+    ADD FOREIGN KEY (manager_id) REFERENCES worker(id);
+    
+    ALTER TABLE day_off
+    ADD FOREIGN KEY (worker_id) REFERENCES worker(id);
+
+    ALTER TABLE day_off
+    ADD FOREIGN KEY (day_off_category_id) REFERENCES day_off_category(id);
+                    </textarea>
+                    <p>
+                        Le code est normalement parfaitement compréhensible,
+                        grâce au diagramme relationnel correspondant.
+                    </p>
+                    <p>
+                        Notons que ce code est du code pour mysql,
+                        car certaines instructions du code sont du SQL particulier à mysql,
+                        par exemple "USE", "AUTO_INCREMENT".
+                    </p>
+                    <p>
+                        Si nous exécutons ce code dans un client mysql,
+                        il crée la DB et les tables,
+                        voici la trace de l'exécutions du script de création de base de données.
+                        Démarrons d'abord le client <i>mysql</i> en ligne de commande:
+                    </p>
+                    <pre>
+    mysql -uroot -p
+                    </pre>
+                    <p>
+                        ensuite, faisons un copy/paste du script:
+                    </p>
+                    <a href="create-db-script-execution.png">
+                        <img src="create-db-script-execution.png" alt="execution du script dans le command-prompt">
+                    </a>
+                    <p>
+                        Nous pouvons aussi exécuter le script en tapant la commande:
+                    </p>
+                    <pre>
+    mysql -uroot -p create-ddc-db.sql
+                    </pre>
+                    <p>
+                        où <i>create-ddc-db.sql</i> est le fichier contenant le script SQL.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-nosql" data-tc=1>
+                <h2>No SQL</h2>
+                <div>
+                    <p>
+                        Depuis maintenant une dizaine d'années,
+                        les bases de données NoSQL, c'est-à-dire pas seulement SQL,
+                        font le buzz,
+                        pour de nombreuses raisons,
+                        essentiellement le big data,
+                        la disponibilité,
+                        la performance
+                        et la redondance.
+                    </p>
+                    <p>
+                        Il est important de savoir
+                        que la modélisation de bases de données NoSQL est différente
+                        de celle des bases de données SQL.
+                    </p>
+                    <p>
+                        Pour creuser le sujet,
+                        nous pouvons consulter
+                    </p>
+                    <ul>
+                        <li>
+                            <a href="https://www.mongodb.com/presentations/ask-the-experts--data-modeling-en-francais?utm_campaign=Int_WB_Ask%20the%20Experts%20France_05_20_EMEA_Follow%20Up%20No%20Show&utm_medium=email&utm_source=Eloqua&utm_term=Ask%20the%20Experts%20%3A%20Retrouvez%20l%27enregistrement%20de%20la%20session">
+                                Vidéo - MongoDB - data modeling en français
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apress.com/gp/book/9781484227213" target=_blank>
+                                Usage-Driven Database Design, G. Tillmann, apress, 2017
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.pearson.com/us/higher-education/program/Sullivan-No-SQL-for-Mere-Mortals/PGM5054.html" target=_blank>
+                                NoSQL for Mere Mortals, Dan Sullivan, Addison-Wesley, 2015
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.dataversity.net/how-to-design-schema-for-your-nosql-database/#" target=_blank>
+                                dataversity - How to Design Schema for Your NoSQL Database?
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://mapr.com/blog/data-modeling-guidelines-nosql-json-document-databases/" target=_blank>
+                                MAPR - Data Modeling Guidelines for NoSQL JSON Document Databases
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/watch?v=qI_g07C_Q5I" target=_blank>
+                                youtube - GOTO 2012 • Introduction to NoSQL • Martin Fowler
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mongodb.com/resources/presentations" target=_blank>
+                                mongodb - presentations
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="section-quality" data-tc=2>
+                <h2>Qualité</h2>
+                <p>
+                    Nous vérifions la qualité de notre modèle relationnel des critères suivants:
+                </p>
+                <ol>
+                    <li>
+                        utilisation d'un standard de nommage, par exemple le snake_case;
+                    </li>
+                    <li>
+                        un identifiant technique par table, excepté les tables de liens purs
+                    </li>
+                    <li>
+                        ne pas utiliser les identifiants métiers comme identifiants des tables;
+                    </li>
+                    <li>
+                        utilisation uniquement des caractères alphanumériques [0-1a-zA-Z];
+                    </li>
+                    <li>
+                        n'utilisons pas d'abréviations, excepter id, les abréviations du métier et autres standard,
+                        un glossaire est bienvenu;
+                    </li>
+                    <li>
+                        cherchons la simplicité;
+                    </li>
+                    <li>
+                        évitons d'ajouter des éléments non demandés par le métier;
+                    </li>
+                    <li>
+                        les requêtes, formulaires et rapports ne doivent être persistants 
+                        que si ils sont liés à un processus;
+                    </li>
+                </ol>
+            </section>
+
+        </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2020-05-18
+        </footer>
+        </sec>
+        <script>
+            var sdkj = { language: 'sql' };
+        </script>
+        <script src='../../../js/script.js'></script>
+</body>
+
+</html>

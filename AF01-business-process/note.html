@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Business Processes</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    < id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Analyse fonctionnelle - L1 - Processus d'affaires</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td=1>
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Savoir lire et rédiger un modèle des processus métier (Business Processes)
+                </p>
+            </section>
+
+            <section id="section-introduction" data-tc="1">
+                <h2>Introduction</h2>
+                <p>
+                    PAGE EN CONSTRUCTION
+                </p>
+                <div>
+                    <p>
+                        La première étape en analyse consiste à relever et documenter les processus métier,
+                        souvent appelé "business process",
+                        ou parfois "workflow", bien que workflow est un terme plus général.
+                    </p>
+                    <div class=tips>
+                        <p>
+                            Un processus métier est un ensemble d'activités corrélées ou en intéractions
+                            qui transforme des éléments d'entrée en éléments de sortie
+                            et contribue aux finalités de l'organisation.
+                        </p>
+                        <p>
+                            Par exemple, le processus d'achat.
+                        </p>
+                        <blockquote>
+                            <figure>
+                                <a href="Exemple_BPMN_achats.jpg">
+                                    <img src="Exemple_BPMN_achats.jpg" alt="Processus d'achat">
+                                </a>
+                            </figure>
+                            <cite>
+                                <a href="https://fr.wikipedia.org/wiki/Processus_d%27affaires">
+                                    wikipedia Processus d'affaires
+                                </a>
+                            </cite>
+                        </blockquote>
+                    </div>
+                    <p>
+                        Il est bien évident que dans le cadre de l'analyse d'une application,
+                        nous nous intéresserons qu'aux processus dans lesquels l'application est ou sera impliquée.
+                    </p>
+                    <p>
+                        Deux diagrammes sont principalement utilisés pour documenter ces processus:
+                    </p>
+                    <ul>
+                        <li>BPMN : Business Process Modeling Notation qui ne sera pas vu à ce cours</li>
+                        <li>UML Activity Diagram : le diagramme d'activité du langage UML qui sera vu à ce cours</li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <p>
+                    Exemple:
+                </p>
+                <figure>
+                    <a href="activity-diagram-retour-marchandise.png">
+                        <img src="activity-diagram-retour-marchandise.png" alt="mapping">
+                    </a>
+                </figure>
+            </section>
+
+            <section id="section-quality" data-tc=1 data-td="Qualité">
+                <h2>Critères de qualité</h2>
+                <p>
+                    Pour vérifier la qualité de notre modèle de processus métier,
+                    nous pouvons poser les questions suivantes:
+                </p>
+                <ol>
+                    <li>
+                        Avons-nous relever tous les processus métier?
+                    </li>
+                    <li>
+                        Avons-nous nommer correctement les acteurs?
+                    </li>
+                    <li>
+                        Les actions sont-telles nommées sous la forme
+                        <span class="scode">verb + complément d'objet direct</span>;
+                        le verbe étant à l'infinitif ou au présent;
+                    </li>
+                </ol>
+            </section>
+
+            <section id="section-references" data-tc=1>
+                <h2>Références du cours</h2>
+                <ul>
+                    <li><a href="..\E01-book-shop">Exemple d'un magasin de vente de livre en ligne</a></li>
+                    <li><a href="..\E02-ddc">Exemple de la demande de congés</a></li>
+                    <li>
+                        <a href="https://fr.wikipedia.org/wiki/Processus_d%27affaires" target=_blank>
+                            wikipedia - processus d'affaires
+                        </a>
+                    </li>
+                </ul>
+                <p>
+                    Voici quelques références sur le sujet pour les plus curieux:
+                </p>
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=JVXepMHfBAw" target=_blank>
+                            vidéo - Diagramme d'activité de processus métier.
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://fundamentals-of-bpm.org/" target="_blank">
+                            fundamentals of bpm
+                        </a> est le site du livre de référence en la matière,
+                        avec
+                        <a href="http://fundamentals-of-bpm.org/supplementary-material/" target="_blank">
+                            des compléments en accès libre
+                        </a>
+                        <span style="display: none;"> <a href="hidden/Business-Process-Management-Springer-Berlin-Heidelberg-2013.pdf"></a> copie de la première édition</span>
+                    </li>
+                    <li>
+                        <a href="https://www.sparxsystems.fr/business_process_model.html" target=_blank>
+                            sparx - La Modélisation de Processus Métier
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://fr.slideshare.net/YounessBoukouchi/modlisation-des-processus-mtiers-bpmn" target=_blank>
+                        Youness Boukouchi - Business Process Model and Notation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.appvizer.fr/magazine/operations/business-process/modelisation-processus-metier">
+                        appvizer- Tout savoir sur la modélisation des processus métier
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.batimes.com/articles/workflow-modeling-with-uml-activity-diagrams.html" target=_blank>
+                            batimes - Workflow Modeling With UML Activity Diagrams
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=pOMKLBywrrA" target="_blank">
+                            BPMN Basic Modelling - What Is BPMN?
+                        </a>, première vidéo d'une série réalisée par Monique Snoeck, KUL
+                    </li>
+                    <li>
+                        <a href="https://www.visual-paradigm.com/guide/bpmn/what-is-bpmn/" target=_blank>
+                            Visual Paradigm - What is BPMN?
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.visual-paradigm.com/support/documents/vpuserguide/2821/286/7114_drawingbusin.html" target=_blank>
+                            Visual Paradim - Drawing BPMN Business Process Diagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.coursera.org/lecture/analysis-for-business-systems/3-1-5-business-process-model-and-notation-bpmn-Nzmsv">
+                            coursera 3.1-5 Business Process Model and Notation (BPMN)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.udemy.com/course/business-process-diagrams-and-bpmn-20/?utm_source=adwords&utm_medium=udemyads&utm_campaign=LontailTail_la.EN_cc.ROWMTA-A-draft&utm_content=deal4584&utm_term=_._ag_98723036869_._ad_382036689510_._kw__._de_c_._dm__._pl__._ti_dsa-1007766171552_._li_1001018_._pd__._&matchtype=b&gclid=CjwKCAjwg6b0BRBMEiwANd1_SOP-cyPE8Jqoyi_VDHHu43Uf777Q9N8L_8IQlJqH-fmoIMu72hHDkxoCDk0QAvD_BwE">
+                            Business Process Diagrams and BPMN 2.0 for Analysts
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+        </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2019-10-29
+        </footer>
+    </sec>
+    <script src='../../../js/script.js'></script>
+</body>
+
+</html>

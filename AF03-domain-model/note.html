@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Use cases</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Analyse fonctionnelle - L3 - Modèle de domaine</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-td=1>
+                <h2>Objectifs de la leçon</h2>
+                <p>
+                    Savoir lire et rédiger un modèle de du domaine
+                </p>
+            </section>
+
+            <section id="section-introduction" data-tc="1">
+                <h2>Introduction</h2>
+                <p>
+                    PAGE EN CONSTRUCTION
+                </p>
+                <p>
+                    Références:
+                </p>
+                <ul>
+                    <li><a href="http://sdkj.website/notes/analyse/E01-book-shop/note.html#subsection-functional-domain"
+                        >exemple du la boutique de livres</a></li>
+                    <li><a href="../E02-ddc#section-functional-domain">exemple de la demande de congé</a></li>
+                    <li><a href="http://sdkj.website/notes/analyse/AT04-database-model/note.html">Database model</a></li>
+                    <li><a href="../AFa-domain-code">Correspondance classes du domaine et le code</a></li>
+                </ul>
+            </section>
+
+            <section id="section-quality" data-tc=1>
+                <h2>Qualité</h2>
+                <p>
+                    Nous vérifions notre modèle sur base des critères suivants:
+                </p>
+                <ol>
+                    <li>
+                        n'ajoutons pas d'attributs calculés,
+                        nous pouvons les placer dans des opérations s'ils sont importants pour le métier;
+                    </li>
+                    <li>
+                        requêtes, formulaires, rapports sont rarement des classes métiers, excepté si un processus est lié à des objets;
+                    </li>
+                    <li>
+                        évitons les opérations au niveau du modèle du domaine, celles-ci sont documentées par le modèle des fonctions;
+                    </li>
+                </ol>
+            </section>
+        </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2019-10-29
+        </footer>
+    </sec>
+    <script src='../../../js/script.js'></script>
+</body>
+
+</html>

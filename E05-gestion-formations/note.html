@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>E5 - système gestions de formation</title>
+    <link rel='stylesheet' href='../../../css/style.css'>
+    <link rel="stylesheet" href="../../../css/codemirror.css">
+    <script src="../../../js/codemirror.js"></script>
+    <script src="../../../js/clike.js"></script>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Exercice 5 - système de gestion des interventions</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-tc=1>
+                <h2>Objectifs de la leçon</h2>
+                <ul>
+                    <li>Comprendre les éléments principaux de l'analyse à l'aide d'un exemple</li>
+                </ul>
+                <p>
+                    Durée estimée : 3h
+                </p>
+                <p>
+                    Type d'enseignement : exercice, apprentissage personnel, support des autres étudiants et du professeur.
+                </p>
+                <p>
+                    Ce travail a été réalisé à l'aide de Visual Paradigm
+                    et 
+                    <a href="system-gestion-formation.vpp" download="">
+                        le fichier projet "system-gestion-formation.vpp" est disponible ici
+                    </a>.
+                </p>
+            </section>
+
+
+            <section id="section-functional" data-tc=1 data-toc-text="Fonctionnel">
+                <h2>Analyse fonctionnelle</h2>
+                
+                <section id="section-functional-business" data-tc=2 data-toc-text="process">
+                    <h3>Modèle des processus métier</h3>
+                    <p>
+                        Un seul processus mérite notre attention, la formation, de sa création à sa "fin".
+                        Ce processus sera plus facile à modéliser à l'aide d'une machine d'état,
+                        que nous avons placée dans la section "modèle du domaine"
+                    </p>
+                </section>
+
+                <section id="section-functional-use-cases" data-tc=2 data-toc-text="use cases">
+                    <h3>Use cases</h3>
+                    <div>
+                        <p>
+                            Soit:
+                        </p>
+                        <figure>
+                            <a href="1-use-case-model.png">
+                                <img src="1-use-case-model.png" alt="">
+                            </a>
+                        </figure>
+                        <h4>Scénario textuelle</h4>
+                        <p>
+                            Nous n'avons décrit qu'un seul scénario:
+                        </p>
+                        <figure>
+                            <a href="scenario-reserve-salle.png">
+                                <img src="scenario-reserve-salle.png" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                </section>
+
+                <section id="section-functional-domain" data-tc=2 data-toc-text="domaine">
+                    <h3>Vue "classes du domaines"</h3>
+                    <div>
+                        Nous modélisons les entités du domaine à l'aide d'un diagramme de classes.
+                    </div>
+                    <figure>
+                        <a href="2-domain-model.png
+                            <img src="2-domain-model" alt="">
+                        </a>
+                    </figure>
+                    <div>
+                        <p>
+                            Nous modélisons les règles métiers liées à une formation
+                            avec une machine d'états:
+                        </p>
+                        <figure>
+                            <a href="training-state-machine.png">
+                                <img src="training-state-machine.png" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-technical" data-tc=1 data-toc-text="Technique">
+                <h2>Analyse technique</h2>
+                <section>
+                    <h3>Modélisation de la database</h3>
+                    <div>
+                        <figure>
+                            <a href="3-dabase-model.png">
+                                <img src="3-dabase-model.png" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                </section>
+            </section>
+        </article>
+
+        <footer>
+            &copy; 2020 - Jean-Michel Depaepe - dernière mise à jour 2020-06-28
+        </footer>
+    </sec>
+    <script src='../../../js/script.js'></script>
+</body>
+</html>
