@@ -34,14 +34,11 @@
             <section id="section-statement" data-tc="1">
                 <h2>Enoncé</h2>
                 <p>
-                    Imaginons une application pour gérer la maintenance des stations d'eau, principalement pour gérer les interventions sur site.
+                    Une société de distribution de l'eau décide de digitaliser les rapports d'intervention sur sites, appelé stations d'eau.
                 </p>
                 <p>
                     Les stations d'eau sont les stations de l'infrastructure de distribution de l'eau. 
                     Nous avons des stations de captage et d'extraction, des stations de traitement, de pompage pour le transport et de stockage en hauteur, c'est-à-dire les châteaux d'eau et les réservoir.
-                </p>
-                <p>
-                    Nous imaginons ici une application pour digitaliser les rapports d'interventions sur ces stations.
                 </p>
                 <p>
                     Le projet visual paradigm réalisé pour ce projet est disponible
@@ -76,11 +73,31 @@
                 <section id="section-functional-business" data-tc=2 data-toc-text="process">
                     <h3>Business process</h3>
                     <div>
+                        <p>Une intervention sur une station d'eau suit le processus suivant</p>
                         <figure>
-                            <a href="1-business-process-model.png">
-                                <img src="1-business-process-model.png">
+                            <a href="1-business-process-model.jpg">
+                                <img src="1-business-process-model.jpg">
                             </a>
                         </figure>
+                        <div>
+                            <p>Les intervenants sont</p>
+                            <ul>
+                                <li>opérateur est une personne du dispatching central qui surveillant l'ensemble du réseau de distribution d'eau</li>
+                                <li>agent de garde est le technicien qui effectue des interventions de garde (l'application ne s'occupe que des interventions imprévues)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p>Les étapes sont :</p>
+                            <ol>
+                                <li>l'opérateur appelle l'agent de garde</li>
+                                <li>l'opérateur rédige la fiche d'appelle</li>
+                                <li>l'agent de garde intervient sur la station (il fait l'intervention)</li>
+                                <li>il appelle l'opérateur pour signaler que l'intervention est terminée</li>
+                                <li>l'opérateur vérifie le bon fonctionnement de la station</li>
+                                <li>si le fonctionne n'est pas bon, le technicien recommence l'intervention</li>
+                                <li>si le fonctionne est bon, l'agent rédige le rapport d'intervention</li>
+                            </ol>
+                        </div>
                     </div>
                 </section>
 

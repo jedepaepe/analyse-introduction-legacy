@@ -34,7 +34,10 @@
             <section id="section-statement" data-tc="1">
                 <h2>Enoncé</h2>
                 <p>
-                    Imaginons une application pour gérer la vérification d'un véhicule après utilisation, dans le contexte d'une entreprise qui utilise des véhicules de société.</p>
+                    Une entreprise a de nombreux véhicules, principalement utilitaires, mis à disposition pour différents travaux.
+                    Elle décide de développer une application pour gérer la location (interne) de ces véhicules et en particulier la vérification du véhicule après utilisation.
+                </p>
+                
                 <p>
                     Le projet visual paradigm réalisé pour ce projet est disponible
                     <a href="car-check.vpp" download>
@@ -53,11 +56,35 @@
                 <section id="section-functional-business" data-tc=2 data-toc-text="process">
                     <h3>Business process</h3>
                     <div>
+                        <p>
+                            Le processus de location d'un véhicule est le suivant :
+                        </p>
                         <figure>
                             <a href="2-process-model-activity-diagram.jpg">
                                 <img src="2-process-model-activity-diagram.jpg">
                             </a>
                         </figure>
+                        <div>
+                            Les différents acteurs sont :
+                            <ul>
+                                <li>worker : le travailleur qui a besoin d'un véhicule</li>
+                                <li>fleet manager : le responsable de la flotte de véhicule</li>
+                            </ul>
+                            both signifie les deux.
+                        </div>
+                        <div>
+                            Les étapes du processus sont :
+                            <ol>
+                                <li>le worker demande un véhicule</li>
+                                <li>le fleet manager vérifie la demande</li>
+                                <li>le fleet manager accepte ou refuse la demande</li>
+                                <li>le fleet manager sélectionne un véhicule</li>
+                                <li>le worker et le fleet manager vérifie le véhicule</li>
+                                <li>le travailleur utilise le véhicule</li>
+                                <li>ensemble, ils vérifient le véhicule au retour (check out)</li>
+                                <li>si des problèmes sont détectés, le fleet manager rédige un rapport</li>
+                            </ol>
+                        </div>
                     </div>
                 </section>
 
