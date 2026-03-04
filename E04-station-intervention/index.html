@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>E4 - maintenance-stations-eau</title>
+    <link rel='stylesheet' href='../css/style.css'>
+    <script src="../../../js/clike.js"></script>
+</head>
+
+<body>
+    <a href=".."><div class="home"></div></a>
+    <nav id="toc" class="toc"></nav>
+
+    <div id='container'>
+        <header>
+            <h1 class="center">Cours Analyse Informatique</h1>
+            <h2 class="center">Exercice 4 - maintenance-stations-eau</h2>
+        </header>
+        <article class="contents">
+            <section id="section-objectifs" data-tc=1>
+                <h2>Objectifs de la leçon</h2>
+                <ul>
+                    <li>Comprendre les éléments principaux de l'analyse à l'aide d'un exemple</li>
+                </ul>
+                <p>
+                    Durée estimée : 3h
+                </p>
+                <p>
+                    Type d'enseignement : exercice, apprentissage personnel, support des autres étudiants et du professeur.
+                </p>
+            </section>
+
+            <section id="section-statement" data-tc="1">
+                <h2>Enoncé</h2>
+                <p>
+                    Imaginons une application pour gérer la maintenance des stations d'eau, principalement pour gérer les interventions sur site.
+                </p>
+                <p>
+                    Les stations d'eau sont les stations de l'infrastructure de distribution de l'eau. 
+                    Nous avons des stations de captage et d'extraction, des stations de traitement, de pompage pour le transport et de stockage en hauteur, c'est-à-dire les châteaux d'eau et les réservoir.
+                </p>
+                <p>
+                    Nous imaginons ici une application pour digitaliser les rapports d'interventions sur ces stations.
+                </p>
+                <p>
+                    Le projet visual paradigm réalisé pour ce projet est disponible
+                    <a href="maintenance-stations-eau.vpp" download>
+                        ici, maintenance-stations-eau.vpp
+                    </a>
+                </p>
+            </section>
+
+            <p>
+                Avertissement : il s'agit ici d'un document en construction.
+            </p>
+
+            <section id="section-functional" data-tc=1 data-toc-text="Fonctionnel">
+                <h2>Analyse fonctionnelle</h2>
+                <div>
+                    <p>
+                        Notre analyse fonctionnelle comportera deux vues,
+                        car nous n'avons pas de "business process model"
+                        puisqu'il n'y a pas de processus métiers.
+                    </p>
+                    <ul>
+                        <li>
+                            la vue "use case" qui liste les use cases;
+                        </li>
+                        <li>
+                            la vue "domaine" qui liste les entités du domaine et leur relation.
+                        </li>
+                    </ul>    
+                </div>
+                
+                <section id="section-functional-business" data-tc=2 data-toc-text="process">
+                    <h3>Business process</h3>
+                    <div>
+                        <figure>
+                            <a href="1-business-process-model.png">
+                                <img src="1-business-process-model.png">
+                            </a>
+                        </figure>
+                    </div>
+                </section>
+
+                <section id="section-functional-use-cases" data-tc=2 data-toc-text="use cases">
+                    <h3>Use cases</h3>
+                    <div>
+                        <figure>
+                            <a href="2-use-cases-model.png">
+                                <img src="2-use-cases-model.png">
+                            </a>
+                        </figure>
+                    </div>
+                </section>
+
+                <section id="section-functional-domain" data-tc=2 data-toc-text="domaine">
+                    <h3>Vue "classes du domaines"</h3>
+                    <div>
+                        Nous modélisons les entités du domaine à l'aide d'un diagramme de classes.
+                    </div>
+                    <figure>
+                        <a href="3-domain-model.png">
+                            <img src="3-domain-model.png" alt="diagramme des classes du domaine">
+                        </a>
+                    </figure>
+                </section>
+            </section>
+
+            <section id="section-technical" data-tc=1 data-toc-text="Technique">
+                <h2>Analyse technique</h2>
+                <section>
+                    <h3>Modèle DB</h3>
+                    <figure>
+                        <a href="4-db-model.png">
+                            <img src="4-db-model.png" alt="modèle relationnel pour la database">
+                        </a>
+                    </figure>
+                </section>
+
+                <section>
+                    <h3>Modèle de déploiement</h3>
+                    <figure>
+                        <a href="5-deployment-model.png">
+                            <img src="5-deployment-model.png" alt="modèle de déploiement">
+                        </a>
+                    </figure>
+                </section>
+
+            </section>
+
+        </article>
+
+        <footer>
+            &copy; 2019 - Jean-Michel Depaepe - dernière mise à jour 2026-03-04
+        </footer>
+    </sec>
+    <script src='../js/script.js'></script>
+</body>
+</html>
