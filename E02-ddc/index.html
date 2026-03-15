@@ -342,7 +342,7 @@
                             </div>
 
                             <div id="section-fonctional-use-cases-business-rules">
-                                <h4>Règles métiers</h4>
+                                <h5>Règles métiers</h5>
                                 <ul>
                                     <li>si la durée du congé est d'un jour, la date de début doit être aujourd'hui ou dans le future</li>
                                     <li>si la durée du congé est 2 jours ou 3 jours, la date de début du congé doit être supérieure ou égale qu'aujourd'hui + 10 jours ouvrables</li>
@@ -357,9 +357,7 @@
                             <div>
                                 <h5>Description</h5>
                                 <p>
-                                    En tant que travailleur,
-                                    je veux pouvoir annuler une demande de congé,
-                                    ainsi je peux adapter mes demandes de congés aux circonstances.
+                                    Le travailleur annule son congé. Un email de confirmation lui est envoyé et un email est envoyé à son manager.
                                 </p>
                             </div>
                             <div>
@@ -401,6 +399,14 @@
                                     </ul>
                                 </div>
                             </div>
+                            <h5>Règles métiers</h5>
+                            <ul>
+                                <li>un congé approuvé par le manager ne peut être annulé que si la date de début de congé est dans plus d'un mois</li>
+                            </ul>
+                            <p>
+                                Les cas exceptionnels devront être gérés en dehors de l'application 
+                                et ce sera les RH qui pourront le cas échéans annuler le congé.
+                            </p>
                         </div>
                         
                         <div id="section-functional-use-cases-operations-approve-manager" class=card>
@@ -408,13 +414,8 @@
                             <div>
                                 <h5>Description</h5>
                                 <p>
-                                    En tant que <i>manager</i> je veux pouvoir approuver                                    un congé demandé par un des <i>travailleurs</i> sous ma responsabilité,
-                                    ainsi je peux assurer le contentement de mes travailleurs
-                                </p>
-                                <p>
-                                    Et en tant que <i>manager</i> je veux pouvoir refuser
-                                    un congé demandé par un des <i>travailleurs</i> sous ma responsabilité,
-                                    ainsi je peux assurer la continuité de mon service.
+                                    Le manager prend connaissance de la demande de congé.
+                                    Il l'approuve ou la refuse.
                                 </p>
                             </div>
                             <div>
@@ -462,23 +463,19 @@
                                 </div>
                             </div>
 
-                            <div id="section-functional-use-cases-operations-approve-manager-timeout" class=card>
-                                <h5>Scénario pas d'actions</h5>
-                                <p>
-                                    Le <i>manager</i> ne prend pas d'action dans un temps raisonnable (TODO: quel est le temps raisonnable)?
-                                </p>
-                                <p>
-                                    TODO: est-ce un scénario ou un autre use case?
-                                </p>
-                                <ol>
-                                    <li>L'application détecte qu'une demande de congé n'a pas été traitée par le <i>manager</i> endéans un délai raisonnable</li>
-                                    <li>(TBC) L'application envoie un rappel au <i>manager</i></li>
-                                    <li>(TBC) L'application envoie un rappel au <i>travailleur</i></li>
-                                    <li>(TBC) L'application envoie une notification au manager du <i>manager</i></li>
-                                    <li>(TBC) L'application envoie une notification au <i>rh</i></li>
-                                    <li>(TBC) L'application force l'approbation ou le refus</li>
-                                </ol>
-                            </div>
+                            <div>
+                                <h5>Règles métier</h5>
+                                <ul>
+                                    <li>une demande de congé non traité endéans les 3 semaines est réputée approuvée</li>
+                                    <li>
+                                        une demande urgente, c'est-à-dire une demande pour un congé dans moins d'un mois,
+                                        qui n'est pas traitée trois jours avant le début du congé est réputée approuvée 
+                                    </li>
+                                    <li>
+                                        une demande pour le jour même est réputée approuvée si elle n'est pas traitée endéans l'heure.
+                                    </li>
+                                </ul>
+                           </div>
                         </div>
 
                         <div id="section-functional-use-cases-operations-approve-rh" class=card>
