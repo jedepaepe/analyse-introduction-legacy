@@ -262,9 +262,7 @@
                             <div>
                                 <h5>Description</h5>
                                 <p>
-                                    En tant que travailleur,
-                                    je veux pouvoir demander un congé,
-                                    ainsi je peux planifier mes vacances, mon temps libre.
+                                    Le travaille demande un congé. Un email de confirmation lui est envoyé et un email est envoyé à son manager.
                                 </p>
                             </div>
                             <div>
@@ -288,9 +286,9 @@
                                         <p>Le travailleur introduit les informations relatives à la demande de congé.</p>
                                         <p>La demande de congés contient les informations suivantes</p>
                                         <ul>
-                                            <li>son matricule</li>
-                                            <li>son nom</li>
-                                            <li>son prénom</li>
+                                            <li>son matricule (complété automatiquement par l'application)</li>
+                                            <li>son nom (complété automatiquement par l'application)</li>
+                                            <li>son prénom (complété automatiquement par l'application)</li>
                                             <li>la date de début de congé</li>
                                             <li>la date de fin de congé</li>
                                             <li>le type de congé (en chosissant dans une liste proposée par l'application)</li>
@@ -341,6 +339,16 @@
                                         <li>Un email de confirmation a été envoyé au boss</li>
                                     </ul>
                                 </div>
+                            </div>
+
+                            <div id="section-fonctional-use-cases-business-rules">
+                                <h4>Règles métiers</h4>
+                                <ul>
+                                    <li>si la durée du congé est d'un jour, la date de début doit être aujourd'hui ou dans le future</li>
+                                    <li>si la durée du congé est 2 jours ou 3 jours, la date de début du congé doit être supérieure ou égale qu'aujourd'hui + 10 jours ouvrables</li>
+                                    <li>si la durée du congé est supérieure à 3 jours, la date de début du congé doit être supérieure ou égale à aujourd'hui plus un mois</li>
+                                    <li>la date de fin de congé doit être supérieure ou égale à la date de début de congé</li>
+                                </ul>
                             </div>
                         </div>
 
